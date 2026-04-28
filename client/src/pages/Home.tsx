@@ -130,11 +130,11 @@ function StatItem({ value, suffix, label, start }: { value: number; suffix: stri
       </div>
       <div style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "0.7rem",
+        fontSize: "0.85rem",
         fontWeight: 600,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.15em",
         textTransform: "uppercase",
-        color: "oklch(0.45 0.008 260)",
+        color: "oklch(0.58 0.008 260)",
         marginTop: "0.4rem",
       }}>
         {label}
@@ -244,12 +244,12 @@ export default function Home() {
                 key={t}
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.7rem",
+                  fontSize: "0.85rem",
                   fontWeight: 600,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.60 0.006 260)",
-                  padding: "0.3rem 0.8rem",
+                  color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.70 0.006 260)",
+                  padding: "0.4rem 1rem",
                   border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.5)" : "oklch(1 0 0 / 0.12)"}`,
                 }}
               >
@@ -299,11 +299,11 @@ export default function Home() {
         }}>
           <span style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "0.6rem",
+            fontSize: "0.75rem",
             fontWeight: 600,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "oklch(0.40 0.006 260)",
+            color: "oklch(0.50 0.006 260)",
             writingMode: "vertical-rl",
           }}>Scroll</span>
           <ChevronDown size={14} style={{ color: "oklch(0.40 0.006 260)" }} />
@@ -375,12 +375,12 @@ export default function Home() {
                       top: "1rem",
                       left: "1rem",
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.7rem",
+                      fontSize: "0.8rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       color: "oklch(0.65 0.22 45)",
                       background: "oklch(0.08 0.005 260 / 0.85)",
-                      padding: "0.25rem 0.7rem",
+                      padding: "0.3rem 0.85rem",
                     }}>
                       {String(i + 1).padStart(2, "0")} {p.code}
                     </div>
@@ -398,7 +398,7 @@ export default function Home() {
                     }}>
                       {p.name}
                     </h3>
-                    <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.92rem", lineHeight: 1.65, maxWidth: "55ch" }}>
+                    <p style={{ color: "oklch(0.75 0.008 260)", fontSize: "1rem", lineHeight: 1.65, maxWidth: "55ch" }}>
                       {p.desc}
                     </p>
                     <div style={{
@@ -407,13 +407,13 @@ export default function Home() {
                       alignItems: "center",
                       gap: "0.4rem",
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.75rem",
+                      fontSize: "0.85rem",
                       fontWeight: 600,
-                      letterSpacing: "0.12em",
+                      letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       color: "oklch(0.65 0.22 45)",
                     }}>
-                      View Details <ArrowRight size={13} />
+                      View Details <ArrowRight size={14} />
                     </div>
                   </div>
                 </div>
@@ -502,13 +502,13 @@ export default function Home() {
                   }}>{a.num}</div>
                   <h3 style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.95rem",
+                    fontSize: "1.05rem",
                     fontWeight: 600,
-                    letterSpacing: "0.04em",
-                    color: "oklch(0.88 0.003 260)",
+                    letterSpacing: "0.02em",
+                    color: "oklch(0.90 0.003 260)",
                     marginBottom: "0.6rem",
                   }}>{a.title}</h3>
-                  <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.88rem", lineHeight: 1.65 }}>{a.desc}</p>
+                  <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "0.95rem", lineHeight: 1.65 }}>{a.desc}</p>
                 </div>
               ))}
             </div>
@@ -551,23 +551,23 @@ export default function Home() {
                 <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
                 <h3 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.82rem",
+                  fontSize: "0.9rem",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: "oklch(0.80 0.003 260)",
+                  color: "oklch(0.85 0.003 260)",
                   marginBottom: "0.6rem",
                 }}>{ind.name}</h3>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {ind.items.map((item) => (
                     <li key={item} style={{
-                      color: "oklch(0.65 0.008 260)",
-                      fontSize: "0.82rem",
+                      color: "oklch(0.70 0.008 260)",
+                      fontSize: "0.88rem",
                       lineHeight: 1.8,
                       paddingLeft: "0.8rem",
                       position: "relative",
                     }}>
-                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.6rem" }}>{"▸"}</span>
+                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.65rem" }}>{"▸"}</span>
                       {item}
                     </li>
                   ))}
@@ -623,8 +623,8 @@ export default function Home() {
                   marginBottom: "1.25rem",
                 }}>"</div>
                 <p style={{
-                  color: "oklch(0.78 0.008 260)",
-                  fontSize: "0.92rem",
+                  color: "oklch(0.82 0.008 260)",
+                  fontSize: "1rem",
                   lineHeight: 1.8,
                   marginBottom: "1.75rem",
                   fontStyle: "italic",
@@ -637,15 +637,15 @@ export default function Home() {
                     <div>
                       <div style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "0.9rem",
+                        fontSize: "1rem",
                         fontWeight: 600,
                         letterSpacing: "0.01em",
-                        color: "oklch(0.85 0.003 260)",
+                        color: "oklch(0.90 0.003 260)",
                       }}>{t.name}</div>
                       <div style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "0.75rem",
-                        color: "oklch(0.60 0.008 260)",
+                        fontSize: "0.85rem",
+                        color: "oklch(0.68 0.008 260)",
                         letterSpacing: "0.02em",
                       }}>{t.title} · {t.country}</div>
                     </div>

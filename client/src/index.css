@@ -27,79 +27,64 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
-  /* FULI Brand Colors */
-  --color-fuli-blue: oklch(0.33 0.12 255);
-  --color-fuli-blue-dark: oklch(0.22 0.10 255);
-  --color-fuli-blue-light: oklch(0.55 0.15 255);
-  --color-fuli-orange: oklch(0.65 0.20 45);
-  --color-fuli-orange-dark: oklch(0.52 0.22 45);
-  --color-fuli-steel: oklch(0.75 0.01 255);
+  /* FULI Industrial Palette */
+  --color-fuli-black:    oklch(0.08 0.005 260);
+  --color-fuli-dark:     oklch(0.12 0.008 260);
+  --color-fuli-steel:    oklch(0.18 0.010 260);
+  --color-fuli-mid:      oklch(0.28 0.010 260);
+  --color-fuli-muted:    oklch(0.45 0.010 260);
+  --color-fuli-subtle:   oklch(0.62 0.008 260);
+  --color-fuli-light:    oklch(0.88 0.004 260);
+  --color-fuli-white:    oklch(0.97 0.002 260);
+  --color-fuli-orange:   oklch(0.65 0.22 45);
+  --color-fuli-orange-h: oklch(0.72 0.20 45);
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Primary = FULI Blue */
-  --primary: oklch(0.33 0.12 255);
-  --primary-foreground: oklch(0.98 0 0);
-  /* Secondary = light steel gray */
-  --secondary: oklch(0.96 0.005 255);
-  --secondary-foreground: oklch(0.25 0.05 255);
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.18 0.03 255);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 255);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 255);
-  --muted: oklch(0.96 0.005 255);
-  --muted-foreground: oklch(0.52 0.02 255);
-  --accent: oklch(0.65 0.20 45);
-  --accent-foreground: oklch(0.98 0 0);
+  --radius: 0rem; /* ZERO radius — industrial sharp corners */
+  --primary: oklch(0.65 0.22 45);           /* orange */
+  --primary-foreground: oklch(0.08 0.005 260);
+  --secondary: oklch(0.18 0.010 260);
+  --secondary-foreground: oklch(0.88 0.004 260);
+  --background: oklch(0.08 0.005 260);
+  --foreground: oklch(0.93 0.003 260);
+  --card: oklch(0.12 0.008 260);
+  --card-foreground: oklch(0.93 0.003 260);
+  --popover: oklch(0.12 0.008 260);
+  --popover-foreground: oklch(0.93 0.003 260);
+  --muted: oklch(0.18 0.010 260);
+  --muted-foreground: oklch(0.55 0.010 260);
+  --accent: oklch(0.65 0.22 45);
+  --accent-foreground: oklch(0.08 0.005 260);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.90 0.01 255);
-  --input: oklch(0.90 0.01 255);
-  --ring: oklch(0.33 0.12 255);
-  --chart-1: oklch(0.33 0.12 255);
-  --chart-2: oklch(0.65 0.20 45);
-  --chart-3: oklch(0.55 0.15 255);
-  --chart-4: oklch(0.75 0.01 255);
-  --chart-5: oklch(0.45 0.10 255);
-  --sidebar: oklch(0.22 0.10 255);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.65 0.20 45);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.30 0.10 255);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.30 0.08 255);
-  --sidebar-ring: oklch(0.65 0.20 45);
+  --border: oklch(1 0 0 / 0.10);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.65 0.22 45);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    background: oklch(0.08 0.005 260);
+    color: oklch(0.93 0.003 260);
     font-family: 'Barlow', 'Noto Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-weight: 400; /* Bebas Neue is single weight */
+    letter-spacing: 0.04em;
+    line-height: 1.0;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -110,7 +95,7 @@
   select:not(:disabled),
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
+    cursor: pointer;
   }
 }
 
@@ -119,176 +104,203 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
-
   .flex {
     min-height: 0;
     min-width: 0;
   }
-
   @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
+    .container { padding-left: 2rem; padding-right: 2rem; }
   }
-
   @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1280px;
-    }
+    .container { padding-left: 3rem; padding-right: 3rem; max-width: 1400px; }
   }
 
-  /* FULI Custom Components */
-  .fuli-section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
+  /* ── FULI Industrial Design System ── */
+
+  /* Section label — thin orange rule + uppercase tracking */
+  .fuli-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: oklch(0.65 0.20 45);
+    color: oklch(0.65 0.22 45);
+  }
+  .fuli-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: oklch(0.65 0.22 45);
+    flex-shrink: 0;
   }
 
-  .fuli-heading {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    line-height: 1.05;
+  /* Display heading — Bebas Neue, massive */
+  .fuli-display {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 0.95;
+    text-transform: uppercase;
   }
 
-  .fuli-btn-primary {
-    background: oklch(0.65 0.20 45);
-    color: white;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.75rem 2rem;
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
+  /* Primary CTA — orange, sharp corners */
+  .fuli-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    background: oklch(0.65 0.22 45);
+    color: oklch(0.08 0.005 260);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.85rem 2.2rem;
+    border: none;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
   }
-  .fuli-btn-primary:hover {
-    background: oklch(0.52 0.22 45);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px oklch(0.65 0.20 45 / 0.35);
+  .fuli-cta:hover {
+    background: oklch(0.72 0.20 45);
+    box-shadow: 0 0 30px oklch(0.65 0.22 45 / 0.4);
   }
 
-  .fuli-btn-secondary {
+  /* Ghost CTA — white border */
+  .fuli-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     background: transparent;
-    color: white;
-    font-family: 'Barlow Condensed', sans-serif;
+    color: oklch(0.93 0.003 260);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 0.75rem 2rem;
-    border-radius: 0.25rem;
-    border: 2px solid rgba(255,255,255,0.6);
+    padding: 0.85rem 2.2rem;
+    border: 1px solid oklch(1 0 0 / 0.35);
     transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
   }
-  .fuli-btn-secondary:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: white;
+  .fuli-cta-ghost:hover {
+    border-color: oklch(1 0 0 / 0.8);
+    background: oklch(1 0 0 / 0.05);
   }
 
-  .fuli-card {
-    background: white;
-    border: 1px solid oklch(0.90 0.01 255);
-    border-radius: 0.5rem;
-    transition: all 0.25s ease;
+  /* Horizontal rule divider */
+  .fuli-rule {
+    border: none;
+    border-top: 1px solid oklch(1 0 0 / 0.08);
+    margin: 0;
+  }
+
+  /* Product card — dark steel */
+  .fuli-product-card {
+    background: oklch(0.12 0.008 260);
+    border: 1px solid oklch(1 0 0 / 0.08);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
     overflow: hidden;
   }
-  .fuli-card:hover {
-    box-shadow: 0 12px 40px oklch(0.33 0.12 255 / 0.12);
-    transform: translateY(-3px);
-    border-color: oklch(0.65 0.20 45 / 0.4);
+  .fuli-product-card:hover {
+    border-color: oklch(0.65 0.22 45 / 0.5);
+    box-shadow: 0 0 40px oklch(0.65 0.22 45 / 0.08);
   }
 
-  .fuli-stat-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 3.5rem;
+  /* Stat number */
+  .fuli-stat {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-size: 4.5rem;
     line-height: 1;
-    color: oklch(0.33 0.12 255);
+    letter-spacing: 0.02em;
+    color: oklch(0.65 0.22 45);
   }
 
-  .fuli-nav-link {
-    font-family: 'Barlow Condensed', sans-serif;
+  /* Nav link */
+  .fuli-nav {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
     font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: oklch(0.35 0.05 255);
+    color: oklch(0.70 0.005 260);
     transition: color 0.2s;
     position: relative;
   }
-  .fuli-nav-link:hover {
-    color: oklch(0.65 0.20 45);
-  }
-  .fuli-nav-link.active {
-    color: oklch(0.33 0.12 255);
-  }
-  .fuli-nav-link.active::after {
+  .fuli-nav:hover { color: oklch(0.93 0.003 260); }
+  .fuli-nav.active { color: oklch(0.65 0.22 45); }
+
+  /* Noise texture overlay */
+  .fuli-noise::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: oklch(0.65 0.20 45);
-    border-radius: 1px;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
   }
 
-  /* Animated counter */
-  @keyframes countUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Fade in up animation */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease forwards;
-  }
-
-  /* WhatsApp float button */
+  /* WhatsApp float */
   .whatsapp-float {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     z-index: 1000;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
     background: #25D366;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    transition: all 0.3s ease;
-    animation: pulse-green 2s infinite;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
   }
 
-  @keyframes pulse-green {
-    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-    50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+  /* Intro splash */
+  @keyframes introLetterIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes introSubIn {
+    from { opacity: 0; letter-spacing: 0.5em; }
+    to   { opacity: 1; letter-spacing: 0.35em; }
+  }
+  @keyframes introFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; pointer-events: none; }
+  }
+  .intro-letter {
+    display: inline-block;
+    opacity: 0;
+    animation: introLetterIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .intro-sub {
+    opacity: 0;
+    animation: introSubIn 0.6s ease forwards;
+  }
+
+  /* Scroll fade-in utility */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  /* Mux player overrides */
+  mux-player {
+    --media-object-fit: cover;
+    --media-object-position: center;
+    --controls: none;
   }
 }

@@ -4,10 +4,15 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import IntroSplash from "./components/IntroSplash";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import { useState, useCallback } from "react";
 
 function Router() {
   return (
@@ -23,12 +28,28 @@ function Router() {
 }
 
 function App() {
+  const [introComplete, setIntroComplete] = useState(false);
+
+  const handleIntroComplete = useCallback(() => {
+    setIntroComplete(true);
+  }, []);
+
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <IntroSplash onComplete={handleIntroComplete} />
+          {introComplete && (
+            <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "oklch(0.08 0.005 260)" }}>
+              <Navbar />
+              <main style={{ flex: 1 }}>
+                <Router />
+              </main>
+              <Footer />
+              <WhatsAppFloat />
+            </div>
+          )}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

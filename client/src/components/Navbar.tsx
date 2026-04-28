@@ -1,17 +1,17 @@
 /**
  * FULI Machinery Navbar
- * Design: Modern B2B Professional - Deep Blue + Orange accent
- * Font: Barlow Condensed for nav items
+ * Design: SKF-inspired industrial dark — transparent over video, dark on scroll
+ * Font: Barlow 600 uppercase for nav items
  */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Home",     href: "/" },
   { label: "Products", href: "/products" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "About",    href: "/about" },
+  { label: "Contact",  href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -20,54 +20,82 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+  useEffect(() => { setIsOpen(false); }, [location]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100"
-          : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        transition: "background 0.4s ease, border-color 0.4s ease",
+        background: scrolled
+          ? "oklch(0.08 0.005 260 / 0.97)"
+          : "transparent",
+        borderBottom: scrolled
+          ? "1px solid oklch(1 0 0 / 0.07)"
+          : "1px solid transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+      }}
     >
       <div className="container">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "4.5rem" }}>
+
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-sm flex items-center justify-center"
-                style={{ background: "oklch(0.33 0.12 255)" }}>
-                <span className="text-white font-bold text-sm" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}>FL</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", cursor: "pointer" }}>
+              {/* Orange square mark */}
+              <div style={{
+                width: "2rem",
+                height: "2rem",
+                background: "oklch(0.65 0.22 45)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}>
+                <span style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "0.85rem",
+                  color: "oklch(0.08 0.005 260)",
+                  letterSpacing: "0.05em",
+                }}>FL</span>
               </div>
               <div>
-                <div className={`font-bold text-lg leading-none transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}>
-                  FULI
-                </div>
-                <div className={`text-xs leading-none transition-colors ${scrolled ? "text-gray-500" : "text-white/70"}`}
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.15em" }}>
-                  MACHINERY
-                </div>
+                <div style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "1.3rem",
+                  letterSpacing: "0.12em",
+                  color: "oklch(0.95 0.002 260)",
+                  lineHeight: 1,
+                }}>FULI</div>
+                <div style={{
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: "0.55rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.22em",
+                  color: "oklch(0.55 0.010 260)",
+                  textTransform: "uppercase",
+                  lineHeight: 1,
+                  marginTop: "1px",
+                }}>MACHINERY</div>
               </div>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
+            className="hidden lg:flex">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
-                <span
-                  className={`fuli-nav-link text-sm ${
-                    scrolled ? "" : "!text-white/90 hover:!text-white"
-                  } ${location === link.href ? "active" : ""}`}
-                >
+                <span className={`fuli-nav ${location === link.href ? "active" : ""}`}>
                   {link.label}
                 </span>
               </Link>
@@ -75,30 +103,39 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:+8663553128885"
-              className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
-                scrolled ? "text-gray-600 hover:text-blue-700" : "text-white/80 hover:text-white"
-              }`}
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                color: "oklch(0.55 0.010 260)",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "oklch(0.93 0.003 260)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "oklch(0.55 0.010 260)")}
             >
-              <Phone size={14} />
-              <span>+86 635 5312 885</span>
+              +86 635 5312 885
             </a>
             <Link href="/contact">
-              <span className="fuli-btn-primary text-sm py-2 px-5">
+              <span className="fuli-cta" style={{ fontSize: "0.72rem", padding: "0.65rem 1.5rem" }}>
                 Get Quote
               </span>
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile toggle */}
           <button
-            className={`lg:hidden p-2 rounded-md transition-colors ${
-              scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
-            }`}
+            className="lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "oklch(0.93 0.003 260)",
+              padding: "0.5rem",
+            }}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -108,23 +145,31 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="container py-4 flex flex-col gap-1">
+        <div style={{
+          background: "oklch(0.10 0.006 260)",
+          borderTop: "1px solid oklch(1 0 0 / 0.08)",
+        }}>
+          <div className="container" style={{ paddingTop: "1rem", paddingBottom: "1.5rem" }}>
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
-                <span
-                  className={`block py-3 px-2 text-base font-semibold border-b border-gray-50 transition-colors hover:text-orange-500 ${
-                    location === link.href ? "text-blue-800" : "text-gray-700"
-                  }`}
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}
-                >
+                <div style={{
+                  padding: "0.9rem 0",
+                  borderBottom: "1px solid oklch(1 0 0 / 0.06)",
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: location === link.href ? "oklch(0.65 0.22 45)" : "oklch(0.70 0.005 260)",
+                  cursor: "pointer",
+                }}>
                   {link.label}
-                </span>
+                </div>
               </Link>
             ))}
-            <div className="pt-3 pb-1">
+            <div style={{ paddingTop: "1.25rem" }}>
               <Link href="/contact">
-                <span className="fuli-btn-primary w-full justify-center text-sm">
+                <span className="fuli-cta" style={{ width: "100%", justifyContent: "center" }}>
                   Get a Quote
                 </span>
               </Link>

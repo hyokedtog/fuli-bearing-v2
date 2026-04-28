@@ -1,75 +1,96 @@
 /**
- * FULI Machinery - Contact Page
- * Design: Modern B2B Professional
- * Key improvements: better form UX, WhatsApp prominent, contact info cards
+ * FULI Machinery — Contact Page
+ * Design: SKF-inspired industrial dark
  */
 import { useState } from "react";
 import { Link } from "wouter";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { Phone, Mail, MapPin, Clock, MessageCircle, ChevronRight, Send, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
+import { ChevronRight, Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from "lucide-react";
 
-const contactInfo = [
+const contacts = [
   {
-    icon: MessageCircle,
-    title: "WhatsApp",
-    primary: "+86 186 0631 1628",
-    secondary: "+86 178 6111 6848",
-    action: "https://wa.me/8618606311628",
-    actionLabel: "Chat Now",
+    Icon: MessageCircle,
+    label: "WhatsApp",
+    value: "+86 186 0631 1628",
+    sub: "Fastest response — typically within 1 hour",
+    href: "https://wa.me/8618606311628?text=Hello%2C%20I%20am%20interested%20in%20your%20bearings.",
     color: "#25D366",
+    cta: "Chat Now",
   },
   {
-    icon: Phone,
-    title: "Phone",
-    primary: "+86 635 5312 885",
-    secondary: "Mon–Sat 8:00–18:00 GMT+8",
-    action: "tel:+8663553128885",
-    actionLabel: "Call Us",
-    color: "oklch(0.33 0.12 255)",
+    Icon: Phone,
+    label: "Phone",
+    value: "+86 635 5312 885",
+    sub: "Mon–Sat, 8:00 AM – 6:00 PM GMT+8",
+    href: "tel:+8663553128885",
+    color: "oklch(0.65 0.22 45)",
+    cta: "Call Us",
   },
   {
-    icon: Mail,
-    title: "Email",
-    primary: "fulibearing@163.com",
-    secondary: "fulimachinery@foxmail.com",
-    action: "mailto:fulibearing@163.com",
-    actionLabel: "Send Email",
-    color: "oklch(0.65 0.20 45)",
+    Icon: Mail,
+    label: "Email",
+    value: "fulibearing@163.com",
+    sub: "Response within 24 hours on business days",
+    href: "mailto:fulibearing@163.com",
+    color: "oklch(0.60 0.18 200)",
+    cta: "Send Email",
   },
   {
-    icon: MapPin,
-    title: "Address",
-    primary: "Yandian Town, Liaocheng City",
-    secondary: "Shandong Province, China",
-    action: "https://maps.google.com/?q=Liaocheng,Shandong,China",
-    actionLabel: "View Map",
+    Icon: MapPin,
+    label: "Address",
+    value: "Yandian Town, Liaocheng, Shandong",
+    sub: "Factory visits welcome by appointment",
+    href: "https://maps.google.com/?q=Liaocheng+Shandong+China",
     color: "oklch(0.55 0.18 145)",
+    cta: "View Map",
   },
 ];
 
-const productOptions = [
-  "Deep Groove Ball Bearings",
-  "Tapered Roller Bearings",
-  "Spherical Roller Bearings",
-  "Pillow Block Bearings",
-  "Multiple Products",
-  "Custom / OEM",
-];
+type FormState = {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  product: string;
+  quantity: string;
+  message: string;
+};
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  background: "oklch(0.13 0.007 260)",
+  border: "1px solid oklch(1 0 0 / 0.10)",
+  color: "oklch(0.88 0.003 260)",
+  fontFamily: "'Barlow', sans-serif",
+  fontSize: "0.85rem",
+  padding: "0.75rem 1rem",
+  outline: "none",
+  transition: "border-color 0.2s",
+  borderRadius: 0,
+  boxSizing: "border-box",
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: "'Barlow', sans-serif",
+  fontSize: "0.62rem",
+  fontWeight: 700,
+  letterSpacing: "0.18em",
+  textTransform: "uppercase",
+  color: "oklch(0.45 0.008 260)",
+  display: "block",
+  marginBottom: "0.4rem",
+};
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
-    email: "",
     company: "",
+    email: "",
     phone: "",
     product: "",
     quantity: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -77,280 +98,337 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would send to a backend or email service
-    // For now, open mailto as fallback
-    const subject = encodeURIComponent(`Bearing Inquiry from ${form.name} - ${form.company}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nPhone: ${form.phone}\nProduct Interest: ${form.product}\nQuantity: ${form.quantity}\n\nMessage:\n${form.message}`
-    );
-    window.open(`mailto:fulibearing@163.com?subject=${subject}&body=${body}`, "_blank");
+    const subject = `Bearing Inquiry from ${form.company || form.name}`;
+    const body = `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProduct: ${form.product}\nQuantity: ${form.quantity}\n\nMessage:\n${form.message}`;
+    window.location.href = `mailto:fulibearing@163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
-    toast.success("Inquiry sent! We will respond within 24 hours.");
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
+    <div style={{ background: "oklch(0.08 0.005 260)", paddingTop: "4.5rem" }}>
 
-      {/* Page Header */}
-      <section className="pt-28 pb-14" style={{ background: "oklch(0.22 0.10 255)" }}>
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3 text-white/50 text-sm"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            <Link href="/"><span className="hover:text-white transition-colors cursor-pointer">Home</span></Link>
-            <ChevronRight size={14} />
-            <span className="text-white">Contact</span>
+      {/* Page Hero */}
+      <section style={{
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
+        background: "oklch(0.06 0.004 260)",
+        borderBottom: "1px solid oklch(1 0 0 / 0.07)",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "linear-gradient(oklch(1 0 0 / 0.025) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.025) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
+        }} />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
+            <Link href="/">
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+            </Link>
+            <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Contact</span>
           </div>
-          <div className="fuli-section-label mb-2" style={{ color: "oklch(0.80 0.18 45)" }}>
-            Get In Touch
-          </div>
-          <h1 className="fuli-heading text-white mb-3" style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}>
-            Request a Quote
+          <div className="fuli-label" style={{ marginBottom: "1rem" }}>Get in Touch</div>
+          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+            Contact Us
           </h1>
-          <p className="text-white/60 text-base max-w-xl">
-            Send us your requirements and receive a competitive quote within 24 hours. Our export team handles all documentation.
+          <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "52ch" }}>
+            Send us your requirements and receive a competitive quote within 24 hours. Our team speaks English, Arabic, and Russian.
           </p>
         </div>
       </section>
 
-      {/* Contact Cards */}
-      <section className="py-10 bg-gray-50">
+      {/* Contact channels */}
+      <section style={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {contactInfo.map((info) => (
-              <div key={info.title} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                  style={{ background: `${info.color}15` }}>
-                  <info.icon size={18} style={{ color: info.color }} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)", marginBottom: "5rem" }} className="sm:grid-cols-2 lg:grid-cols-4">
+            {contacts.map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                style={{
+                  background: "oklch(0.10 0.006 260)",
+                  padding: "2rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                  textDecoration: "none",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.14 0.008 260)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+              >
+                <c.Icon size={20} style={{ color: c.color }} />
+                <div>
+                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.3rem" }}>
+                    {c.label}
+                  </div>
+                  <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.88 0.003 260)", marginBottom: "0.3rem" }}>
+                    {c.value}
+                  </div>
+                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.40 0.008 260)", lineHeight: 1.5 }}>
+                    {c.sub}
+                  </div>
                 </div>
-                <h4 className="font-bold text-gray-900 mb-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem" }}>
-                  {info.title}
-                </h4>
-                <p className="text-gray-700 text-sm font-medium">{info.primary}</p>
-                <p className="text-gray-400 text-xs mb-3">{info.secondary}</p>
-                <a href={info.action} target={info.action.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold flex items-center gap-1 transition-colors hover:opacity-80"
-                  style={{ color: info.color, fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}>
-                  {info.actionLabel} →
-                </a>
-              </div>
+                <div style={{
+                  marginTop: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.3rem",
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase" as const,
+                  color: c.color,
+                }}>
+                  {c.cta} <ArrowRight size={11} />
+                </div>
+              </a>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Form + Info */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Quote form + side info */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem" }} className="lg:grid-cols-[1fr_380px]">
+
             {/* Form */}
-            <div className="lg:col-span-2">
-              <h2 className="fuli-heading text-3xl text-gray-900 mb-6">Send an Inquiry</h2>
+            <div>
+              <div className="fuli-label" style={{ marginBottom: "1rem" }}>Inquiry Form</div>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)", color: "oklch(0.95 0.002 260)", marginBottom: "2rem" }}>
+                Request a Quote
+              </h2>
 
               {submitted ? (
-                <div className="rounded-xl p-10 text-center border border-green-100 bg-green-50">
-                  <CheckCircle2 size={48} className="mx-auto mb-4" style={{ color: "#22c55e" }} />
-                  <h3 className="fuli-heading text-2xl text-gray-900 mb-2">Inquiry Sent!</h3>
-                  <p className="text-gray-600 text-sm mb-5">
-                    Thank you for your inquiry. Our team will respond within 24 hours.
+                <div style={{
+                  background: "oklch(0.10 0.006 260)",
+                  border: "1px solid oklch(0.65 0.22 45 / 0.3)",
+                  padding: "3rem",
+                  textAlign: "center",
+                }}>
+                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", marginBottom: "0.75rem" }}>
+                    Inquiry Sent
+                  </div>
+                  <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.85rem", lineHeight: 1.7 }}>
+                    Your email client has opened with the inquiry. We will respond within 24 hours.
                   </p>
-                  <p className="text-gray-500 text-xs">
-                    For urgent inquiries, please contact us via WhatsApp: +86 186 0631 1628
-                  </p>
+                  <button onClick={() => setSubmitted(false)} style={{ marginTop: "1.5rem", background: "none", border: "none", cursor: "pointer" }}>
+                    <span className="fuli-cta-ghost">Send Another</span>
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }} className="sm:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Your Name *
-                      </label>
+                      <label style={labelStyle}>Your Name *</label>
                       <input
-                        type="text"
                         name="name"
-                        required
                         value={form.name}
                         onChange={handleChange}
-                        placeholder="John Smith"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                        style={{ focusRingColor: "oklch(0.33 0.12 255)" } as React.CSSProperties}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
                         required
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@company.com"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                        placeholder="John Smith"
+                        style={inputStyle}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Company Name
-                      </label>
+                      <label style={labelStyle}>Company</label>
                       <input
-                        type="text"
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        placeholder="Your Company Ltd."
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                        placeholder="ACME Industries"
+                        style={inputStyle}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }} className="sm:grid-cols-2">
+                    <div>
+                      <label style={labelStyle}>Email *</label>
+                      <input
+                        name="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="john@company.com"
+                        style={inputStyle}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Phone / WhatsApp
-                      </label>
+                      <label style={labelStyle}>WhatsApp / Phone</label>
                       <input
-                        type="text"
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="+1 234 567 8900"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                        placeholder="+1 555 000 0000"
+                        style={inputStyle}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                       />
                     </div>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }} className="sm:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Product Interest
-                      </label>
+                      <label style={labelStyle}>Product / Bearing Type</label>
                       <select
                         name="product"
                         value={form.product}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
+                        style={{ ...inputStyle, appearance: "none" as const }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                       >
-                        <option value="">Select product type...</option>
-                        {productOptions.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
+                        <option value="">Select type...</option>
+                        <option value="DGB">Deep Groove Ball Bearings</option>
+                        <option value="TRB">Tapered Roller Bearings</option>
+                        <option value="SRB">Spherical Roller Bearings</option>
+                        <option value="PBU">Pillow Block Bearings</option>
+                        <option value="Custom">Custom / Non-standard</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Estimated Quantity
-                      </label>
+                      <label style={labelStyle}>Estimated Quantity</label>
                       <input
-                        type="text"
                         name="quantity"
                         value={form.quantity}
                         onChange={handleChange}
-                        placeholder="e.g. 1000 pcs / 1 container"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                        placeholder="e.g. 500 pcs / month"
+                        style={inputStyle}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                        onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                       />
                     </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5"
-                      style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      Message / Requirements
-                    </label>
+                    <label style={labelStyle}>Message / Specifications</label>
                     <textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
                       rows={5}
-                      placeholder="Please describe your requirements: bearing model numbers, specifications, application, delivery terms, etc."
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
+                      placeholder="Please describe your requirements: bearing model numbers, dimensions, load conditions, quantity, destination country..."
+                      style={{ ...inputStyle, resize: "vertical" }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.6)"; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.10)"; }}
                     />
                   </div>
-                  <button type="submit" className="fuli-btn-primary text-base px-10 py-4 w-full sm:w-auto justify-center">
-                    <Send size={16} />
-                    Send Inquiry
+
+                  <button
+                    type="submit"
+                    style={{
+                      alignSelf: "flex-start",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      fontFamily: "'Barlow', sans-serif",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      padding: "0.85rem 2rem",
+                      background: "oklch(0.65 0.22 45)",
+                      color: "oklch(0.10 0.006 260)",
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "background 0.2s",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.72 0.22 45)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.65 0.22 45)"; }}
+                  >
+                    Send Inquiry <ArrowRight size={14} />
                   </button>
                 </form>
               )}
             </div>
 
-            {/* Sidebar Info */}
-            <div className="space-y-6">
-              {/* WhatsApp CTA */}
-              <div className="rounded-xl p-6 text-white" style={{ background: "#25D366" }}>
-                <div className="flex items-center gap-3 mb-3">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  <h4 className="font-bold text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    Prefer WhatsApp?
-                  </h4>
+            {/* Side info */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+              {/* Business hours */}
+              <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.25rem" }}>
+                  <Clock size={14} style={{ color: "oklch(0.65 0.22 45)" }} />
+                  <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)" }}>
+                    Business Hours
+                  </span>
                 </div>
-                <p className="text-white/85 text-sm mb-4 leading-relaxed">
-                  Get a faster response by messaging us directly on WhatsApp. Our team responds within 1–2 hours during business hours.
-                </p>
-                <a href="https://wa.me/8618606311628?text=Hello%2C%20I%20am%20interested%20in%20your%20bearings."
-                  target="_blank" rel="noopener noreferrer"
-                  className="block w-full text-center py-3 rounded-lg bg-white text-green-600 font-bold text-sm transition-opacity hover:opacity-90"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}>
-                  Open WhatsApp Chat →
-                </a>
-              </div>
-
-              {/* Working Hours */}
-              <div className="rounded-xl p-6 border border-gray-100 bg-gray-50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock size={18} style={{ color: "oklch(0.33 0.12 255)" }} />
-                  <h4 className="font-bold text-gray-900"
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem" }}>
-                    Working Hours
-                  </h4>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Monday – Saturday</span>
-                    <span className="font-semibold text-gray-900">8:00 – 18:00</span>
+                {[
+                  { day: "Monday – Friday", hours: "8:00 AM – 6:00 PM" },
+                  { day: "Saturday", hours: "9:00 AM – 5:00 PM" },
+                  { day: "Sunday", hours: "Closed" },
+                ].map((row) => (
+                  <div key={row.day} style={{ display: "flex", justifyContent: "space-between", padding: "0.6rem 0", borderBottom: "1px solid oklch(1 0 0 / 0.05)" }}>
+                    <span style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.78rem" }}>{row.day}</span>
+                    <span style={{ color: row.hours === "Closed" ? "oklch(0.38 0.006 260)" : "oklch(0.70 0.003 260)", fontSize: "0.78rem", fontWeight: 600 }}>{row.hours}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Sunday</span>
-                    <span className="text-gray-400">Closed</span>
-                  </div>
-                  <div className="pt-2 border-t border-gray-200">
-                    <span className="text-gray-400 text-xs">All times in GMT+8 (China Standard Time)</span>
-                  </div>
+                ))}
+                <div style={{ marginTop: "1rem", fontFamily: "'Barlow', sans-serif", fontSize: "0.68rem", color: "oklch(0.38 0.006 260)" }}>
+                  All times GMT+8 (China Standard Time)
                 </div>
               </div>
 
-              {/* Why inquire */}
-              <div className="rounded-xl p-6 border border-gray-100">
-                <h4 className="font-bold text-gray-900 mb-4"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem" }}>
-                  What to Expect
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    "Quote within 24 hours",
-                    "Free samples available",
-                    "Full export documentation",
-                    "Dedicated export manager",
-                    "FOB / CIF / EXW terms",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm text-gray-600">
-                      <CheckCircle2 size={14} style={{ color: "oklch(0.65 0.20 45)", flexShrink: 0 }} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              {/* WhatsApp highlight */}
+              <a
+                href="https://wa.me/8618606311628"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: "oklch(0.10 0.006 260)",
+                  padding: "2rem",
+                  textDecoration: "none",
+                  display: "block",
+                  borderLeft: "3px solid #25D366",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.14 0.008 260)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+              >
+                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#25D366", marginBottom: "0.6rem" }}>
+                  Fastest Response
+                </div>
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.3rem", letterSpacing: "0.08em", color: "oklch(0.90 0.003 260)", marginBottom: "0.4rem" }}>
+                  WhatsApp Us
+                </div>
+                <div style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.78rem", lineHeight: 1.5 }}>
+                  +86 186 0631 1628<br />
+                  Typically responds within 1 hour
+                </div>
+              </a>
+
+              {/* Languages */}
+              <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
+                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginBottom: "1rem" }}>
+                  Languages Supported
+                </div>
+                {[
+                  { flag: "🇬🇧", lang: "English" },
+                  { flag: "🇸🇦", lang: "Arabic" },
+                  { flag: "🇷🇺", lang: "Russian" },
+                  { flag: "🇨🇳", lang: "Chinese" },
+                ].map((l) => (
+                  <div key={l.lang} style={{ display: "flex", alignItems: "center", gap: "0.6rem", padding: "0.4rem 0" }}>
+                    <span style={{ fontSize: "1rem" }}>{l.flag}</span>
+                    <span style={{ color: "oklch(0.55 0.008 260)", fontSize: "0.8rem" }}>{l.lang}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <Footer />
-      <WhatsAppFloat />
     </div>
   );
 }

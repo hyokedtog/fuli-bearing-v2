@@ -1,298 +1,291 @@
 /**
- * FULI Machinery - About Us Page
- * Design: Modern B2B Professional
- * Key improvements: factory photos, certifications, mission/vision, team stats
+ * FULI Machinery — About Page
+ * Design: SKF-inspired industrial dark
  */
-import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { CheckCircle2, ChevronRight, ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
-const FACTORY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/about-factory-BPSYYzF6a4tJNGTRApZ3NC.webp";
-const QUALITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/factory-quality-mNzDztzAPVnFRBmd4Grbas.webp";
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/hero-factory-8LxGMpDRD3qc3Kz7e7xbAt.webp";
+const milestones = [
+  { year: "2009", event: "FULI Machinery founded in Liaocheng, Shandong Province, China" },
+  { year: "2012", event: "ISO 9001:2015 Quality Management System certification obtained" },
+  { year: "2015", event: "Expanded production capacity to 500,000 units per month" },
+  { year: "2018", event: "Entered Middle East, Southeast Asia and African markets" },
+  { year: "2021", event: "Launched OEM/ODM custom bearing program for international brands" },
+  { year: "2024", event: "Serving 50+ countries with 1,000+ global clients" },
+];
 
-function useCountUp(target: number, duration = 2000, start = false) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [target, duration, start]);
-  return count;
-}
-
-function useInView(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
-const certifications = [
-  { name: "ISO 9001:2015", desc: "Quality Management System", icon: "🏆" },
-  { name: "SGS Certified", desc: "International Inspection", icon: "✅" },
-  { name: "CE Marking", desc: "European Conformity", icon: "🇪🇺" },
-  { name: "RoHS Compliant", desc: "Hazardous Substances Free", icon: "🌿" },
+const certs = [
+  { name: "ISO 9001:2015", body: "Quality Management System", color: "oklch(0.65 0.22 45)" },
+  { name: "CE Marking", body: "European Conformity", color: "oklch(0.55 0.18 145)" },
+  { name: "RoHS", body: "Hazardous Substances Directive", color: "oklch(0.55 0.18 200)" },
+  { name: "REACH", body: "Chemical Safety Regulation", color: "oklch(0.55 0.18 300)" },
 ];
 
 const capabilities = [
   "CNC precision grinding machines",
   "Automatic assembly lines",
-  "Precision testing equipment",
   "CMM coordinate measuring",
   "Noise & vibration testing",
   "Salt spray corrosion testing",
-  "Hardness testing",
-  "Dimensional inspection",
+  "Hardness & load testing",
 ];
 
-const timeline = [
-  { year: "2009", event: "FULI Machinery founded in Yandian Town, Liaocheng, Shandong" },
-  { year: "2012", event: "Obtained ISO 9001 quality management certification" },
-  { year: "2015", event: "Expanded production capacity to 500,000 units/month" },
-  { year: "2018", event: "Entered Middle East and Southeast Asian markets" },
-  { year: "2021", event: "Launched OEM/ODM custom bearing program" },
-  { year: "2024", event: "Serving 50+ countries with 2,000+ product models" },
+const team = [
+  { name: "Quality Control", count: "28", unit: "Engineers" },
+  { name: "R&D Team", count: "15", unit: "Specialists" },
+  { name: "Production", count: "200+", unit: "Workers" },
+  { name: "Export Sales", count: "12", unit: "Managers" },
 ];
 
 export default function About() {
-  const { ref: statsRef, inView: statsInView } = useInView();
-  const years = useCountUp(15, 1800, statsInView);
-  const models = useCountUp(2000, 2000, statsInView);
-  const countries = useCountUp(50, 1600, statsInView);
-  const monthly = useCountUp(500, 2200, statsInView);
-
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
+    <div style={{ background: "oklch(0.08 0.005 260)", paddingTop: "4.5rem" }}>
 
-      {/* Page Header */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={FACTORY_IMG} alt="FULI Factory" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "oklch(0.18 0.10 255 / 0.85)" }} />
-        </div>
-        <div className="container relative z-10">
-          <div className="flex items-center gap-2 mb-3 text-white/50 text-sm"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            <Link href="/"><span className="hover:text-white transition-colors cursor-pointer">Home</span></Link>
-            <ChevronRight size={14} />
-            <span className="text-white">About Us</span>
+      {/* Page Hero */}
+      <section style={{
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
+        background: "oklch(0.06 0.004 260)",
+        borderBottom: "1px solid oklch(1 0 0 / 0.07)",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "linear-gradient(oklch(1 0 0 / 0.025) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.025) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
+        }} />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
+            <Link href="/">
+              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+            </Link>
+            <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
+            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>About</span>
           </div>
-          <div className="fuli-section-label mb-2" style={{ color: "oklch(0.80 0.18 45)" }}>
-            Our Story
-          </div>
-          <h1 className="fuli-heading text-white mb-4" style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}>
-            About FULI Machinery
+          <div className="fuli-label" style={{ marginBottom: "1rem" }}>Company Profile</div>
+          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+            About FULI
           </h1>
-          <p className="text-white/65 text-base max-w-2xl leading-relaxed">
-            Founded in 2009 in Shandong Province, China, FULI Machinery has grown from a regional bearing supplier into a globally recognized manufacturer trusted by distributors and OEMs across 50+ countries.
+          <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "52ch" }}>
+            15+ years of precision bearing manufacturing. ISO 9001 certified, factory-direct, serving industrial clients in 50+ countries.
           </p>
         </div>
       </section>
 
-      {/* Stats */}
-      <section ref={statsRef} style={{ background: "oklch(0.22 0.10 255)" }}>
-        <div className="container py-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { value: years, suffix: "+", label: "Years Experience" },
-              { value: models, suffix: "+", label: "Product Models" },
-              { value: countries, suffix: "+", label: "Countries Served" },
-              { value: monthly, suffix: "K", label: "Monthly Production" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="fuli-stat-number" style={{ color: "oklch(0.80 0.18 45)" }}>
-                  {stat.value}{stat.suffix}
-                </div>
-                <div className="text-white/50 text-sm mt-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Company Story */}
-      <section className="py-20 bg-white">
+      {/* Company Overview */}
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "start" }} className="lg:grid-cols-2">
+            {/* Left: text */}
             <div>
-              <div className="fuli-section-label mb-2">Who We Are</div>
-              <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900 mb-6">
-                Professional Bearing Manufacturer
+              <div className="fuli-label" style={{ marginBottom: "1rem" }}>Our Story</div>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}>
+                Precision Since <span style={{ color: "oklch(0.65 0.22 45)" }}>2009</span>
               </h2>
-              <div className="space-y-4 text-gray-600 text-base leading-relaxed">
-                <p>
-                  FULI Machinery (Shandong) Limited Company is a professional bearing manufacturer with complete production lines and a strong R&D team. We specialize in deep groove ball bearings, tapered roller bearings, spherical roller bearings, and pillow block bearing units.
-                </p>
-                <p>
-                  We accept customers' special requirements for bearing structure and quality, and produce corresponding bearing products according to various customers' diversified demands. FULI brand focuses on high-end products. With its stable quality, our bearings are sold worldwide and widely used in food machinery, agricultural machinery, mining machinery, automobiles, motorcycles and electric vehicles.
-                </p>
-                <p>
-                  Our factory is equipped with advanced CNC grinding machines, automatic assembly lines, and precision testing equipment. Every bearing undergoes rigorous quality inspection before shipment.
-                </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {[
+                  "FULI Machinery (Shandong) Limited Company was founded in 2009 in Liaocheng, Shandong Province — China's premier bearing manufacturing region. We specialize in the production and export of precision bearings for industrial applications worldwide.",
+                  "Our 15,000 m² manufacturing facility houses state-of-the-art CNC grinding machines, automated assembly lines, and a dedicated quality control laboratory. Every bearing is tested for dimensional accuracy, noise level, and load capacity before shipment.",
+                  "We supply OEM manufacturers, industrial distributors, and maintenance contractors across 50+ countries. Our export team provides full documentation including commercial invoices, packing lists, certificates of origin, and material test reports.",
+                ].map((text, i) => (
+                  <p key={i} style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.88rem", lineHeight: 1.8 }}>{text}</p>
+                ))}
               </div>
             </div>
-            <div className="relative">
-              <img src={QUALITY_IMG} alt="Quality Control" className="rounded-xl shadow-xl w-full object-cover" style={{ height: "400px" }} />
-              <div className="absolute -bottom-5 -left-5 bg-white rounded-lg shadow-xl p-4 border border-gray-100">
-                <div className="text-3xl font-black text-gray-900 leading-none mb-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "oklch(0.33 0.12 255)" }}>
-                  15+
-                </div>
-                <div className="text-gray-500 text-xs">Years of Manufacturing<br />Excellence</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16" style={{ background: "oklch(0.97 0.005 255)" }}>
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
-                style={{ background: "oklch(0.33 0.12 255 / 0.08)" }}>
-                <span className="text-2xl">🎯</span>
-              </div>
-              <h3 className="fuli-heading text-2xl text-gray-900 mb-3">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
-                To provide world-class bearing solutions that enable our customers' success through quality, innovation, and reliable service. We are committed to delivering precision-engineered products that exceed international standards.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
-                style={{ background: "oklch(0.65 0.20 45 / 0.08)" }}>
-                <span className="text-2xl">🔭</span>
-              </div>
-              <h3 className="fuli-heading text-2xl text-gray-900 mb-3">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
-                To become a globally recognized bearing brand known for precision, durability, and customer satisfaction. We aim to be the preferred bearing partner for distributors and OEMs in every major market worldwide.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Factory & Equipment */}
-      <section className="py-20 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Right: image + team stats */}
             <div>
-              <div className="fuli-section-label mb-2">Production Facility</div>
-              <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900 mb-6">
-                Factory & Equipment
+              <div style={{ position: "relative", marginBottom: "2rem" }}>
+                <img
+                  src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80"
+                  alt="FULI Factory"
+                  style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover" }}
+                />
+                <div style={{
+                  position: "absolute",
+                  bottom: "1.5rem",
+                  left: "1.5rem",
+                  background: "oklch(0.08 0.005 260 / 0.9)",
+                  padding: "0.75rem 1.25rem",
+                  border: "1px solid oklch(1 0 0 / 0.12)",
+                }}>
+                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", letterSpacing: "0.12em", color: "oklch(0.65 0.22 45)" }}>
+                    LIAOCHENG, SHANDONG
+                  </div>
+                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginTop: "2px" }}>
+                    15,000 m² Manufacturing Facility
+                  </div>
+                </div>
+              </div>
+
+              {/* Team stats */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
+                {team.map((t) => (
+                  <div key={t.name} style={{ background: "oklch(0.10 0.006 260)", padding: "1.5rem" }}>
+                    <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", lineHeight: 1 }}>{t.count}</div>
+                    <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "oklch(0.42 0.008 260)", marginTop: "0.3rem" }}>{t.unit}</div>
+                    <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.55 0.008 260)", marginTop: "0.2rem" }}>{t.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities */}
+      <section style={{
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        background: "oklch(0.06 0.004 260)",
+        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+      }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }} className="lg:grid-cols-2">
+            <div>
+              <div className="fuli-label" style={{ marginBottom: "1rem" }}>Production Facility</div>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}>
+                Factory &amp; Equipment
               </h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Our modern manufacturing facility in Yandian Town, Liaocheng City, Shandong Province is equipped with state-of-the-art machinery and testing equipment to ensure every bearing meets the highest quality standards.
+              <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.88rem", lineHeight: 1.8, marginBottom: "2rem" }}>
+                Our modern manufacturing facility is equipped with state-of-the-art machinery and testing equipment to ensure every bearing meets the highest quality standards.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                 {capabilities.map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5 text-sm text-gray-700">
-                    <CheckCircle2 size={15} style={{ color: "oklch(0.65 0.20 45)", flexShrink: 0 }} />
-                    {cap}
+                  <div key={cap} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+                    <span style={{ color: "oklch(0.65 0.22 45)", fontSize: "0.6rem", marginTop: "0.35rem", flexShrink: 0 }}>▸</span>
+                    <span style={{ color: "oklch(0.52 0.008 260)", fontSize: "0.8rem", lineHeight: 1.5 }}>{cap}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <img src={HERO_IMG} alt="FULI Factory Floor" className="rounded-xl shadow-xl w-full object-cover" style={{ height: "400px" }} />
+              <img
+                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+                alt="FULI Factory Equipment"
+                style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }}
+              />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="py-16" style={{ background: "oklch(0.97 0.005 255)" }}>
-        <div className="container">
-          <div className="text-center mb-10">
-            <div className="fuli-section-label mb-2">Quality Assurance</div>
-            <h2 className="fuli-heading text-4xl text-gray-900">Certifications</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {certifications.map((cert) => (
-              <div key={cert.name} className="bg-white rounded-xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">{cert.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.05rem" }}>
-                  {cert.name}
-                </h4>
-                <p className="text-gray-500 text-xs">{cert.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="py-20 bg-white">
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
         <div className="container">
-          <div className="text-center mb-12">
-            <div className="fuli-section-label mb-2">Our Journey</div>
-            <h2 className="fuli-heading text-4xl text-gray-900">Company Milestones</h2>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <div className="relative">
-              <div className="absolute left-16 top-0 bottom-0 w-px" style={{ background: "oklch(0.90 0.01 255)" }} />
-              <div className="space-y-8">
-                {timeline.map((item, i) => (
-                  <div key={item.year} className="flex items-start gap-8">
-                    <div className="w-16 shrink-0 text-right">
-                      <span className="font-bold text-sm"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif", color: "oklch(0.65 0.20 45)" }}>
-                        {item.year}
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <div className="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full border-2 bg-white"
-                        style={{ borderColor: i === timeline.length - 1 ? "oklch(0.65 0.20 45)" : "oklch(0.33 0.12 255)" }} />
-                      <div className="pl-5 pb-2">
-                        <p className="text-gray-700 text-sm leading-relaxed">{item.event}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+          <div className="fuli-label" style={{ marginBottom: "1rem" }}>Company History</div>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.95 0.002 260)", marginBottom: "3.5rem" }}>
+            Our Journey
+          </h2>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {milestones.map((m, i) => (
+              <div
+                key={m.year}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr",
+                  gap: "0.5rem",
+                  padding: "1.5rem 0",
+                  borderBottom: i < milestones.length - 1 ? "1px solid oklch(1 0 0 / 0.06)" : "none",
+                }}
+                className="md:grid-cols-[10rem_1fr]"
+              >
+                <div style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "1.8rem",
+                  letterSpacing: "0.08em",
+                  color: i === milestones.length - 1 ? "oklch(0.65 0.22 45)" : "oklch(0.35 0.006 260)",
+                  lineHeight: 1,
+                }}>
+                  {m.year}
+                </div>
+                <div style={{ color: "oklch(0.55 0.008 260)", fontSize: "0.88rem", lineHeight: 1.6, paddingTop: "0.3rem" }}>
+                  {m.event}
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications */}
+      <section style={{
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        background: "oklch(0.06 0.004 260)",
+        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+      }}>
+        <div className="container">
+          <div className="fuli-label" style={{ marginBottom: "1rem" }}>Quality Assurance</div>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.95 0.002 260)", marginBottom: "3rem" }}>
+            Certifications
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }} className="lg:grid-cols-4">
+            {certs.map((c) => (
+              <div
+                key={c.name}
+                style={{
+                  background: "oklch(0.10 0.006 260)",
+                  padding: "2.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+              >
+                <div style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  border: `1px solid ${c.color}`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  <div style={{ width: "0.6rem", height: "0.6rem", background: c.color }} />
+                </div>
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.1em", color: "oklch(0.90 0.003 260)" }}>
+                  {c.name}
+                </div>
+                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.42 0.008 260)", letterSpacing: "0.06em" }}>
+                  {c.body}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: "oklch(0.22 0.10 255)" }}>
-        <div className="container text-center">
-          <h2 className="fuli-heading text-white text-3xl mb-3">Ready to Partner with FULI?</h2>
-          <p className="text-white/60 text-base mb-7">Contact us today for a factory tour or product samples.</p>
-          <Link href="/contact">
-            <span className="fuli-btn-primary text-base px-10 py-4">
-              Contact Us <ArrowRight size={16} />
-            </span>
-          </Link>
+      <section style={{
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        textAlign: "center",
+      }}>
+        <div className="container">
+          <div className="fuli-label" style={{ justifyContent: "center", marginBottom: "1.5rem" }}>Work With Us</div>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+            Partner With FULI
+          </h2>
+          <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
+            Join 1,000+ industrial clients worldwide. Get factory-direct pricing with full export support.
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <Link href="/contact">
+              <span className="fuli-cta">Contact Us <ArrowRight size={14} /></span>
+            </Link>
+            <Link href="/products">
+              <span className="fuli-cta-ghost">View Products</span>
+            </Link>
+          </div>
         </div>
       </section>
-
-      <Footer />
-      <WhatsAppFloat />
     </div>
   );
 }

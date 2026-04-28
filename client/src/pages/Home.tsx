@@ -1,38 +1,109 @@
 /**
- * FULI Machinery - Home Page
- * Design: Modern B2B Professional
- * Colors: Deep Blue (#1e3a5f) + Orange (#f97316) accent
- * Font: Barlow Condensed (headings) + Barlow (body)
- * Key improvements over original:
- *  - Real product images (not just icons)
- *  - Trust signals on homepage (stats, certifications)
- *  - Testimonials section
- *  - WhatsApp float button
- *  - Better hero with split layout
- *  - Industry applications with icons
+ * FULI Machinery — Home Page
+ * Design: SKF-inspired industrial dark
+ * — Full-screen Mux video hero with overlay text
+ * — Bebas Neue display headings, Barlow body
+ * — Black/near-black background, orange accents, sharp corners
+ * — Sections: Hero → Stats → Products → Why FULI → Industries → Testimonials → CTA
  */
+import MuxPlayer from "@mux/mux-player-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Award,
-  Truck,
-  Factory,
-  Wrench,
-  Globe,
-  Star,
-  ChevronRight,
-  Shield,
-  Zap,
-  Package,
-} from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
-// Animated counter hook
-function useCountUp(target: number, duration = 2000, start = false) {
+/* ─── Data ─────────────────────────────────────────────────── */
+const stats = [
+  { value: 15, suffix: "+", label: "Years Experience" },
+  { value: 50, suffix: "+", label: "Countries Served" },
+  { value: 500, suffix: "+", label: "Product Models" },
+  { value: 1000, suffix: "+", label: "Global Clients" },
+];
+
+const products = [
+  {
+    code: "DGB",
+    name: "Deep Groove Ball Bearings",
+    desc: "Versatile single-row bearings for high speeds and moderate loads. Standard and non-standard sizes available.",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+  },
+  {
+    code: "TRB",
+    name: "Tapered Roller Bearings",
+    desc: "Handle combined radial and axial loads with high precision. Metric and inch series.",
+    img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80",
+  },
+  {
+    code: "SRB",
+    name: "Spherical Roller Bearings",
+    desc: "Self-aligning design compensates for shaft deflection. Ideal for heavy radial loads.",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
+  },
+  {
+    code: "PBU",
+    name: "Pillow Block Bearings",
+    desc: "Mounted bearing units with housing for easy installation. UCP, UCF, UCT, UCFC series.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+  },
+];
+
+const advantages = [
+  {
+    num: "01",
+    title: "ISO 9001 Certified",
+    desc: "Strict quality control at every production stage. All bearings tested before shipment.",
+  },
+  {
+    num: "02",
+    title: "Factory Direct",
+    desc: "No middlemen. Direct from our Shandong factory to your warehouse with full documentation.",
+  },
+  {
+    num: "03",
+    title: "Ships 24–72 hrs",
+    desc: "Large inventory ready for immediate dispatch. Custom orders fulfilled in 15–30 days.",
+  },
+  {
+    num: "04",
+    title: "OEM / ODM Ready",
+    desc: "Special sizes, materials, and custom packaging accepted. Your brand, our precision.",
+  },
+];
+
+const industries = [
+  { name: "Automotive", icon: "🚗", items: ["Wheel hubs", "Transmissions", "Steering columns"] },
+  { name: "Agriculture", icon: "🌾", items: ["Combine harvesters", "Grain augers", "Tractors"] },
+  { name: "Mining", icon: "⛏️", items: ["Rock crushers", "Conveyor systems", "Drilling rigs"] },
+  { name: "Machinery", icon: "⚙️", items: ["Pumps & compressors", "Gearboxes", "Machine tools"] },
+  { name: "Electric Motors", icon: "⚡", items: ["Motor shafts", "Generators", "Industrial fans"] },
+  { name: "Construction", icon: "🏗️", items: ["Excavators", "Tower cranes", "Concrete mixers"] },
+];
+
+const testimonials = [
+  {
+    quote: "FULI bearings have been running in our combine harvesters for 3 seasons without a single failure. The quality matches European brands at half the cost.",
+    name: "Abdullah Al-Rashidi",
+    title: "Procurement Manager",
+    country: "Saudi Arabia",
+    flag: "🇸🇦",
+  },
+  {
+    quote: "Fast delivery, perfect documentation for customs clearance, and the technical support team responds within hours. Highly recommended.",
+    name: "Carlos Mendoza",
+    title: "Operations Director",
+    country: "Mexico",
+    flag: "🇲🇽",
+  },
+  {
+    quote: "We've been sourcing DGB series bearings from FULI for 5 years. Consistent quality, competitive pricing, and reliable supply chain.",
+    name: "Dmitri Volkov",
+    title: "Technical Buyer",
+    country: "Russia",
+    flag: "🇷🇺",
+  },
+];
+
+/* ─── Animated counter hook ────────────────────────────────── */
+function useCounter(target: number, duration = 1800, start = false) {
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!start) return;
@@ -40,7 +111,8 @@ function useCountUp(target: number, duration = 2000, start = false) {
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -48,390 +120,425 @@ function useCountUp(target: number, duration = 2000, start = false) {
   return count;
 }
 
-// Intersection observer hook
-function useInView(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, inView };
+/* ─── Stat item ─────────────────────────────────────────────── */
+function StatItem({ value, suffix, label, start }: { value: number; suffix: string; label: string; start: boolean }) {
+  const count = useCounter(value, 1600, start);
+  return (
+    <div style={{ textAlign: "center" }}>
+      <div className="fuli-stat">
+        {count}{suffix}
+      </div>
+      <div style={{
+        fontFamily: "'Barlow', sans-serif",
+        fontSize: "0.7rem",
+        fontWeight: 600,
+        letterSpacing: "0.18em",
+        textTransform: "uppercase",
+        color: "oklch(0.45 0.008 260)",
+        marginTop: "0.4rem",
+      }}>
+        {label}
+      </div>
+    </div>
+  );
 }
 
-const products = [
-  {
-    id: "dgb",
-    code: "DGB",
-    name: "Deep Groove Ball Bearings",
-    desc: "Versatile single-row bearings for high speeds and moderate loads. Standard and non-standard sizes available.",
-    specs: "d: 10–150mm · Open / ZZ / 2RS · P0/P6/P5 Precision",
-    tags: ["High Speed", "Low Noise", "Chrome Steel"],
-    series: "6000 · 6200 · 6300 · 6400 · 16000",
-    color: "oklch(0.33 0.12 255)",
-  },
-  {
-    id: "trb",
-    code: "TRB",
-    name: "Tapered Roller Bearings",
-    desc: "Handle combined radial and axial loads with high precision. Metric and inch series available.",
-    specs: "d: 15–260mm · Metric / Inch · P0/P6 Precision",
-    tags: ["Radial + Axial", "High Precision", "Metric & Inch"],
-    series: "30200 · 30300 · 31300 · 32000",
-    color: "oklch(0.38 0.14 255)",
-  },
-  {
-    id: "srb",
-    code: "SRB",
-    name: "Spherical Roller Bearings",
-    desc: "Self-aligning design compensates for shaft deflection. Ideal for heavy radial loads and vibrating screens.",
-    specs: "d: 25–400mm · CC/CA/E/MB Cage · P0/P6",
-    tags: ["Self-Aligning", "Heavy Radial", "Shock Load"],
-    series: "21300 · 22200 · 22300 · 23000",
-    color: "oklch(0.43 0.16 255)",
-  },
-  {
-    id: "pbu",
-    code: "PBU",
-    name: "Pillow Block Bearings",
-    desc: "Mounted bearing units with housing for easy installation. UCP, UCF, UCT, UCFC series.",
-    specs: "d: 12–140mm · Cast Iron / SS Housing",
-    tags: ["Easy Install", "Sealed", "UCP/UCF/UCT"],
-    series: "UCP · UCF · UCT · UCFC · UCFL",
-    color: "oklch(0.48 0.18 255)",
-  },
-];
-
-const advantages = [
-  {
-    icon: Award,
-    title: "ISO 9001 Certified",
-    desc: "Strict quality control at every production stage. All products meet international standards.",
-    badge: "ISO 9001",
-  },
-  {
-    icon: Factory,
-    title: "Factory Direct",
-    desc: "No middlemen. Direct from our Shandong factory to your warehouse. Volume discounts available.",
-    badge: "Factory Direct",
-  },
-  {
-    icon: Truck,
-    title: "Fast Delivery",
-    desc: "Large stock ready for immediate shipment. Standard orders ship within 24–72 hours.",
-    badge: "Ships 24–72 hrs",
-  },
-  {
-    icon: Wrench,
-    title: "OEM / ODM Ready",
-    desc: "Custom sizes, materials, packaging, and branding accepted. Special orders in 15–30 days.",
-    badge: "OEM / ODM",
-  },
-];
-
-const industries = [
-  { icon: "🚗", name: "Automotive", items: ["Wheel hubs", "Transmissions", "Steering columns"] },
-  { icon: "🌾", name: "Agriculture", items: ["Combine harvesters", "Grain augers", "Tractors"] },
-  { icon: "⛏️", name: "Mining", items: ["Rock crushers", "Conveyor systems", "Drilling rigs"] },
-  { icon: "⚙️", name: "Machinery", items: ["Pumps & compressors", "Gearboxes", "Machine tools"] },
-  { icon: "⚡", name: "Electric Motors", items: ["Motor shafts", "Generators", "Industrial fans"] },
-  { icon: "🏗️", name: "Construction", items: ["Excavators", "Tower cranes", "Concrete mixers"] },
-];
-
-const testimonials = [
-  {
-    name: "Ahmed Al-Rashidi",
-    company: "Al-Rashidi Trading Co.",
-    country: "Saudi Arabia",
-    flag: "🇸🇦",
-    text: "We have been sourcing bearings from FULI for 3 years. Consistent quality, competitive pricing, and reliable delivery. Highly recommended for Middle East distributors.",
-    rating: 5,
-  },
-  {
-    name: "Carlos Mendoza",
-    company: "Industrias Mendoza S.A.",
-    country: "Mexico",
-    flag: "🇲🇽",
-    text: "FULI's tapered roller bearings perform excellently in our agricultural machinery. The team is responsive and the documentation for import is always complete.",
-    rating: 5,
-  },
-  {
-    name: "Dmitri Volkov",
-    company: "Volkov Machinery",
-    country: "Russia",
-    flag: "🇷🇺",
-    text: "Spherical roller bearings for our mining equipment. Excellent load capacity and service life. We order 3–4 containers per year without issues.",
-    rating: 5,
-  },
-];
-
-// Hero image URL
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/hero-factory-8LxGMpDRD3qc3Kz7e7xbAt.webp";
-const PRODUCT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/product-bearings-9MK2PWAX6J9fwQKVqB6Wxb.webp";
-const QUALITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/factory-quality-mNzDztzAPVnFRBmd4Grbas.webp";
-
+/* ─── Main Component ────────────────────────────────────────── */
 export default function Home() {
-  const { ref: statsRef, inView: statsInView } = useInView();
-  const years = useCountUp(15, 1800, statsInView);
-  const models = useCountUp(2000, 2000, statsInView);
-  const countries = useCountUp(50, 1600, statsInView);
-  const monthly = useCountUp(500, 2200, statsInView);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setStatsVisible(true); },
+      { threshold: 0.3 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
+    <div style={{ background: "oklch(0.08 0.005 260)" }}>
 
-      {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <img
-            src={HERO_IMG}
-            alt="FULI Bearing Factory"
-            className="w-full h-full object-cover"
+      {/* ── HERO: Full-screen Mux video ── */}
+      <section style={{ position: "relative", width: "100%", height: "100vh", minHeight: "600px", overflow: "hidden" }}>
+        {/* Mux video background */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <MuxPlayer
+            playbackId="TJx5LIjkM501J00OYq7YSOJWqMPgQIGJORoohjfpUL8vc"
+            streamType="on-demand"
+            autoPlay="muted"
+            loop
+            muted
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="[&_media-control-bar]:hidden"
           />
-          <div className="absolute inset-0" style={{
-            background: "linear-gradient(105deg, oklch(0.18 0.10 255 / 0.92) 0%, oklch(0.18 0.10 255 / 0.75) 55%, oklch(0.18 0.10 255 / 0.40) 100%)"
-          }} />
         </div>
 
-        <div className="container relative z-10 pt-24 pb-16">
-          <div className="max-w-3xl">
-            {/* Label */}
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-0.5" style={{ background: "oklch(0.65 0.20 45)" }} />
-              <span className="fuli-section-label text-white/80">
-                Shandong, China · Est. 2009
+        {/* Dark gradient overlay */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background: "linear-gradient(to top, oklch(0.06 0.004 260 / 0.95) 0%, oklch(0.06 0.004 260 / 0.55) 40%, oklch(0.06 0.004 260 / 0.25) 100%)",
+        }} />
+
+        {/* Subtle left-side vertical rule */}
+        <div style={{
+          position: "absolute",
+          left: "3rem",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "1px",
+          height: "30vh",
+          background: "linear-gradient(to bottom, transparent, oklch(0.65 0.22 45 / 0.6), transparent)",
+          zIndex: 2,
+          display: "none",
+        }} className="lg:block" />
+
+        {/* Hero content */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            paddingBottom: "6rem",
+          }}
+          className="container"
+        >
+          {/* Label */}
+          <div className="fuli-label" style={{ marginBottom: "1.5rem" }}>
+            Shandong, China · Est. 2009
+          </div>
+
+          {/* Main headline */}
+          <h1
+            className="fuli-display"
+            style={{
+              fontSize: "clamp(3.5rem, 9vw, 8rem)",
+              color: "oklch(0.97 0.002 260)",
+              marginBottom: "1.5rem",
+              maxWidth: "14ch",
+            }}
+          >
+            Precision<br />
+            Bearings<br />
+            <span style={{ color: "oklch(0.65 0.22 45)" }}>for Industry</span>
+          </h1>
+
+          {/* Product tags */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
+            {["Deep Groove Ball", "Tapered Roller", "Spherical Roller", "Pillow Block"].map((t, i) => (
+              <span
+                key={t}
+                style={{
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.60 0.006 260)",
+                  padding: "0.3rem 0.8rem",
+                  border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.5)" : "oklch(1 0 0 / 0.12)"}`,
+                }}
+              >
+                {t}
               </span>
-            </div>
+            ))}
+          </div>
 
-            {/* Headline */}
-            <h1 className="fuli-heading text-white mb-6"
-              style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)", lineHeight: 1.02 }}>
-              Precision Bearings<br />
-              <span style={{ color: "oklch(0.80 0.18 45)" }}>for Global Industry</span>
-            </h1>
+          {/* Subtext */}
+          <p style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: "0.9rem",
+            fontWeight: 300,
+            color: "oklch(0.55 0.006 260)",
+            maxWidth: "42ch",
+            lineHeight: 1.7,
+            marginBottom: "2.5rem",
+          }}>
+            ISO 9001 certified manufacturer. Factory-direct supply with full export documentation. Trusted by distributors and OEMs in 50+ countries.
+          </p>
 
-            <p className="text-white/75 text-lg mb-4 max-w-xl leading-relaxed">
-              ISO 9001 certified bearing manufacturer. Factory-direct supply with full export documentation. Trusted by distributors and OEMs in 50+ countries.
-            </p>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-3 mb-8">
-              {["ISO 9001 Certified", "Factory Direct", "OEM/ODM Ready", "Ships 24–72 hrs"].map((b) => (
-                <span key={b} className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
-                  style={{
-                    background: "oklch(1 0 0 / 0.12)",
-                    border: "1px solid oklch(1 0 0 / 0.25)",
-                    color: "white",
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    letterSpacing: "0.06em"
-                  }}>
-                  <CheckCircle2 size={12} style={{ color: "oklch(0.80 0.18 45)" }} />
-                  {b}
-                </span>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact">
-                <span className="fuli-btn-primary text-base px-8 py-3.5">
-                  Get a Quote <ArrowRight size={16} />
-                </span>
-              </Link>
-              <Link href="/products">
-                <span className="fuli-btn-secondary text-base px-8 py-3.5">
-                  View Products
-                </span>
-              </Link>
-            </div>
+          {/* CTAs */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            <Link href="/products">
+              <span className="fuli-cta">
+                Explore Products
+                <ArrowRight size={14} />
+              </span>
+            </Link>
+            <Link href="/contact">
+              <span className="fuli-cta-ghost">
+                Get a Quote
+              </span>
+            </Link>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
-          <span className="text-xs" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.15em" }}>SCROLL</span>
-          <div className="w-px h-10 bg-white/20 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-white/60 animate-bounce" />
-          </div>
+        <div style={{
+          position: "absolute",
+          bottom: "2rem",
+          right: "3rem",
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.4rem",
+        }}>
+          <span style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: "0.6rem",
+            fontWeight: 600,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "oklch(0.40 0.006 260)",
+            writingMode: "vertical-rl",
+          }}>Scroll</span>
+          <ChevronDown size={14} style={{ color: "oklch(0.40 0.006 260)" }} />
         </div>
       </section>
 
       {/* ── STATS BAR ── */}
-      <section ref={statsRef} style={{ background: "oklch(0.22 0.10 255)" }}>
-        <div className="container py-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { value: years, suffix: "+", label: "Years Experience" },
-              { value: models, suffix: "+", label: "Product Models" },
-              { value: countries, suffix: "+", label: "Countries Served" },
-              { value: monthly, suffix: "K", label: "Monthly Production" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="fuli-stat-number text-white" style={{ color: "oklch(0.80 0.18 45)" }}>
-                  {stat.value}{stat.suffix}
-                </div>
-                <div className="text-white/50 text-sm mt-1"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}>
-                  {stat.label}
-                </div>
-              </div>
+      <div
+        ref={statsRef}
+        style={{
+          background: "oklch(0.06 0.004 260)",
+          borderTop: "1px solid oklch(1 0 0 / 0.06)",
+          borderBottom: "1px solid oklch(1 0 0 / 0.06)",
+        }}
+      >
+        <div className="container" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "2rem" }}
+            className="sm:grid-cols-4">
+            {stats.map((s) => (
+              <StatItem key={s.label} {...s} start={statsVisible} />
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* ── PRODUCTS ── */}
-      <section className="py-20 bg-gray-50">
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
         <div className="container">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-4">
-            <div>
-              <div className="fuli-section-label mb-2">Product Catalog</div>
-              <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900">Our Products</h2>
-              <p className="text-gray-500 mt-2 text-base">Comprehensive bearing solutions for every application</p>
-            </div>
-            <Link href="/products">
-              <span className="fuli-btn-primary text-sm px-6 py-2.5 whitespace-nowrap">
-                View All Products <ChevronRight size={15} />
-              </span>
-            </Link>
+          <div style={{ marginBottom: "3.5rem" }}>
+            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Product Catalog</div>
+            <h2
+              className="fuli-display"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+            >
+              Our Bearing Range
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+            className="sm:grid-cols-2 lg:grid-cols-4">
             {products.map((p, i) => (
-              <Link href="/products" key={p.id}>
-                <div className="fuli-card h-full group cursor-pointer">
-                  {/* Card header */}
-                  <div className="p-5 pb-4" style={{ background: p.color }}>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-white/50 text-xs font-bold"
-                        style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.15em" }}>
-                        0{i + 1}
-                      </span>
-                      <span className="text-white text-xs font-bold px-2 py-0.5 rounded"
-                        style={{ background: "oklch(1 0 0 / 0.15)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.1em" }}>
-                        {p.code} SERIES
-                      </span>
+              <Link key={p.code} href="/products">
+                <div
+                  className="fuli-product-card"
+                  style={{ cursor: "pointer", height: "100%" }}
+                >
+                  {/* Image */}
+                  <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
+                    />
+                    <div style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(to top, oklch(0.10 0.006 260 / 0.7) 0%, transparent 60%)",
+                    }} />
+                    <div style={{
+                      position: "absolute",
+                      top: "1rem",
+                      left: "1rem",
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: "0.85rem",
+                      letterSpacing: "0.12em",
+                      color: "oklch(0.65 0.22 45)",
+                      background: "oklch(0.08 0.005 260 / 0.8)",
+                      padding: "0.2rem 0.6rem",
+                    }}>
+                      {String(i + 1).padStart(2, "0")} {p.code}
                     </div>
-                    <h3 className="text-white font-bold text-lg leading-tight"
-                      style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      {p.name}
-                    </h3>
                   </div>
 
-                  {/* Card body */}
-                  <div className="p-5 flex flex-col gap-3">
-                    <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
-                    <div className="text-xs text-gray-400 font-mono">{p.specs}</div>
-                    <div className="flex flex-wrap gap-1.5 mt-1">
-                      {p.tags.map((t) => (
-                        <span key={t} className="text-xs px-2 py-0.5 rounded-full font-medium"
-                          style={{ background: "oklch(0.96 0.01 255)", color: "oklch(0.33 0.12 255)", fontFamily: "'Barlow Condensed', sans-serif" }}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-1.5 mt-2 text-sm font-semibold group-hover:gap-2.5 transition-all"
-                      style={{ color: "oklch(0.65 0.20 45)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}>
-                      EXPLORE SERIES <ArrowRight size={14} />
+                  {/* Content */}
+                  <div style={{ padding: "1.5rem" }}>
+                    <h3 style={{
+                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
+                      color: "oklch(0.90 0.003 260)",
+                      marginBottom: "0.6rem",
+                    }}>
+                      {p.name}
+                    </h3>
+                    <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.8rem", lineHeight: 1.6 }}>
+                      {p.desc}
+                    </p>
+                    <div style={{
+                      marginTop: "1.25rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                      fontFamily: "'Barlow', sans-serif",
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "oklch(0.65 0.22 45)",
+                    }}>
+                      View Details <ArrowRight size={12} />
                     </div>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
+
+          <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
+            <Link href="/products">
+              <span className="fuli-cta-ghost">
+                View All Products <ArrowRight size={14} />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ── WHY CHOOSE FULI ── */}
-      <section className="py-20 bg-white">
+      {/* ── WHY FULI ── */}
+      <section style={{
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        background: "oklch(0.06 0.004 260)",
+        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+      }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left: Image */}
-            <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <img src={QUALITY_IMG} alt="FULI Quality Control" className="w-full h-80 object-cover" />
-              </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-5 -right-5 bg-white rounded-lg shadow-xl p-4 flex items-center gap-3 border border-gray-100">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: "oklch(0.65 0.20 45 / 0.12)" }}>
-                  <Shield size={22} style={{ color: "oklch(0.65 0.20 45)" }} />
-                </div>
-                <div>
-                  <div className="font-bold text-gray-900 text-sm"
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    ISO 9001:2015
-                  </div>
-                  <div className="text-gray-500 text-xs">Quality Certified</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Content */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }}
+            className="lg:grid-cols-2">
+            {/* Left: heading */}
             <div>
-              <div className="fuli-section-label mb-2">Manufacturer Advantage</div>
-              <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900 mb-4">
-                Why Choose FULI
+              <div className="fuli-label" style={{ marginBottom: "1rem" }}>Manufacturer Advantage</div>
+              <h2
+                className="fuli-display"
+                style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}
+              >
+                Why Choose<br />
+                <span style={{ color: "oklch(0.65 0.22 45)" }}>FULI</span>
               </h2>
-              <p className="text-gray-500 text-base mb-8 leading-relaxed">
-                Factory-direct supply with full export documentation and dedicated international support. We eliminate middlemen to give you better pricing and faster service.
+              <p style={{
+                color: "oklch(0.48 0.008 260)",
+                fontSize: "0.9rem",
+                lineHeight: 1.8,
+                maxWidth: "44ch",
+                marginBottom: "2rem",
+              }}>
+                Factory-direct supply with full export documentation and dedicated international support. We manufacture every bearing to exacting standards.
               </p>
+              <Link href="/contact">
+                <span className="fuli-cta">
+                  Request a Quote <ArrowRight size={14} />
+                </span>
+              </Link>
+            </div>
 
-              <div className="space-y-5">
-                {advantages.map((adv) => (
-                  <div key={adv.title} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ background: "oklch(0.33 0.12 255 / 0.08)" }}>
-                      <adv.icon size={18} style={{ color: "oklch(0.33 0.12 255)" }} />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-bold text-gray-900"
-                          style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.05rem" }}>
-                          {adv.title}
-                        </h4>
-                        <span className="text-xs px-2 py-0.5 rounded font-semibold"
-                          style={{ background: "oklch(0.65 0.20 45 / 0.12)", color: "oklch(0.52 0.22 45)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.08em" }}>
-                          {adv.badge}
-                        </span>
-                      </div>
-                      <p className="text-gray-500 text-sm leading-relaxed">{adv.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            {/* Right: advantage grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
+              {advantages.map((a) => (
+                <div
+                  key={a.num}
+                  style={{
+                    background: "oklch(0.10 0.006 260)",
+                    padding: "2rem",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+                >
+                  <div style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "2.5rem",
+                    color: "oklch(0.65 0.22 45 / 0.3)",
+                    lineHeight: 1,
+                    marginBottom: "0.75rem",
+                  }}>{a.num}</div>
+                  <h3 style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "oklch(0.88 0.003 260)",
+                    marginBottom: "0.6rem",
+                  }}>{a.title}</h3>
+                  <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.78rem", lineHeight: 1.6 }}>{a.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── APPLICATIONS ── */}
-      <section className="py-20" style={{ background: "oklch(0.97 0.005 255)" }}>
+      {/* ── INDUSTRIES ── */}
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
         <div className="container">
-          <div className="text-center mb-12">
-            <div className="fuli-section-label mb-2">Industries Served</div>
-            <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900">Applications</h2>
-            <p className="text-gray-500 mt-2">Our bearings serve diverse industries worldwide</p>
+          <div style={{ marginBottom: "3.5rem" }}>
+            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Industries Served</div>
+            <h2
+              className="fuli-display"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+            >
+              Applications
+            </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+            className="sm:grid-cols-3 lg:grid-cols-6">
             {industries.map((ind) => (
-              <div key={ind.name}
-                className="bg-white rounded-lg p-5 text-center border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all group cursor-default">
-                <div className="text-3xl mb-3">{ind.icon}</div>
-                <h4 className="font-bold text-gray-800 text-sm mb-2"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.05em" }}>
-                  {ind.name}
-                </h4>
-                <ul className="space-y-0.5">
+              <div
+                key={ind.name}
+                style={{
+                  background: "oklch(0.10 0.006 260)",
+                  padding: "1.75rem 1.25rem",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.14 0.008 260)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+              >
+                <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
+                <h3 style={{
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "oklch(0.80 0.003 260)",
+                  marginBottom: "0.6rem",
+                }}>{ind.name}</h3>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {ind.items.map((item) => (
-                    <li key={item} className="text-gray-400 text-xs">{item}</li>
+                    <li key={item} style={{
+                      color: "oklch(0.38 0.006 260)",
+                      fontSize: "0.72rem",
+                      lineHeight: 1.8,
+                      paddingLeft: "0.8rem",
+                      position: "relative",
+                    }}>
+                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.6rem" }}>▸</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -441,33 +548,68 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-20 bg-white">
+      <section style={{
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        background: "oklch(0.06 0.004 260)",
+        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+      }}>
         <div className="container">
-          <div className="text-center mb-12">
-            <div className="fuli-section-label mb-2">Customer Reviews</div>
-            <h2 className="fuli-heading text-4xl lg:text-5xl text-gray-900">What Our Clients Say</h2>
+          <div style={{ marginBottom: "3.5rem" }}>
+            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Client Feedback</div>
+            <h2
+              className="fuli-display"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+            >
+              What Clients Say
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+            className="md:grid-cols-3">
             {testimonials.map((t) => (
-              <div key={t.name} className="fuli-card p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={14} fill="oklch(0.65 0.20 45)" style={{ color: "oklch(0.65 0.20 45)" }} />
-                  ))}
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-5 italic">"{t.text}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg shrink-0"
-                    style={{ background: "oklch(0.96 0.01 255)" }}>
-                    {t.flag}
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 text-sm"
-                      style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      {t.name}
+              <div
+                key={t.name}
+                style={{
+                  background: "oklch(0.10 0.006 260)",
+                  padding: "2.5rem",
+                }}
+              >
+                {/* Quote mark */}
+                <div style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "4rem",
+                  color: "oklch(0.65 0.22 45 / 0.25)",
+                  lineHeight: 0.8,
+                  marginBottom: "1.25rem",
+                }}>"</div>
+                <p style={{
+                  color: "oklch(0.60 0.008 260)",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.8,
+                  marginBottom: "1.75rem",
+                  fontStyle: "italic",
+                }}>
+                  {t.quote}
+                </p>
+                <div style={{ borderTop: "1px solid oklch(1 0 0 / 0.08)", paddingTop: "1.25rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                    <span style={{ fontSize: "1.2rem" }}>{t.flag}</span>
+                    <div>
+                      <div style={{
+                        fontFamily: "'Barlow Condensed', sans-serif",
+                        fontSize: "0.9rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.04em",
+                        color: "oklch(0.85 0.003 260)",
+                      }}>{t.name}</div>
+                      <div style={{
+                        fontFamily: "'Barlow', sans-serif",
+                        fontSize: "0.68rem",
+                        color: "oklch(0.42 0.008 260)",
+                        letterSpacing: "0.06em",
+                      }}>{t.title} · {t.country}</div>
                     </div>
-                    <div className="text-gray-400 text-xs">{t.company} · {t.country}</div>
                   </div>
                 </div>
               </div>
@@ -476,40 +618,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
-      <section className="py-20" style={{ background: "oklch(0.22 0.10 255)" }}>
-        <div className="container text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="fuli-section-label mb-3" style={{ color: "oklch(0.80 0.18 45)" }}>
-              Get In Touch
-            </div>
-            <h2 className="fuli-heading text-white mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
-              Ready to Order?
-            </h2>
-            <p className="text-white/60 text-base mb-8 leading-relaxed">
-              Send us your requirements and receive a competitive quote within 24 hours. Our export team handles all documentation.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact">
-                <span className="fuli-btn-primary text-base px-10 py-4">
-                  Request a Quote <ArrowRight size={16} />
-                </span>
-              </Link>
-              <a href="https://wa.me/8618606311628" target="_blank" rel="noopener noreferrer">
-                <span className="fuli-btn-secondary text-base px-10 py-4">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  WhatsApp Us
-                </span>
-              </a>
-            </div>
+      {/* ── FINAL CTA ── */}
+      <section style={{
+        paddingTop: "7rem",
+        paddingBottom: "7rem",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        {/* Background accent */}
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "600px",
+          height: "600px",
+          background: "radial-gradient(circle, oklch(0.65 0.22 45 / 0.06) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+
+        <div className="container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
+          <div className="fuli-label" style={{ justifyContent: "center", marginBottom: "1.5rem" }}>
+            Get in Touch
+          </div>
+          <h2
+            className="fuli-display"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}
+          >
+            Ready to Order?
+          </h2>
+          <p style={{
+            color: "oklch(0.48 0.008 260)",
+            fontSize: "0.9rem",
+            lineHeight: 1.8,
+            maxWidth: "44ch",
+            margin: "0 auto 2.5rem",
+          }}>
+            Send us your requirements and receive a competitive quote within 24 hours. Our team speaks English, Arabic, and Russian.
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1rem" }}>
+            <Link href="/contact">
+              <span className="fuli-cta">
+                Request a Quote <ArrowRight size={14} />
+              </span>
+            </Link>
+            <a href="https://wa.me/8618606311628" target="_blank" rel="noopener noreferrer">
+              <span className="fuli-cta-ghost">
+                WhatsApp Us
+              </span>
+            </a>
           </div>
         </div>
       </section>
-
-      <Footer />
-      <WhatsAppFloat />
     </div>
   );
 }

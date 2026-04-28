@@ -10,9 +10,9 @@ const contacts = [
   {
     Icon: MessageCircle,
     label: "WhatsApp",
-    value: "+86 186 0631 1628",
+    value: "+86 152 6352 1305",
     sub: "Fastest response — typically within 1 hour",
-    href: "https://wa.me/8618606311628?text=Hello%2C%20I%20am%20interested%20in%20your%20bearings.",
+    href: "https://wa.me/8615263521305?text=Hello%2C%20I%20am%20interested%20in%20your%20bearings.",
     color: "#25D366",
     cta: "Chat Now",
   },
@@ -382,7 +382,7 @@ export default function Contact() {
 
               {/* WhatsApp highlight */}
               <a
-                href="https://wa.me/8618606311628"
+                href="https://wa.me/8615263521305"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -403,7 +403,7 @@ export default function Contact() {
                   WhatsApp Us
                 </div>
                 <div style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.78rem", lineHeight: 1.5 }}>
-                  +86 186 0631 1628<br />
+                  +86 152 6352 1305<br />
                   Typically responds within 1 hour
                 </div>
               </a>

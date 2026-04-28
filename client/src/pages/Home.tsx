@@ -709,7 +709,7 @@ export default function Home() {
                 Request a Quote <ArrowRight size={14} />
               </span>
             </Link>
-            <a href="https://wa.me/8618606311628" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/8615263521305" target="_blank" rel="noopener noreferrer">
               <span className="fuli-cta-ghost">
                 WhatsApp Us
               </span>

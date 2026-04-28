@@ -19,9 +19,9 @@ const contacts = [
   {
     Icon: Phone,
     label: "Phone",
-    value: "+86 635 5312 885",
+    value: "+86 152 6352 1305",
     sub: "Mon–Sat, 8:00 AM – 6:00 PM GMT+8",
-    href: "tel:+8663553128885",
+    href: "tel:+8615263521305",
     color: "oklch(0.65 0.22 45)",
     cta: "Call Us",
   },

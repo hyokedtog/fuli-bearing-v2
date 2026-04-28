@@ -71,21 +71,21 @@ export default function Navbar() {
               <div>
                 <div style={{
                   fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "1.3rem",
-                  letterSpacing: "0.12em",
-                  color: "oklch(0.95 0.002 260)",
+                  fontSize: "1.4rem",
+                  letterSpacing: "0.14em",
+                  color: "oklch(0.97 0.002 260)",
                   lineHeight: 1,
                 }}>FULI</div>
                 <div style={{
                   fontFamily: "'Barlow', sans-serif",
-                  fontSize: "0.55rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.22em",
-                  color: "oklch(0.55 0.010 260)",
+                  fontSize: "0.52rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.28em",
+                  color: "oklch(0.65 0.22 45)",
                   textTransform: "uppercase",
                   lineHeight: 1,
-                  marginTop: "1px",
-                }}>MACHINERY</div>
+                  marginTop: "2px",
+                }}>BEARING</div>
               </div>
             </div>
           </Link>
@@ -105,20 +105,20 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+8663553128885"
-              style={{
-                fontFamily: "'Barlow', sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                color: "oklch(0.55 0.010 260)",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = "oklch(0.93 0.003 260)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "oklch(0.55 0.010 260)")}
-            >
-              +86 635 5312 885
-            </a>
+      href="tel:+8615263521305"
+      style={{
+        fontFamily: "'Barlow', sans-serif",
+        fontSize: "0.75rem",
+        fontWeight: 600,
+        letterSpacing: "0.08em",
+        color: "oklch(0.78 0.008 260)",
+        transition: "color 0.2s",
+      }}
+      onMouseEnter={e => (e.currentTarget.style.color = "oklch(0.97 0.003 260)")}
+      onMouseLeave={e => (e.currentTarget.style.color = "oklch(0.78 0.008 260)")}
+    >
+      +86 152 6352 1305
+    </a>
             <Link href="/contact">
               <span className="fuli-cta" style={{ fontSize: "0.72rem", padding: "0.65rem 1.5rem" }}>
                 Get Quote

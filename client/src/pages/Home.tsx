@@ -252,10 +252,9 @@ export default function Home() {
 
           {/* Subtext */}
           <p style={{
-            fontFamily: "'Barlow', sans-serif",
-            fontSize: "0.9rem",
-            fontWeight: 300,
-            color: "oklch(0.55 0.006 260)",
+            color: "oklch(0.78 0.006 260)",
+            fontSize: "1rem",
+            fontWeight: 400,
             maxWidth: "42ch",
             lineHeight: 1.7,
             marginBottom: "2.5rem",
@@ -335,72 +334,71 @@ export default function Home() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
-            className="sm:grid-cols-2 lg:grid-cols-4">
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px", background: "oklch(1 0 0 / 0.06)" }}>
             {products.map((p, i) => (
               <Link key={p.code} href="/products">
                 <div
                   className="fuli-product-card"
-                  style={{ cursor: "pointer", height: "100%" }}
+                  style={{ cursor: "pointer", display: "grid", gridTemplateColumns: "280px 1fr", minHeight: "180px" }}
                 >
-                  {/* Image */}
-                  <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
+                  {/* Image — fixed left column */}
+                  <div style={{ position: "relative", overflow: "hidden", width: "280px", minHeight: "180px" }}>
                     <img
                       src={p.img}
                       alt={p.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", position: "absolute", inset: 0 }}
                       onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
                     />
                     <div style={{
                       position: "absolute",
                       inset: 0,
-                      background: "linear-gradient(to top, oklch(0.10 0.006 260 / 0.7) 0%, transparent 60%)",
+                      background: "linear-gradient(to right, transparent 60%, oklch(0.12 0.008 260 / 0.6) 100%)",
                     }} />
                     <div style={{
                       position: "absolute",
                       top: "1rem",
                       left: "1rem",
                       fontFamily: "'Bebas Neue', sans-serif",
-                      fontSize: "0.85rem",
+                      fontSize: "0.9rem",
                       letterSpacing: "0.12em",
                       color: "oklch(0.65 0.22 45)",
-                      background: "oklch(0.08 0.005 260 / 0.8)",
-                      padding: "0.2rem 0.6rem",
+                      background: "oklch(0.08 0.005 260 / 0.85)",
+                      padding: "0.25rem 0.7rem",
                     }}>
                       {String(i + 1).padStart(2, "0")} {p.code}
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div style={{ padding: "1.5rem" }}>
+                  {/* Content — right side */}
+                  <div style={{ padding: "2rem 2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <h3 style={{
                       fontFamily: "'Barlow Condensed', sans-serif",
-                      fontSize: "1.1rem",
+                      fontSize: "1.4rem",
                       fontWeight: 700,
-                      letterSpacing: "0.04em",
+                      letterSpacing: "0.05em",
                       textTransform: "uppercase",
-                      color: "oklch(0.90 0.003 260)",
+                      color: "oklch(0.96 0.003 260)",
                       marginBottom: "0.6rem",
                     }}>
                       {p.name}
                     </h3>
-                    <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.8rem", lineHeight: 1.6 }}>
+                    <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.92rem", lineHeight: 1.65, maxWidth: "55ch" }}>
                       {p.desc}
                     </p>
                     <div style={{
                       marginTop: "1.25rem",
-                      display: "flex",
+                      display: "inline-flex",
                       alignItems: "center",
                       gap: "0.4rem",
                       fontFamily: "'Barlow', sans-serif",
-                      fontSize: "0.7rem",
+                      fontSize: "0.75rem",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color: "oklch(0.65 0.22 45)",
                     }}>
-                      View Details <ArrowRight size={12} />
+                      View Details <ArrowRight size={13} />
                     </div>
                   </div>
                 </div>
@@ -439,8 +437,8 @@ export default function Home() {
                 <span style={{ color: "oklch(0.65 0.22 45)" }}>FULI</span>
               </h2>
               <p style={{
-                color: "oklch(0.48 0.008 260)",
-                fontSize: "0.9rem",
+                color: "oklch(0.72 0.008 260)",
+                fontSize: "1rem",
                 lineHeight: 1.8,
                 maxWidth: "44ch",
                 marginBottom: "2rem",
@@ -470,7 +468,7 @@ export default function Home() {
                   <div style={{
                     fontFamily: "'Bebas Neue', sans-serif",
                     fontSize: "2.5rem",
-                    color: "oklch(0.65 0.22 45 / 0.3)",
+                    color: "oklch(0.65 0.22 45 / 0.5)",
                     lineHeight: 1,
                     marginBottom: "0.75rem",
                   }}>{a.num}</div>
@@ -483,7 +481,7 @@ export default function Home() {
                     color: "oklch(0.88 0.003 260)",
                     marginBottom: "0.6rem",
                   }}>{a.title}</h3>
-                  <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.78rem", lineHeight: 1.6 }}>{a.desc}</p>
+                  <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.88rem", lineHeight: 1.65 }}>{a.desc}</p>
                 </div>
               ))}
             </div>
@@ -530,8 +528,8 @@ export default function Home() {
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {ind.items.map((item) => (
                     <li key={item} style={{
-                      color: "oklch(0.38 0.006 260)",
-                      fontSize: "0.72rem",
+                      color: "oklch(0.65 0.008 260)",
+                      fontSize: "0.82rem",
                       lineHeight: 1.8,
                       paddingLeft: "0.8rem",
                       position: "relative",
@@ -584,8 +582,8 @@ export default function Home() {
                   marginBottom: "1.25rem",
                 }}>"</div>
                 <p style={{
-                  color: "oklch(0.60 0.008 260)",
-                  fontSize: "0.85rem",
+                  color: "oklch(0.78 0.008 260)",
+                  fontSize: "0.92rem",
                   lineHeight: 1.8,
                   marginBottom: "1.75rem",
                   fontStyle: "italic",
@@ -605,8 +603,8 @@ export default function Home() {
                       }}>{t.name}</div>
                       <div style={{
                         fontFamily: "'Barlow', sans-serif",
-                        fontSize: "0.68rem",
-                        color: "oklch(0.42 0.008 260)",
+                        fontSize: "0.75rem",
+                        color: "oklch(0.60 0.008 260)",
                         letterSpacing: "0.06em",
                       }}>{t.title} · {t.country}</div>
                     </div>
@@ -648,8 +646,8 @@ export default function Home() {
             Ready to Order?
           </h2>
           <p style={{
-            color: "oklch(0.48 0.008 260)",
-            fontSize: "0.9rem",
+            color: "oklch(0.72 0.008 260)",
+            fontSize: "1rem",
             lineHeight: 1.8,
             maxWidth: "44ch",
             margin: "0 auto 2.5rem",

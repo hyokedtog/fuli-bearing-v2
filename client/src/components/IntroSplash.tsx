@@ -82,7 +82,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             style={{
               display: "flex",
               gap: "0.08em",
-              fontFamily: "'Bebas Neue', 'Barlow Condensed', sans-serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(5rem, 15vw, 11rem)",
               fontWeight: 400,
               letterSpacing: "0.08em",
@@ -113,7 +113,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             animate={{ opacity: 0.45, letterSpacing: "0.35em" }}
             transition={{ duration: 0.8, delay: 0.75, ease: "easeOut" }}
             style={{
-              fontFamily: "'Barlow', sans-serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.7rem",
               fontWeight: 600,
               color: "oklch(0.93 0.003 260)",
@@ -143,7 +143,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             animate={{ opacity: 0.3 }}
             transition={{ duration: 0.6, delay: 1.1 }}
             style={{
-              fontFamily: "'Barlow', sans-serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.62rem",
               fontWeight: 400,
               color: "oklch(0.93 0.003 260)",

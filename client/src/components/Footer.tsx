@@ -28,7 +28,7 @@ const contacts = [
 ];
 
 const colHead: React.CSSProperties = {
-  fontFamily: "'Barlow', sans-serif",
+  fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.65rem",
   fontWeight: 700,
   letterSpacing: "0.2em",
@@ -53,11 +53,11 @@ export default function Footer() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.25rem" }}>
               <div style={{ width: "2rem", height: "2rem", background: "oklch(0.65 0.22 45)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.85rem", color: "oklch(0.08 0.005 260)", letterSpacing: "0.05em" }}>FL</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "oklch(0.08 0.005 260)", letterSpacing: "0.05em" }}>FL</span>
               </div>
               <div>
-                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.3rem", letterSpacing: "0.12em", color: "oklch(0.95 0.002 260)", lineHeight: 1 }}>FULI</div>
-                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.22em", color: "oklch(0.40 0.008 260)", textTransform: "uppercase", lineHeight: 1, marginTop: "1px" }}>MACHINERY</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.12em", color: "oklch(0.95 0.002 260)", lineHeight: 1 }}>FULI</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.22em", color: "oklch(0.40 0.008 260)", textTransform: "uppercase", lineHeight: 1, marginTop: "1px" }}>MACHINERY</div>
               </div>
             </div>
             <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.82rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
@@ -74,7 +74,7 @@ export default function Footer() {
                     padding: "0.3rem 0.6rem",
                     border: "1px solid oklch(0.65 0.22 45 / 0.35)",
                     color: "oklch(0.65 0.22 45)",
-                    fontFamily: "'Barlow', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
                   {b}

@@ -75,16 +75,16 @@
   body {
     background: oklch(0.08 0.005 260);
     color: oklch(0.93 0.003 260);
-    font-family: 'Barlow', 'Noto Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 17px;
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
-    font-weight: 400; /* Bebas Neue is single weight */
-    letter-spacing: 0.04em;
-    line-height: 1.0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -125,8 +125,8 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.7rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -141,13 +141,20 @@
     flex-shrink: 0;
   }
 
-  /* Display heading — Bebas Neue, massive */
+  /* Display heading — DM Sans bold, large scale */
   .fuli-display {
-    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    line-height: 0.95;
-    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    text-transform: none;
+  }
+  /* Playfair italic accent — used for emphasis words in headings */
+  .fuli-serif {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0;
   }
 
   /* Primary CTA — orange, sharp corners */
@@ -157,10 +164,10 @@
     gap: 0.6rem;
     background: oklch(0.65 0.22 45);
     color: oklch(0.08 0.005 260);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.85rem 2.2rem;
     border: none;
@@ -178,10 +185,10 @@
     gap: 0.6rem;
     background: transparent;
     color: oklch(0.93 0.003 260);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.85rem 2.2rem;
     border: 1px solid oklch(1 0 0 / 0.35);
@@ -211,21 +218,22 @@
     box-shadow: 0 0 40px oklch(0.65 0.22 45 / 0.08);
   }
 
-  /* Stat number */
+  /* Stat number — Playfair Display for elegant numerals */
   .fuli-stat {
-    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 4.5rem;
+    font-weight: 700;
     line-height: 1;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
     color: oklch(0.65 0.22 45);
   }
 
   /* Nav link */
   .fuli-nav {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: oklch(0.82 0.005 260);
     transition: color 0.2s;

@@ -62,7 +62,7 @@ export default function Navbar() {
                 flexShrink: 0,
               }}>
                 <span style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
                   color: "oklch(0.08 0.005 260)",
                   letterSpacing: "0.05em",
@@ -70,14 +70,14 @@ export default function Navbar() {
               </div>
               <div>
                 <div style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "1.4rem",
                   letterSpacing: "0.14em",
                   color: "oklch(0.97 0.002 260)",
                   lineHeight: 1,
                 }}>FULI</div>
                 <div style={{
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.52rem",
                   fontWeight: 700,
                   letterSpacing: "0.28em",
@@ -107,7 +107,7 @@ export default function Navbar() {
             <a
       href="tel:+8615263521305"
       style={{
-        fontFamily: "'Barlow', sans-serif",
+        fontFamily: "'DM Sans', sans-serif",
         fontSize: "0.75rem",
         fontWeight: 600,
         letterSpacing: "0.08em",
@@ -155,7 +155,7 @@ export default function Navbar() {
                 <div style={{
                   padding: "0.9rem 0",
                   borderBottom: "1px solid oklch(1 0 0 / 0.06)",
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.75rem",
                   fontWeight: 600,
                   letterSpacing: "0.18em",

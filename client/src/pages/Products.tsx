@@ -77,10 +77,10 @@ export default function Products() {
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
             <Link href="/">
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
             </Link>
             <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Products</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Products</span>
           </div>
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Product Catalog</div>
           <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
@@ -102,7 +102,7 @@ export default function Products() {
                 key={cat}
                 onClick={() => setActive(cat)}
                 style={{
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.72rem",
                   fontWeight: 700,
                   letterSpacing: "0.16em",
@@ -151,7 +151,7 @@ export default function Products() {
                     position: "absolute",
                     top: "1rem",
                     left: "1rem",
-                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.9rem",
                     letterSpacing: "0.15em",
                     color: "oklch(0.65 0.22 45)",
@@ -178,7 +178,7 @@ export default function Products() {
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "1.75rem" }}>
                     {/* Specs */}
                     <div>
-                      <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.6rem" }}>
+                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.6rem" }}>
                         Specifications
                       </div>
                       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -193,13 +193,13 @@ export default function Products() {
 
                     {/* Series */}
                     <div>
-                      <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.6rem" }}>
+                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.6rem" }}>
                         Series
                       </div>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
                         {p.series.map((s) => (
                           <span key={s} style={{
-                            fontFamily: "'Barlow', sans-serif",
+                            fontFamily: "'DM Sans', sans-serif",
                             fontSize: "0.65rem",
                             fontWeight: 600,
                             letterSpacing: "0.06em",

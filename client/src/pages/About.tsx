@@ -60,10 +60,10 @@ export default function About() {
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
             <Link href="/">
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
             </Link>
             <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>About</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>About</span>
           </div>
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Company Profile</div>
           <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
@@ -112,10 +112,10 @@ export default function About() {
                   padding: "0.75rem 1.25rem",
                   border: "1px solid oklch(1 0 0 / 0.12)",
                 }}>
-                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", letterSpacing: "0.12em", color: "oklch(0.65 0.22 45)" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", letterSpacing: "0.12em", color: "oklch(0.65 0.22 45)" }}>
                     LIAOCHENG, SHANDONG
                   </div>
-                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginTop: "2px" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginTop: "2px" }}>
                     15,000 m² Manufacturing Facility
                   </div>
                 </div>
@@ -125,9 +125,9 @@ export default function About() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
                 {team.map((t) => (
                   <div key={t.name} style={{ background: "oklch(0.10 0.006 260)", padding: "1.5rem" }}>
-                    <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", lineHeight: 1 }}>{t.count}</div>
-                    <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "oklch(0.42 0.008 260)", marginTop: "0.3rem" }}>{t.unit}</div>
-                    <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.55 0.008 260)", marginTop: "0.2rem" }}>{t.name}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", lineHeight: 1 }}>{t.count}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "oklch(0.42 0.008 260)", marginTop: "0.3rem" }}>{t.unit}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.55 0.008 260)", marginTop: "0.2rem" }}>{t.name}</div>
                   </div>
                 ))}
               </div>
@@ -195,7 +195,7 @@ export default function About() {
                 className="md:grid-cols-[10rem_1fr]"
               >
                 <div style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "1.8rem",
                   letterSpacing: "0.08em",
                   color: i === milestones.length - 1 ? "oklch(0.65 0.22 45)" : "oklch(0.35 0.006 260)",
@@ -250,10 +250,10 @@ export default function About() {
                 }}>
                   <div style={{ width: "0.6rem", height: "0.6rem", background: c.color }} />
                 </div>
-                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.1em", color: "oklch(0.90 0.003 260)" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.4rem", letterSpacing: "0.1em", color: "oklch(0.90 0.003 260)" }}>
                   {c.name}
                 </div>
-                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.42 0.008 260)", letterSpacing: "0.06em" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.42 0.008 260)", letterSpacing: "0.06em" }}>
                   {c.body}
                 </div>
               </div>

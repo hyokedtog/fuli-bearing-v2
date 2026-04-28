@@ -129,7 +129,7 @@ function StatItem({ value, suffix, label, start }: { value: number; suffix: stri
         {count}{suffix}
       </div>
       <div style={{
-        fontFamily: "'Barlow', sans-serif",
+        fontFamily: "'DM Sans', sans-serif",
         fontSize: "0.7rem",
         fontWeight: 600,
         letterSpacing: "0.18em",
@@ -216,9 +216,12 @@ export default function Home() {
 
           {/* Main headline */}
           <h1
-            className="fuli-display"
             style={{
-              fontSize: "clamp(3.5rem, 9vw, 8rem)",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(3rem, 8vw, 7.5rem)",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.0,
               color: "oklch(0.97 0.002 260)",
               marginBottom: "1.5rem",
               maxWidth: "14ch",
@@ -226,7 +229,12 @@ export default function Home() {
           >
             Precision<br />
             Bearings<br />
-            <span style={{ color: "oklch(0.65 0.22 45)" }}>for Industry</span>
+            <span style={{
+              fontFamily: "'Playfair Display', serif",
+              fontStyle: "italic",
+              fontWeight: 500,
+              color: "oklch(0.65 0.22 45)",
+            }}>for Industry</span>
           </h1>
 
           {/* Product tags */}
@@ -235,7 +243,7 @@ export default function Home() {
               <span
                 key={t}
                 style={{
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.7rem",
                   fontWeight: 600,
                   letterSpacing: "0.1em",
@@ -290,7 +298,7 @@ export default function Home() {
           gap: "0.4rem",
         }}>
           <span style={{
-            fontFamily: "'Barlow', sans-serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: "0.6rem",
             fontWeight: 600,
             letterSpacing: "0.2em",
@@ -327,10 +335,17 @@ export default function Home() {
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Product Catalog</div>
             <h2
-              className="fuli-display"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(2rem, 4vw, 3.8rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                color: "oklch(0.95 0.002 260)",
+              }}
             >
-              Our Bearing Range
+              Our Bearing{" "}
+              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Range</span>
             </h2>
           </div>
 
@@ -359,8 +374,9 @@ export default function Home() {
                       position: "absolute",
                       top: "1rem",
                       left: "1rem",
-                      fontFamily: "'Bebas Neue', sans-serif",
-                      fontSize: "0.9rem",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
                       letterSpacing: "0.12em",
                       color: "oklch(0.65 0.22 45)",
                       background: "oklch(0.08 0.005 260 / 0.85)",
@@ -373,11 +389,10 @@ export default function Home() {
                   {/* Content — right side */}
                   <div style={{ padding: "2rem 2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <h3 style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontSize: "1.4rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.05em",
-                      textTransform: "uppercase",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "1.25rem",
+                      fontWeight: 600,
+                      letterSpacing: "-0.01em",
                       color: "oklch(0.96 0.003 260)",
                       marginBottom: "0.6rem",
                     }}>
@@ -391,10 +406,10 @@ export default function Home() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "0.4rem",
-                      fontFamily: "'Barlow', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.75rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.14em",
+                      fontWeight: 600,
+                      letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       color: "oklch(0.65 0.22 45)",
                     }}>
@@ -430,11 +445,23 @@ export default function Home() {
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Manufacturer Advantage</div>
               <h2
-                className="fuli-display"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "clamp(2rem, 4vw, 4rem)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.05,
+                  color: "oklch(0.95 0.002 260)",
+                  marginBottom: "1.5rem",
+                }}
               >
-                Why Choose<br />
-                <span style={{ color: "oklch(0.65 0.22 45)" }}>FULI</span>
+                Why Choose{" "}
+                <span style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                  color: "oklch(0.65 0.22 45)",
+                }}>FULI</span>
               </h2>
               <p style={{
                 color: "oklch(0.72 0.008 260)",
@@ -466,18 +493,18 @@ export default function Home() {
                   onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
                 >
                   <div style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontSize: "2.5rem",
+                    fontWeight: 700,
                     color: "oklch(0.65 0.22 45 / 0.5)",
                     lineHeight: 1,
                     marginBottom: "0.75rem",
                   }}>{a.num}</div>
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.04em",
                     color: "oklch(0.88 0.003 260)",
                     marginBottom: "0.6rem",
                   }}>{a.title}</h3>
@@ -495,10 +522,16 @@ export default function Home() {
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Industries Served</div>
             <h2
-              className="fuli-display"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(2rem, 4vw, 3.8rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                color: "oklch(0.95 0.002 260)",
+              }}
             >
-              Applications
+              Appli<span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>cations</span>
             </h2>
           </div>
 
@@ -517,10 +550,10 @@ export default function Home() {
               >
                 <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
                 <h3 style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.82rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
                   textTransform: "uppercase",
                   color: "oklch(0.80 0.003 260)",
                   marginBottom: "0.6rem",
@@ -534,7 +567,7 @@ export default function Home() {
                       paddingLeft: "0.8rem",
                       position: "relative",
                     }}>
-                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.6rem" }}>▸</span>
+                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.6rem" }}>{"▸"}</span>
                       {item}
                     </li>
                   ))}
@@ -556,10 +589,17 @@ export default function Home() {
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Client Feedback</div>
             <h2
-              className="fuli-display"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)" }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(2rem, 4vw, 3.8rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                color: "oklch(0.95 0.002 260)",
+              }}
             >
-              What Clients Say
+              What Clients{" "}
+              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Say</span>
             </h2>
           </div>
 
@@ -575,8 +615,9 @@ export default function Home() {
               >
                 {/* Quote mark */}
                 <div style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontSize: "4rem",
+                  fontWeight: 700,
                   color: "oklch(0.65 0.22 45 / 0.25)",
                   lineHeight: 0.8,
                   marginBottom: "1.25rem",
@@ -595,17 +636,17 @@ export default function Home() {
                     <span style={{ fontSize: "1.2rem" }}>{t.flag}</span>
                     <div>
                       <div style={{
-                        fontFamily: "'Barlow Condensed', sans-serif",
+                        fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.9rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.04em",
+                        fontWeight: 600,
+                        letterSpacing: "0.01em",
                         color: "oklch(0.85 0.003 260)",
                       }}>{t.name}</div>
                       <div style={{
-                        fontFamily: "'Barlow', sans-serif",
+                        fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.75rem",
                         color: "oklch(0.60 0.008 260)",
-                        letterSpacing: "0.06em",
+                        letterSpacing: "0.02em",
                       }}>{t.title} · {t.country}</div>
                     </div>
                   </div>
@@ -640,10 +681,18 @@ export default function Home() {
             Get in Touch
           </div>
           <h2
-            className="fuli-display"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2rem, 5vw, 5rem)",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "oklch(0.95 0.002 260)",
+              marginBottom: "1.25rem",
+            }}
           >
-            Ready to Order?
+            Ready to{" "}
+            <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Order?</span>
           </h2>
           <p style={{
             color: "oklch(0.72 0.008 260)",

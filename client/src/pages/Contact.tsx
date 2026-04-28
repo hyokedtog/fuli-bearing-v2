@@ -60,7 +60,7 @@ const inputStyle: React.CSSProperties = {
   background: "oklch(0.13 0.007 260)",
   border: "1px solid oklch(1 0 0 / 0.10)",
   color: "oklch(0.88 0.003 260)",
-  fontFamily: "'Barlow', sans-serif",
+  fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.85rem",
   padding: "0.75rem 1rem",
   outline: "none",
@@ -70,7 +70,7 @@ const inputStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
-  fontFamily: "'Barlow', sans-serif",
+  fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.62rem",
   fontWeight: 700,
   letterSpacing: "0.18em",
@@ -126,10 +126,10 @@ export default function Contact() {
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
             <Link href="/">
-              <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
             </Link>
             <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
-            <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Contact</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Contact</span>
           </div>
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Get in Touch</div>
           <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
@@ -165,13 +165,13 @@ export default function Contact() {
               >
                 <c.Icon size={20} style={{ color: c.color }} />
                 <div>
-                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.3rem" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.3rem" }}>
                     {c.label}
                   </div>
-                  <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.88 0.003 260)", marginBottom: "0.3rem" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.88 0.003 260)", marginBottom: "0.3rem" }}>
                     {c.value}
                   </div>
-                  <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.72rem", color: "oklch(0.40 0.008 260)", lineHeight: 1.5 }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.40 0.008 260)", lineHeight: 1.5 }}>
                     {c.sub}
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function Contact() {
                   display: "flex",
                   alignItems: "center",
                   gap: "0.3rem",
-                  fontFamily: "'Barlow', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.68rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
@@ -210,7 +210,7 @@ export default function Contact() {
                   padding: "3rem",
                   textAlign: "center",
                 }}>
-                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", marginBottom: "0.75rem" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", marginBottom: "0.75rem" }}>
                     Inquiry Sent
                   </div>
                   <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.85rem", lineHeight: 1.7 }}>
@@ -334,7 +334,7 @@ export default function Contact() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      fontFamily: "'Barlow', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -361,7 +361,7 @@ export default function Contact() {
               <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.25rem" }}>
                   <Clock size={14} style={{ color: "oklch(0.65 0.22 45)" }} />
-                  <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)" }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)" }}>
                     Business Hours
                   </span>
                 </div>
@@ -375,7 +375,7 @@ export default function Contact() {
                     <span style={{ color: row.hours === "Closed" ? "oklch(0.38 0.006 260)" : "oklch(0.70 0.003 260)", fontSize: "0.78rem", fontWeight: 600 }}>{row.hours}</span>
                   </div>
                 ))}
-                <div style={{ marginTop: "1rem", fontFamily: "'Barlow', sans-serif", fontSize: "0.68rem", color: "oklch(0.38 0.006 260)" }}>
+                <div style={{ marginTop: "1rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.68rem", color: "oklch(0.38 0.006 260)" }}>
                   All times GMT+8 (China Standard Time)
                 </div>
               </div>
@@ -396,10 +396,10 @@ export default function Contact() {
                 onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.14 0.008 260)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
               >
-                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#25D366", marginBottom: "0.6rem" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#25D366", marginBottom: "0.6rem" }}>
                   Fastest Response
                 </div>
-                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.3rem", letterSpacing: "0.08em", color: "oklch(0.90 0.003 260)", marginBottom: "0.4rem" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.08em", color: "oklch(0.90 0.003 260)", marginBottom: "0.4rem" }}>
                   WhatsApp Us
                 </div>
                 <div style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.78rem", lineHeight: 1.5 }}>
@@ -410,7 +410,7 @@ export default function Contact() {
 
               {/* Languages */}
               <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
-                <div style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginBottom: "1rem" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginBottom: "1rem" }}>
                   Languages Supported
                 </div>
                 {[

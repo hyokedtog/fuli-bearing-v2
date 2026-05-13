@@ -21,28 +21,36 @@ const stats = [
 
 const products = [
   {
-    code: "DGB",
-    name: "Deep Groove Ball Bearings",
-    desc: "Versatile single-row bearings for high speeds and moderate loads. Standard and non-standard sizes available.",
+    code: "MOTO",
+    icon: "🏍️",
+    name: "Motorcycle Bearings",
+    desc: "6201 / 6202 / 6301 / 6302 and more — 10 core models covering 90% of East Africa boda-boda repair demand. High repeat purchase, low MOQ.",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    accent: "#f97316",
   },
   {
-    code: "TRB",
-    name: "Tapered Roller Bearings",
-    desc: "Handle combined radial and axial loads with high precision. Metric and inch series.",
-    img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80",
-  },
-  {
-    code: "SRB",
-    name: "Spherical Roller Bearings",
-    desc: "Self-aligning design compensates for shaft deflection. Ideal for heavy radial loads.",
+    code: "MOTOR",
+    icon: "⚡",
+    name: "Motor & Pump Bearings",
+    desc: "6205–6208 C3 clearance series. Critical for electric motors and water pumps running at high temperatures. Covers 80% of industrial motor needs.",
     img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
+    accent: "#3b82f6",
   },
   {
-    code: "PBU",
-    name: "Pillow Block Bearings",
-    desc: "Mounted bearing units with housing for easy installation. UCP, UCF, UCT, UCFC series.",
+    code: "AGRI",
+    icon: "🌾",
+    name: "Agricultural Bearings",
+    desc: "UCP/UCF pillow blocks + 30206/30208 tapered rollers. Built for tractors, conveyors, and farm equipment across East Africa and Latin America.",
     img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+    accent: "#22c55e",
+  },
+  {
+    code: "IND",
+    icon: "🏭",
+    name: "Industrial Bearings",
+    desc: "Spherical roller bearings (22213–23022) for mining, cement, and heavy industry. South Africa, Chile, Peru — high unit value, stable repeat orders.",
+    img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80",
+    accent: "#a855f7",
   },
 ];
 
@@ -354,10 +362,10 @@ export default function Home() {
               <Link key={p.code} href="/products">
                 <div
                   className="fuli-product-card"
-                  style={{ cursor: "pointer", display: "grid", gridTemplateColumns: "280px 1fr", minHeight: "180px" }}
+                  style={{ cursor: "pointer", display: "grid", gridTemplateColumns: "260px 1fr", minHeight: "160px" }}
                 >
                   {/* Image — fixed left column */}
-                  <div style={{ position: "relative", overflow: "hidden", width: "280px", minHeight: "180px" }}>
+                  <div style={{ position: "relative", overflow: "hidden", width: "260px", minHeight: "160px" }}>
                     <img
                       src={p.img}
                       alt={p.name}
@@ -365,48 +373,58 @@ export default function Home() {
                       onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
                     />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, oklch(0.12 0.008 260 / 0.6) 100%)" }} />
                     <div style={{
                       position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to right, transparent 60%, oklch(0.12 0.008 260 / 0.6) 100%)",
-                    }} />
-                    <div style={{
-                      position: "absolute",
-                      top: "1rem",
-                      left: "1rem",
+                      top: "0.75rem",
+                      left: "0.75rem",
+                      fontSize: "0.65rem",
                       fontFamily: "'DM Sans', sans-serif",
+<<<<<<< Updated upstream
                       fontSize: "0.8rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       color: "oklch(0.65 0.22 45)",
                       background: "oklch(0.08 0.005 260 / 0.85)",
                       padding: "0.3rem 0.85rem",
+=======
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      color: p.accent,
+                      background: "oklch(0.08 0.005 260 / 0.88)",
+                      padding: "0.2rem 0.6rem",
+                      border: `1px solid ${p.accent}50`,
+>>>>>>> Stashed changes
                     }}>
-                      {String(i + 1).padStart(2, "0")} {p.code}
+                      {String(i + 1).padStart(2, "0")} {p.icon}
                     </div>
                   </div>
 
                   {/* Content — right side */}
-                  <div style={{ padding: "2rem 2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ padding: "1.75rem 2.25rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <h3 style={{
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "1.25rem",
-                      fontWeight: 600,
-                      letterSpacing: "-0.01em",
+                      fontSize: "1.15rem",
+                      fontWeight: 700,
                       color: "oklch(0.96 0.003 260)",
-                      marginBottom: "0.6rem",
+                      marginBottom: "0.5rem",
                     }}>
                       {p.name}
                     </h3>
+<<<<<<< Updated upstream
                     <p style={{ color: "oklch(0.75 0.008 260)", fontSize: "1rem", lineHeight: 1.65, maxWidth: "55ch" }}>
+=======
+                    <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.85rem", lineHeight: 1.65, maxWidth: "55ch" }}>
+>>>>>>> Stashed changes
                       {p.desc}
                     </p>
                     <div style={{
-                      marginTop: "1.25rem",
+                      marginTop: "1rem",
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.4rem",
+                      gap: "0.35rem",
                       fontFamily: "'DM Sans', sans-serif",
+<<<<<<< Updated upstream
                       fontSize: "0.85rem",
                       fontWeight: 600,
                       letterSpacing: "0.1em",
@@ -414,6 +432,15 @@ export default function Home() {
                       color: "oklch(0.65 0.22 45)",
                     }}>
                       View Details <ArrowRight size={14} />
+=======
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase" as const,
+                      color: p.accent,
+                    }}>
+                      View Models <ArrowRight size={12} />
+>>>>>>> Stashed changes
                     </div>
                   </div>
                 </div>

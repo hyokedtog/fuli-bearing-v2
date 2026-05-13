@@ -380,21 +380,12 @@ export default function Home() {
                       left: "0.75rem",
                       fontSize: "0.65rem",
                       fontFamily: "'DM Sans', sans-serif",
-<<<<<<< Updated upstream
-                      fontSize: "0.8rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      color: "oklch(0.65 0.22 45)",
-                      background: "oklch(0.08 0.005 260 / 0.85)",
-                      padding: "0.3rem 0.85rem",
-=======
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       color: p.accent,
                       background: "oklch(0.08 0.005 260 / 0.88)",
                       padding: "0.2rem 0.6rem",
                       border: `1px solid ${p.accent}50`,
->>>>>>> Stashed changes
                     }}>
                       {String(i + 1).padStart(2, "0")} {p.icon}
                     </div>
@@ -411,11 +402,7 @@ export default function Home() {
                     }}>
                       {p.name}
                     </h3>
-<<<<<<< Updated upstream
-                    <p style={{ color: "oklch(0.75 0.008 260)", fontSize: "1rem", lineHeight: 1.65, maxWidth: "55ch" }}>
-=======
                     <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.85rem", lineHeight: 1.65, maxWidth: "55ch" }}>
->>>>>>> Stashed changes
                       {p.desc}
                     </p>
                     <div style={{
@@ -424,15 +411,6 @@ export default function Home() {
                       alignItems: "center",
                       gap: "0.35rem",
                       fontFamily: "'DM Sans', sans-serif",
-<<<<<<< Updated upstream
-                      fontSize: "0.85rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "oklch(0.65 0.22 45)",
-                    }}>
-                      View Details <ArrowRight size={14} />
-=======
                       fontSize: "0.7rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -440,7 +418,6 @@ export default function Home() {
                       color: p.accent,
                     }}>
                       View Models <ArrowRight size={12} />
->>>>>>> Stashed changes
                     </div>
                   </div>
                 </div>

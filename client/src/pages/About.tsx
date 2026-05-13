@@ -70,7 +70,7 @@ export default function About() {
             About FULI
           </h1>
           <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "52ch" }}>
-            15+ years of precision bearing manufacturing. ISO 9001 certified, factory-direct, serving industrial clients in 50+ countries.
+            15+ years in the bearing industry. ISO 9001 certified products, full export documentation, serving distributors and OEMs in 50+ countries.
           </p>
         </div>
       </section>
@@ -274,7 +274,7 @@ export default function About() {
             Partner With FULI
           </h2>
           <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
-            Join 1,000+ industrial clients worldwide. Get factory-direct pricing with full export support.
+            Join 1,000+ distributors and OEMs worldwide. Competitive pricing with full export documentation on every shipment.
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/contact">

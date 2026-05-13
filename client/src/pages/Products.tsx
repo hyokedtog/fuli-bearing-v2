@@ -389,7 +389,7 @@ export default function Products() {
             {[
               { value: "30", label: "Core SKUs" },
               { value: "4", label: "Application Categories" },
-              { value: "50 pcs", label: "Minimum Order" },
+              { value: "2 hrs", label: "Quote Response" },
               { value: "7 days", label: "Ready to Ship" },
             ].map((stat) => (
               <div key={stat.label}>
@@ -481,7 +481,7 @@ export default function Products() {
                   "Tell us your machine type (motorcycle, tractor, motor)",
                   "Send a photo of the old bearing if available",
                   "We confirm model + price within 2 hours",
-                  "MOQ from 50 pcs, ship to Mombasa in 7 days",
+                  "Receive quote + stock confirmation, ready to arrange shipment",
                 ].map((step, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                     <span style={{ color: "#f97316", fontWeight: 700, fontSize: "0.75rem", flexShrink: 0, marginTop: "0.15rem" }}>
@@ -563,10 +563,10 @@ export default function Products() {
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
             {[
-              { title: "Direct from Linqing", body: "Linqing, Shandong — China's largest bearing production base. No middlemen, factory-direct pricing." },
-              { title: "Low MOQ", body: "Start from 50 pcs per model. Ideal for distributors testing new product lines without large inventory risk." },
-              { title: "Consistent Quality", body: "Same factory, same spec every batch. The #1 complaint from Africa buyers is inconsistent quality — we solve that." },
-              { title: "Fast Response", body: "Price quote within 2 hours. Stock confirmation same day. Shipping to Mombasa in 7 days from order." },
+              { title: "Sourced from Linqing", body: "We work with verified factories in Linqing, China's bearing capital — giving you access to the right spec at a competitive price." },
+              { title: "Selection Support", body: "Not sure which model? Send us the machine type or a photo of the old bearing. We'll confirm the spec within 2 hours." },
+              { title: "Consistent Quality", body: "Every batch is inspected before shipment. Full documentation included: packing list, inspection report, and certificate of origin." },
+              { title: "Fast Response", body: "Price quote within 2 hours. Stock confirmation same day. Export documentation prepared and ready for your freight forwarder." },
             ].map((item) => (
               <div key={item.title} style={{ background: "oklch(0.10 0.006 260)", padding: "1.75rem" }}>
                 <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: "oklch(0.90 0.003 260)", fontSize: "0.9rem", marginBottom: "0.6rem" }}>

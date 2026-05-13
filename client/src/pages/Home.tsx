@@ -24,7 +24,7 @@ const products = [
     code: "MOTO",
     icon: "🏍️",
     name: "Motorcycle Bearings",
-    desc: "6201 / 6202 / 6301 / 6302 and more — 10 core models covering 90% of East Africa boda-boda repair demand. High repeat purchase, low MOQ.",
+    desc: "6201 / 6202 / 6301 / 6302 and more — 10 core models covering 90% of East Africa boda-boda repair demand. High repeat purchase, fast reorder.",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     accent: "#f97316",
   },
@@ -62,8 +62,8 @@ const advantages = [
   },
   {
     num: "02",
-    title: "Factory Direct",
-    desc: "No middlemen. Direct from our Shandong factory to your warehouse with full documentation.",
+    title: "Sourced from Linqing",
+    desc: "We work with verified factories in Linqing, China's bearing capital — giving you access to the right spec at a competitive price.",
   },
   {
     num: "03",
@@ -275,7 +275,7 @@ export default function Home() {
             lineHeight: 1.7,
             marginBottom: "2.5rem",
           }}>
-            ISO 9001 certified manufacturer. Factory-direct supply with full export documentation. Trusted by distributors and OEMs in 50+ countries.
+            ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 50+ countries.
           </p>
 
           {/* CTAs */}

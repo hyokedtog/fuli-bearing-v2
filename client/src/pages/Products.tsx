@@ -259,10 +259,8 @@ function CategoryCard({ cat, isActive, onClick }: {
 
               {/* CTA */}
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", flexWrap: "wrap" as const }}>
-                <a
-                  href={`https://wa.me/8615263521305?text=Hi, I'm interested in your ${cat.label}. Please send me a price list.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/products/${cat.id}`}
                   onClick={(e) => e.stopPropagation()}
                   style={{
                     display: "inline-flex",
@@ -282,11 +280,13 @@ function CategoryCard({ cat, isActive, onClick }: {
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
                 >
-                  <MessageCircle size={14} />
-                  WhatsApp — Get Price List
-                </a>
-                <Link
-                  href="/contact"
+                  View Details & Specs
+                  <ChevronRight size={14} />
+                </Link>
+                <a
+                  href={`https://wa.me/8615263521305?text=Hi, I'm interested in your ${cat.label}. Please send me a price list.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   style={{
                     display: "inline-flex",
@@ -312,9 +312,9 @@ function CategoryCard({ cat, isActive, onClick }: {
                     (e.currentTarget as HTMLElement).style.color = "oklch(0.75 0.008 260)";
                   }}
                 >
-                  Request Samples
-                  <ArrowRight size={14} />
-                </Link>
+                  <MessageCircle size={14} />
+                  WhatsApp
+                </a>
               </div>
             </div>
           </motion.div>

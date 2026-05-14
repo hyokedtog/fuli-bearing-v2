@@ -558,7 +558,7 @@ export default function Products() {
         <div className="container">
           <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 700, color: "oklch(0.94 0.003 260)", marginBottom: "2.5rem" }}>
             Why buyers in{" "}
-            <em style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: "oklch(0.50 0.008 260)" }}>50+ countries</em>
+            <em style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: "oklch(0.50 0.008 260)" }}>20+ countries</em>
             {" "}choose FULI
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>

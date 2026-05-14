@@ -13,10 +13,10 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const stats = [
-  { value: 15, suffix: "+", label: "Years Experience" },
-  { value: 50, suffix: "+", label: "Countries Served" },
-  { value: 500, suffix: "+", label: "Product Models" },
-  { value: 1000, suffix: "+", label: "Global Clients" },
+  { value: 20, suffix: "+", label: "Years in Export" },
+  { value: 20, suffix: "+", label: "Countries Served" },
+  { value: 30, suffix: "", label: "Core SKU Models" },
+  { value: 2, suffix: "hr", label: "Quote Response" },
 ];
 
 const products = [
@@ -86,28 +86,13 @@ const industries = [
   { name: "Construction", icon: "🏗️", items: ["Excavators", "Tower cranes", "Concrete mixers"] },
 ];
 
-const testimonials = [
-  {
-    quote: "FULI bearings have been running in our combine harvesters for 3 seasons without a single failure. The quality matches European brands at half the cost.",
-    name: "Abdullah Al-Rashidi",
-    title: "Procurement Manager",
-    country: "Saudi Arabia",
-    flag: "🇸🇦",
-  },
-  {
-    quote: "Fast delivery, perfect documentation for customs clearance, and the technical support team responds within hours. Highly recommended.",
-    name: "Carlos Mendoza",
-    title: "Operations Director",
-    country: "Mexico",
-    flag: "🇲🇽",
-  },
-  {
-    quote: "We've been sourcing DGB series bearings from FULI for 5 years. Consistent quality, competitive pricing, and reliable supply chain.",
-    name: "Dmitri Volkov",
-    title: "Technical Buyer",
-    country: "Russia",
-    flag: "🇷🇺",
-  },
+const exportMarkets = [
+  { region: "Europe", country: "Germany", flag: "🇩🇪", note: "Industrial & automotive bearings" },
+  { region: "Middle East", country: "Iran & Egypt", flag: "🇮🇷", note: "Motor, pump & agricultural bearings" },
+  { region: "East Africa", country: "Kenya & Tanzania", flag: "🇰🇪", note: "Motorcycle & boda-boda repair market" },
+  { region: "Latin America", country: "Mexico & Colombia", flag: "🇲🇽", note: "Industrial & agricultural machinery" },
+  { region: "North Africa", country: "Egypt", flag: "🇪🇬", note: "Water pump & motor bearings" },
+  { region: "West Africa", country: "Nigeria & Ghana", flag: "🇳🇬", note: "Motorcycle & light industrial" },
 ];
 
 /* ─── Animated counter hook ────────────────────────────────── */
@@ -275,7 +260,7 @@ export default function Home() {
             lineHeight: 1.7,
             marginBottom: "2.5rem",
           }}>
-            ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 50+ countries.
+            ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 20+ countries.
           </p>
 
           {/* CTAs */}
@@ -582,7 +567,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
+      {/* ── EXPORT MARKETS ── */}
       <section style={{
         paddingTop: "6rem",
         paddingBottom: "6rem",
@@ -591,7 +576,7 @@ export default function Home() {
       }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem" }}>
-            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Client Feedback</div>
+            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Global Reach</div>
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -602,59 +587,48 @@ export default function Home() {
                 color: "oklch(0.95 0.002 260)",
               }}
             >
-              What Clients{" "}
-              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Say</span>
+              Export{" "}
+              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Markets</span>
             </h2>
+            <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: "52ch", marginTop: "1rem" }}>
+              20+ years of export experience. Active in 20+ countries across Europe, Middle East, Africa and Latin America.
+            </p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
-            className="md:grid-cols-3">
-            {testimonials.map((t) => (
+            className="sm:grid-cols-2 lg:grid-cols-3">
+            {exportMarkets.map((m) => (
               <div
-                key={t.name}
+                key={m.country}
                 style={{
                   background: "oklch(0.10 0.006 260)",
-                  padding: "2.5rem",
+                  padding: "2rem 2rem",
+                  transition: "background 0.2s",
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
               >
-                {/* Quote mark */}
-                <div style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "4rem",
-                  fontWeight: 700,
-                  color: "oklch(0.65 0.22 45 / 0.25)",
-                  lineHeight: 0.8,
-                  marginBottom: "1.25rem",
-                }}>"</div>
-                <p style={{
-                  color: "oklch(0.82 0.008 260)",
-                  fontSize: "1rem",
-                  lineHeight: 1.8,
-                  marginBottom: "1.75rem",
-                  fontStyle: "italic",
-                }}>
-                  {t.quote}
-                </p>
-                <div style={{ borderTop: "1px solid oklch(1 0 0 / 0.08)", paddingTop: "1.25rem" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                    <span style={{ fontSize: "1.2rem" }}>{t.flag}</span>
-                    <div>
-                      <div style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.01em",
-                        color: "oklch(0.90 0.003 260)",
-                      }}>{t.name}</div>
-                      <div style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "0.85rem",
-                        color: "oklch(0.68 0.008 260)",
-                        letterSpacing: "0.02em",
-                      }}>{t.title} · {t.country}</div>
-                    </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                  <span style={{ fontSize: "1.8rem" }}>{m.flag}</span>
+                  <div>
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase" as const,
+                      color: "oklch(0.65 0.22 45)",
+                      marginBottom: "0.15rem",
+                    }}>{m.region}</div>
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "1.05rem",
+                      fontWeight: 600,
+                      color: "oklch(0.90 0.003 260)",
+                    }}>{m.country}</div>
                   </div>
                 </div>
+                <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.88rem", lineHeight: 1.6 }}>{m.note}</p>
               </div>
             ))}
           </div>

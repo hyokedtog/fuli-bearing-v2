@@ -660,29 +660,27 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: photos */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-
-
+            {/* Right: photos — two side-by-side small thumbnails */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
               {shippingPhotos.map((photo, i) => (
-                <div key={i} style={{ position: "relative", overflow: "hidden", border: "1px solid oklch(0.88 0.004 260)" }}>
+                <div key={i} style={{ position: "relative", overflow: "hidden", border: "1px solid oklch(0.88 0.004 260)", height: "260px" }}>
                   <img
                     src={photo.img}
                     alt={photo.caption}
-                    style={{ width: "100%", aspectRatio: i === 0 ? "16/9" : "16/7", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.03)"; }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.04)"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
                   />
                   {/* Caption overlay */}
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
                     background: "linear-gradient(to top, oklch(0.10 0.008 255 / 0.85) 0%, transparent 100%)",
-                    padding: "1.5rem 1.25rem 1rem",
+                    padding: "1rem 0.9rem 0.75rem",
                   }}>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.65 0.22 45)", marginBottom: "0.2rem" }}>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.65 0.22 45)", marginBottom: "0.15rem" }}>
                       {photo.caption}
                     </div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "oklch(0.85 0.004 260)" }}>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.85 0.004 260)", lineHeight: 1.4 }}>
                       {photo.desc}
                     </div>
                   </div>

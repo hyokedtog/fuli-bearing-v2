@@ -527,7 +527,7 @@ export default function Home() {
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Trust & Compliance</div>
               <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "1rem" }}>
-                Certi<span className="fuli-serif">fications</span>
+                Our{" "}<span className="fuli-serif">Certifications</span>
               </h2>
               <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.92rem", lineHeight: 1.7, maxWidth: "48ch" }}>
                 Every shipment is backed by internationally recognized certifications. Upload your ISO 9001 certificate and other credentials to strengthen buyer confidence.</p>

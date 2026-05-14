@@ -44,7 +44,7 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "4rem", overflow: "hidden" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "4rem" }}>
 
           {/* Logo */}
           <Link href="/">
@@ -90,8 +90,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}
-            className="hidden lg:flex">
+          <nav className="hidden lg:flex" style={{ alignItems: "center", gap: "2rem" }}>
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span style={{
@@ -116,7 +115,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex" style={{ alignItems: "center", gap: "1rem" }}>
             <a
               href="tel:+8615263521305"
               style={{

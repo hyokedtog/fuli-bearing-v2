@@ -8,6 +8,7 @@ import IntroSplash from "./components/IntroSplash";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingInquiry from "./components/FloatingInquiry";
+import MobileContactBar from "./components/MobileContactBar";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
@@ -53,6 +54,7 @@ function App() {
               </main>
               <Footer />
               <FloatingInquiry />
+              <MobileContactBar />
             </div>
         </TooltipProvider>
       </ThemeProvider>

@@ -42,6 +42,7 @@ export default function FloatingInquiry() {
 
       {visible && (
         <div
+          className="hidden lg:block"
           style={{
             position: "fixed",
             bottom: "1.75rem",

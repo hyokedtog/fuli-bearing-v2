@@ -316,7 +316,7 @@ export default function Home() {
 
       {/* ── HERO: Full-screen Mux video (stays dark — it's a video overlay) ── */}
       <section style={{ position: "relative", width: "100%", height: "100vh", minHeight: "600px", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
           <MuxPlayer
             playbackId="TJx5LIjkM501J00OYq7YSOJWqMPgQIGJORoohjfpUL8vc"
             streamType="on-demand"

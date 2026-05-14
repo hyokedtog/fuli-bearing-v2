@@ -431,7 +431,7 @@ export default function Home() {
       </div>
 
       {/* ── MOQ STRIP ── */}
-      <div style={{ background: "oklch(0.65 0.22 45)", padding: "0.9rem 0" }}>
+      <div style={{ background: "oklch(0.14 0.018 255)", padding: "0.9rem 0", borderTop: "3px solid oklch(0.65 0.22 45)" }}>
         <div className="container">
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "2.5rem" }}>
             {[
@@ -441,15 +441,15 @@ export default function Home() {
               { label: "Quote Response", value: "Within 24 hrs" },
             ].map((item) => (
               <div key={item.label} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.15 0.008 260 / 0.7)" }}>{item.label}:</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 700, color: "oklch(0.10 0.008 260)" }}>{item.value}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.58 0.008 260)" }}>{item.label}:</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 700, color: "oklch(0.95 0.002 260)" }}>{item.value}</span>
               </div>
             ))}
             <a
               href="https://wa.me/8615263521305?text=Hello%2C%20I%20need%20a%20trial%20order%20quote."
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.10 0.008 260)", textDecoration: "none", padding: "0.4rem 1rem", border: "1px solid oklch(0.10 0.008 260 / 0.4)" }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.65 0.22 45)", textDecoration: "none", padding: "0.4rem 1rem", border: "1px solid oklch(0.65 0.22 45 / 0.6)" }}
             >
               Start a Trial Order →
             </a>
@@ -858,8 +858,9 @@ export default function Home() {
       {/* ── FINAL CTA ── */}
       <section style={{
         paddingTop: "7rem", paddingBottom: "7rem",
-        background: "oklch(0.65 0.22 45)",
+        background: "oklch(0.13 0.020 255)",
         position: "relative", overflow: "hidden",
+        borderTop: "4px solid oklch(0.65 0.22 45)",
       }}>
         <div style={{
           position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",

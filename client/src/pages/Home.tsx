@@ -25,7 +25,7 @@ const products = [
     icon: "🏍️",
     name: "Motorcycle Bearings",
     desc: "6201 / 6202 / 6301 / 6302 and more — 10 core models covering 90% of East Africa boda-boda repair demand. High repeat purchase, fast reorder.",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    img: "/manus-storage/bearing-motorcycle_dc63e804.png",
     accent: "#f97316",
   },
   {
@@ -33,7 +33,7 @@ const products = [
     icon: "⚡",
     name: "Motor & Pump Bearings",
     desc: "6205–6208 C3 clearance series. Critical for electric motors and water pumps running at high temperatures. Covers 80% of industrial motor needs.",
-    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
+    img: "/manus-storage/bearing-motor-pump_fc2189a0.png",
     accent: "#3b82f6",
   },
   {
@@ -41,7 +41,7 @@ const products = [
     icon: "🌾",
     name: "Agricultural Bearings",
     desc: "UCP/UCF pillow blocks + 30206/30208 tapered rollers. Built for tractors, conveyors, and farm equipment across East Africa and Latin America.",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+    img: "/manus-storage/bearing-agricultural_b095333d.png",
     accent: "#22c55e",
   },
   {
@@ -49,7 +49,7 @@ const products = [
     icon: "🏭",
     name: "Industrial Bearings",
     desc: "Spherical roller bearings (22213–23022) for mining, cement, and heavy industry. South Africa, Chile, Peru — high unit value, stable repeat orders.",
-    img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80",
+    img: "/manus-storage/bearing-industrial_0a55d947.png",
     accent: "#a855f7",
   },
 ];
@@ -78,12 +78,12 @@ const advantages = [
 ];
 
 const industries = [
-  { name: "Automotive", icon: "🚗", items: ["Wheel hubs", "Transmissions", "Steering columns"] },
-  { name: "Agriculture", icon: "🌾", items: ["Combine harvesters", "Grain augers", "Tractors"] },
-  { name: "Mining", icon: "⛏️", items: ["Rock crushers", "Conveyor systems", "Drilling rigs"] },
-  { name: "Machinery", icon: "⚙️", items: ["Pumps & compressors", "Gearboxes", "Machine tools"] },
-  { name: "Electric Motors", icon: "⚡", items: ["Motor shafts", "Generators", "Industrial fans"] },
-  { name: "Construction", icon: "🏗️", items: ["Excavators", "Tower cranes", "Concrete mixers"] },
+  { name: "Motorcycle", icon: "🏍️", items: ["Front & rear wheel hubs", "Engine gearbox", "Boda-boda repair"] },
+  { name: "Motor & Pump", icon: "⚡", items: ["Electric motor shafts", "Water pump drives", "Industrial fans"] },
+  { name: "Agricultural", icon: "🌾", items: ["Tractor wheel hubs", "PTO drive shafts", "Grain conveyors"] },
+  { name: "Industrial", icon: "🏭", items: ["Vibrating screens", "Cement mills", "Mining crushers"] },
+  { name: "Light Industry", icon: "⚙️", items: ["Gearboxes", "Compressors", "Machine tools"] },
+  { name: "Construction", icon: "🏗️", items: ["Excavator arms", "Tower cranes", "Concrete mixers"] },
 ];
 
 const exportMarkets = [

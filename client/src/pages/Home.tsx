@@ -1,22 +1,21 @@
-/**
- * FULI Machinery — Home Page
- * Design: SKF-inspired industrial dark
- * — Full-screen Mux video hero with overlay text
- * — Bebas Neue display headings, Barlow body
- * — Black/near-black background, orange accents, sharp corners
+/*
+ * FULI Bearing — Home Page
+ * Design: Light industrial — SKF/NSK inspired
+ * — Full-screen Mux video hero (dark overlay, light text)
+ * — White/light-grey content sections, dark text, orange accents
  * — Sections: Hero → Stats → Products → Certifications → Shipping → Why FULI → Industries → Export Markets → CTA
  */
 import MuxPlayer from "@mux/mux-player-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, ChevronDown, Award, Globe, Package, Clock, ShieldCheck, Truck, Factory, Headphones, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronDown, Award, Globe, Package, Clock, ShieldCheck, Truck, Factory, Headphones } from "lucide-react";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const stats = [
   { value: 20, suffix: "+", label: "Years in Export", icon: Clock, color: "oklch(0.65 0.22 45)" },
-  { value: 20, suffix: "+", label: "Countries Served", icon: Globe, color: "oklch(0.55 0.18 220)" },
-  { value: 30, suffix: "", label: "Core SKU Models", icon: Package, color: "oklch(0.60 0.18 145)" },
-  { value: 2, suffix: "hr", label: "Quote Response", icon: Headphones, color: "oklch(0.60 0.20 300)" },
+  { value: 20, suffix: "+", label: "Countries Served", icon: Globe, color: "oklch(0.45 0.18 220)" },
+  { value: 30, suffix: "", label: "Core SKU Models", icon: Package, color: "oklch(0.50 0.18 145)" },
+  { value: 2, suffix: "hr", label: "Quote Response", icon: Headphones, color: "oklch(0.50 0.20 300)" },
 ];
 
 const products = [
@@ -26,7 +25,8 @@ const products = [
     name: "Motorcycle Bearings",
     desc: "6201 / 6202 / 6301 / 6302 and more — 10 core models covering 90% of East Africa boda-boda repair demand. High repeat purchase, fast reorder.",
     img: "/manus-storage/bearing-motorcycle_dc63e804.png",
-    accent: "#f97316",
+    accent: "oklch(0.65 0.22 45)",
+    href: "/products/motorcycle",
   },
   {
     code: "MOTOR",
@@ -34,7 +34,8 @@ const products = [
     name: "Motor & Pump Bearings",
     desc: "6205–6208 C3 clearance series. Critical for electric motors and water pumps running at high temperatures. Covers 80% of industrial motor needs.",
     img: "/manus-storage/bearing-motor-pump_fc2189a0.png",
-    accent: "#3b82f6",
+    accent: "oklch(0.45 0.18 220)",
+    href: "/products/motor",
   },
   {
     code: "AGRI",
@@ -42,7 +43,8 @@ const products = [
     name: "Agricultural Bearings",
     desc: "UCP/UCF pillow blocks + 30206/30208 tapered rollers. Built for tractors, conveyors, and farm equipment across East Africa and Latin America.",
     img: "/manus-storage/bearing-agricultural_b095333d.png",
-    accent: "#22c55e",
+    accent: "oklch(0.50 0.18 145)",
+    href: "/products/agricultural",
   },
   {
     code: "IND",
@@ -50,7 +52,8 @@ const products = [
     name: "Industrial Bearings",
     desc: "Spherical roller bearings (22213–23022) for mining, cement, and heavy industry. South Africa, Chile, Peru — high unit value, stable repeat orders.",
     img: "/manus-storage/bearing-industrial_0a55d947.png",
-    accent: "#a855f7",
+    accent: "oklch(0.50 0.20 300)",
+    href: "/products/industrial",
   },
 ];
 
@@ -69,7 +72,7 @@ const certifications = [
     desc: "Recognized for outstanding quality management and contribution to China's export trade standards.",
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/cert-honor-Ucbrztk2jqEF5HFa2RVHjz.webp",
     tag: "AWARDED",
-    tagColor: "oklch(0.70 0.18 50)",
+    tagColor: "oklch(0.55 0.18 50)",
   },
   {
     title: "Export License",
@@ -77,7 +80,7 @@ const certifications = [
     desc: "Authorized exporter under the Ministry of Commerce of the People's Republic of China. Full customs documentation on every shipment.",
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663607109789/48YXxtoXbaoufcubufBDmH/cert-export-AQfYjUooT7oGGPAahkCs98.webp",
     tag: "LICENSED",
-    tagColor: "oklch(0.60 0.18 220)",
+    tagColor: "oklch(0.45 0.18 220)",
   },
 ];
 
@@ -107,21 +110,21 @@ const advantages = [
     icon: Factory,
     title: "Sourced from Linqing",
     desc: "We work with verified factories in Linqing, China's bearing capital — right spec, competitive price.",
-    color: "oklch(0.60 0.18 145)",
+    color: "oklch(0.50 0.18 145)",
   },
   {
     num: "03",
     icon: Truck,
     title: "Ships 24–72 hrs",
     desc: "Large inventory ready for immediate dispatch. Custom orders fulfilled in 15–30 days.",
-    color: "oklch(0.55 0.18 220)",
+    color: "oklch(0.45 0.18 220)",
   },
   {
     num: "04",
     icon: Award,
     title: "OEM / ODM Ready",
     desc: "Special sizes, materials, and custom packaging accepted. Your brand, our precision.",
-    color: "oklch(0.60 0.20 300)",
+    color: "oklch(0.50 0.20 300)",
   },
 ];
 
@@ -171,22 +174,29 @@ function StatItem({ value, suffix, label, icon: Icon, color, start }: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "2rem 1.5rem",
-      background: "oklch(0.10 0.006 260)",
-      border: "1px solid oklch(1 0 0 / 0.06)",
-      transition: "background 0.2s",
+      padding: "2.25rem 1.5rem",
+      background: "oklch(1 0 0)",
+      border: "1px solid oklch(0.88 0.004 260)",
+      borderTop: `3px solid ${color}`,
+      transition: "box-shadow 0.2s, transform 0.2s",
       gap: "0.75rem",
     }}
-      onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `0 4px 20px ${color}20`;
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
     >
       {/* Icon circle */}
       <div style={{
         width: "3rem",
         height: "3rem",
         borderRadius: "50%",
-        background: `${color}18`,
-        border: `1px solid ${color}40`,
+        background: `${color}15`,
+        border: `1px solid ${color}35`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -201,7 +211,7 @@ function StatItem({ value, suffix, label, icon: Icon, color, start }: {
         fontWeight: 800,
         letterSpacing: "-0.04em",
         lineHeight: 1,
-        color: "oklch(0.97 0.002 260)",
+        color: "oklch(0.18 0.012 260)",
       }}>
         {count}{suffix}
       </div>
@@ -225,24 +235,26 @@ function StatItem({ value, suffix, label, icon: Icon, color, start }: {
 function CertCard({ cert }: { cert: typeof certifications[0] }) {
   return (
     <div style={{
-      background: "oklch(0.10 0.006 260)",
-      border: "1px solid oklch(1 0 0 / 0.08)",
+      background: "oklch(1 0 0)",
+      border: "1px solid oklch(0.88 0.004 260)",
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",
-      transition: "border-color 0.2s, transform 0.2s",
+      transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
     }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "oklch(0.65 0.22 45 / 0.3)";
-        e.currentTarget.style.transform = "translateY(-2px)";
+        e.currentTarget.style.borderColor = `${cert.tagColor}60`;
+        e.currentTarget.style.boxShadow = `0 4px 24px ${cert.tagColor}15`;
+        e.currentTarget.style.transform = "translateY(-3px)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "oklch(1 0 0 / 0.08)";
+        e.currentTarget.style.borderColor = "oklch(0.88 0.004 260)";
+        e.currentTarget.style.boxShadow = "none";
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
       {/* Certificate image */}
-      <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", background: "oklch(0.07 0.004 260)" }}>
+      <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", background: "oklch(0.95 0.003 260)" }}>
         <img
           src={cert.img}
           alt={cert.title}
@@ -259,16 +271,15 @@ function CertCard({ cert }: { cert: typeof certifications[0] }) {
           fontSize: "0.6rem",
           fontWeight: 700,
           letterSpacing: "0.15em",
-          color: cert.tagColor,
-          background: "oklch(0.06 0.004 260 / 0.92)",
-          border: `1px solid ${cert.tagColor}50`,
+          color: "oklch(1 0 0)",
+          background: cert.tagColor,
           padding: "0.25rem 0.65rem",
         }}>
           {cert.tag}
         </div>
       </div>
       {/* Text */}
-      <div style={{ padding: "1.5rem" }}>
+      <div style={{ padding: "1.5rem", borderTop: `2px solid ${cert.tagColor}` }}>
         <div style={{
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "0.65rem",
@@ -284,14 +295,14 @@ function CertCard({ cert }: { cert: typeof certifications[0] }) {
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "1.1rem",
           fontWeight: 700,
-          color: "oklch(0.95 0.002 260)",
+          color: "oklch(0.18 0.012 260)",
           marginBottom: "0.6rem",
           letterSpacing: "-0.01em",
         }}>
           {cert.title}
         </h3>
         <p style={{
-          color: "oklch(0.60 0.008 260)",
+          color: "oklch(0.50 0.008 260)",
           fontSize: "0.82rem",
           lineHeight: 1.65,
         }}>
@@ -306,7 +317,6 @@ function CertCard({ cert }: { cert: typeof certifications[0] }) {
 export default function Home() {
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsVisible, setStatsVisible] = useState(false);
-  const [certIdx, setCertIdx] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -318,9 +328,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ background: "oklch(0.08 0.005 260)" }}>
+    <div style={{ background: "oklch(0.97 0.002 260)" }}>
 
-      {/* ── HERO: Full-screen Mux video ── */}
+      {/* ── HERO: Full-screen Mux video (stays dark — it's a video overlay) ── */}
       <section style={{ position: "relative", width: "100%", height: "100vh", minHeight: "600px", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <MuxPlayer
@@ -335,14 +345,8 @@ export default function Home() {
         </div>
         <div style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: "linear-gradient(to top, oklch(0.06 0.004 260 / 0.95) 0%, oklch(0.06 0.004 260 / 0.55) 40%, oklch(0.06 0.004 260 / 0.25) 100%)",
+          background: "linear-gradient(to top, oklch(0.10 0.008 255 / 0.92) 0%, oklch(0.10 0.008 255 / 0.55) 40%, oklch(0.10 0.008 255 / 0.30) 100%)",
         }} />
-        <div style={{
-          position: "absolute", left: "3rem", top: "50%", transform: "translateY(-50%)",
-          width: "1px", height: "30vh",
-          background: "linear-gradient(to bottom, transparent, oklch(0.65 0.22 45 / 0.6), transparent)",
-          zIndex: 2, display: "none",
-        }} className="lg:block" />
 
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
@@ -364,18 +368,18 @@ export default function Home() {
               <span key={t} style={{
                 fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.70 0.006 260)",
+                color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.80 0.006 260)",
                 padding: "0.4rem 1rem",
-                border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.5)" : "oklch(1 0 0 / 0.12)"}`,
+                border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.6)" : "oklch(1 0 0 / 0.18)"}`,
               }}>{t}</span>
             ))}
           </div>
-          <p style={{ color: "oklch(0.78 0.006 260)", fontSize: "1rem", fontWeight: 400, maxWidth: "42ch", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+          <p style={{ color: "oklch(0.82 0.006 260)", fontSize: "1rem", fontWeight: 400, maxWidth: "42ch", lineHeight: 1.7, marginBottom: "2.5rem" }}>
             ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 20+ countries.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             <Link href="/products"><span className="fuli-cta">Explore Products<ArrowRight size={14} /></span></Link>
-            <Link href="/contact"><span className="fuli-cta-ghost">Get a Quote</span></Link>
+            <Link href="/contact"><span className="fuli-cta-ghost-light">Get a Quote</span></Link>
           </div>
         </div>
 
@@ -385,17 +389,17 @@ export default function Home() {
         }}>
           <span style={{
             fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", fontWeight: 600,
-            letterSpacing: "0.2em", textTransform: "uppercase", color: "oklch(0.50 0.006 260)",
+            letterSpacing: "0.2em", textTransform: "uppercase", color: "oklch(0.60 0.006 260)",
             writingMode: "vertical-rl",
           }}>Scroll</span>
-          <ChevronDown size={14} style={{ color: "oklch(0.40 0.006 260)" }} />
+          <ChevronDown size={14} style={{ color: "oklch(0.50 0.006 260)" }} />
         </div>
       </section>
 
       {/* ── STATS BAR ── */}
-      <div ref={statsRef} style={{ background: "oklch(0.06 0.004 260)", borderTop: "1px solid oklch(1 0 0 / 0.06)", borderBottom: "1px solid oklch(1 0 0 / 0.06)" }}>
+      <div ref={statsRef} style={{ background: "oklch(0.97 0.002 260)", borderBottom: "1px solid oklch(0.88 0.004 260)" }}>
         <div className="container" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}
             className="sm:grid-cols-4">
             {stats.map((s) => (
               <StatItem key={s.label} {...s} start={statsVisible} />
@@ -405,51 +409,65 @@ export default function Home() {
       </div>
 
       {/* ── PRODUCTS ── */}
-      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem", background: "oklch(0.97 0.002 260)" }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Product Catalog</div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em",
-              lineHeight: 1.05, color: "oklch(0.95 0.002 260)",
-            }}>
+            <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "0.5rem" }}>
               Our Bearing{" "}
-              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Range</span>
+              <span className="fuli-serif">Range</span>
             </h2>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px", background: "oklch(1 0 0 / 0.06)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             {products.map((p, i) => (
-              <Link key={p.code} href="/products">
-                <div className="fuli-product-card" style={{ cursor: "pointer", display: "grid", gridTemplateColumns: "260px 1fr", minHeight: "160px" }}>
-                  <div style={{ position: "relative", overflow: "hidden", width: "260px", minHeight: "160px" }}>
+              <Link key={p.code} href={p.href}>
+                <div style={{
+                  cursor: "pointer",
+                  display: "grid",
+                  gridTemplateColumns: "280px 1fr",
+                  minHeight: "170px",
+                  background: "oklch(1 0 0)",
+                  border: "1px solid oklch(0.88 0.004 260)",
+                  borderLeft: `4px solid ${p.accent}`,
+                  transition: "box-shadow 0.25s, transform 0.2s",
+                  overflow: "hidden",
+                }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 4px 24px ${p.accent}20`;
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <div style={{ position: "relative", overflow: "hidden", width: "280px", minHeight: "170px" }}>
                     <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", position: "absolute", inset: 0 }}
                       onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
                     />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, oklch(0.12 0.008 260 / 0.6) 100%)" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, oklch(1 0 0 / 0.5) 100%)" }} />
                     <div style={{
                       position: "absolute", top: "0.75rem", left: "0.75rem",
                       fontSize: "0.65rem", fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                      letterSpacing: "0.1em", color: p.accent,
-                      background: "oklch(0.08 0.005 260 / 0.88)", padding: "0.2rem 0.6rem",
-                      border: `1px solid ${p.accent}50`,
+                      letterSpacing: "0.1em", color: "oklch(1 0 0)",
+                      background: p.accent, padding: "0.2rem 0.6rem",
                     }}>
                       {String(i + 1).padStart(2, "0")} {p.icon}
                     </div>
                   </div>
                   <div style={{ padding: "1.75rem 2.25rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                    <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.15rem", fontWeight: 700, color: "oklch(0.96 0.003 260)", marginBottom: "0.5rem" }}>
+                    <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.15rem", fontWeight: 700, color: "oklch(0.18 0.012 260)", marginBottom: "0.5rem" }}>
                       {p.name}
                     </h3>
-                    <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.85rem", lineHeight: 1.65, maxWidth: "55ch" }}>{p.desc}</p>
+                    <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.85rem", lineHeight: 1.65, maxWidth: "55ch" }}>{p.desc}</p>
                     <div style={{
                       marginTop: "1rem", display: "inline-flex", alignItems: "center", gap: "0.35rem",
                       fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", fontWeight: 700,
                       letterSpacing: "0.12em", textTransform: "uppercase" as const, color: p.accent,
                     }}>
-                      View Models <ArrowRight size={12} />
+                      View Models & Specs <ArrowRight size={12} />
                     </div>
                   </div>
                 </div>
@@ -466,36 +484,33 @@ export default function Home() {
       {/* ── CERTIFICATIONS ── */}
       <section style={{
         paddingTop: "6rem", paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.94 0.003 260)",
+        borderTop: "1px solid oklch(0.88 0.004 260)",
+        borderBottom: "1px solid oklch(0.88 0.004 260)",
       }}>
         <div className="container">
           {/* Header */}
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "3.5rem", flexWrap: "wrap", gap: "1.5rem" }}>
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Trust & Compliance</div>
-              <h2 style={{
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                fontSize: "clamp(2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em",
-                lineHeight: 1.05, color: "oklch(0.95 0.002 260)",
-              }}>
-                Certi<span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>fications</span>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "1rem" }}>
+                Certi<span className="fuli-serif">fications</span>
               </h2>
-              <p style={{ color: "oklch(0.60 0.008 260)", fontSize: "0.92rem", lineHeight: 1.7, maxWidth: "48ch", marginTop: "1rem" }}>
+              <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.92rem", lineHeight: 1.7, maxWidth: "48ch" }}>
                 Every shipment is backed by internationally recognized certifications. Replace these placeholders with your actual certificate scans.
               </p>
             </div>
             {/* Placeholder notice */}
             <div style={{
               padding: "0.75rem 1.25rem",
-              border: "1px dashed oklch(0.65 0.22 45 / 0.4)",
-              background: "oklch(0.65 0.22 45 / 0.05)",
+              border: "1px dashed oklch(0.65 0.22 45 / 0.5)",
+              background: "oklch(0.65 0.22 45 / 0.06)",
               maxWidth: "260px",
             }}>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "oklch(0.65 0.22 45)", marginBottom: "0.3rem" }}>
                 PLACEHOLDER IMAGES
               </div>
-              <p style={{ color: "oklch(0.55 0.008 260)", fontSize: "0.75rem", lineHeight: 1.6 }}>
+              <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.75rem", lineHeight: 1.6 }}>
                 Send your real certificate scans to replace these. Supported: JPG, PNG.
               </p>
             </div>
@@ -513,28 +528,28 @@ export default function Home() {
           <div style={{
             marginTop: "3rem",
             padding: "1.5rem 2rem",
-            background: "oklch(0.10 0.006 260)",
-            border: "1px solid oklch(1 0 0 / 0.06)",
+            background: "oklch(1 0 0)",
+            border: "1px solid oklch(0.88 0.004 260)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
-            gap: "2rem",
+            gap: "2.5rem",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
               <ShieldCheck size={18} style={{ color: "oklch(0.65 0.22 45)", flexShrink: 0 }} />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.72 0.008 260)" }}>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.40 0.008 260)" }}>
                 All bearings tested before shipment
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-              <Package size={18} style={{ color: "oklch(0.60 0.18 145)", flexShrink: 0 }} />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.72 0.008 260)" }}>
+              <Package size={18} style={{ color: "oklch(0.50 0.18 145)", flexShrink: 0 }} />
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.40 0.008 260)" }}>
                 Full export documentation on every order
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-              <Globe size={18} style={{ color: "oklch(0.55 0.18 220)", flexShrink: 0 }} />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.72 0.008 260)" }}>
+              <Globe size={18} style={{ color: "oklch(0.45 0.18 220)", flexShrink: 0 }} />
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.40 0.008 260)" }}>
                 20+ years of compliant international trade
               </span>
             </div>
@@ -543,44 +558,40 @@ export default function Home() {
       </section>
 
       {/* ── SHIPPING & PACKAGING ── */}
-      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem", background: "oklch(0.97 0.002 260)" }}>
         <div className="container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }}
             className="lg:grid-cols-2">
             {/* Left: text */}
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Ready to Ship</div>
-              <h2 style={{
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                fontSize: "clamp(2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em",
-                lineHeight: 1.05, color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem",
-              }}>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "1.5rem" }}>
                 Warehouse &{" "}
-                <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500, color: "oklch(0.65 0.22 45)" }}>
-                  Dispatch
-                </span>
+                <span className="fuli-serif" style={{ color: "oklch(0.65 0.22 45)" }}>Dispatch</span>
               </h2>
-              <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", marginBottom: "2rem" }}>
+              <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", marginBottom: "2rem" }}>
                 Large inventory stocked and ready for immediate dispatch. Standard orders ship within 24–72 hours. All pallets are stretch-wrapped and labeled for sea or air freight.
               </p>
 
-              {/* Shipping specs */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "oklch(1 0 0 / 0.06)", marginBottom: "2rem" }}>
+              {/* Shipping specs table */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0", marginBottom: "2rem", border: "1px solid oklch(0.88 0.004 260)", overflow: "hidden" }}>
                 {[
                   { label: "Standard Dispatch", value: "24 – 72 hours" },
                   { label: "Custom / OEM Orders", value: "15 – 30 days" },
                   { label: "Min. Order Qty", value: "1 carton (negotiable)" },
                   { label: "Packaging", value: "Neutral or branded box" },
                   { label: "Shipping Modes", value: "Sea, Air, Express" },
-                ].map((row) => (
+                ].map((row, i) => (
                   <div key={row.label} style={{
                     display: "flex", justifyContent: "space-between", alignItems: "center",
-                    padding: "0.85rem 1.25rem", background: "oklch(0.10 0.006 260)",
+                    padding: "0.85rem 1.25rem",
+                    background: i % 2 === 0 ? "oklch(1 0 0)" : "oklch(0.96 0.002 260)",
+                    borderBottom: i < 4 ? "1px solid oklch(0.88 0.004 260)" : "none",
                   }}>
                     <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.55 0.008 260)", letterSpacing: "0.04em" }}>
                       {row.label}
                     </span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", fontWeight: 600, color: "oklch(0.88 0.003 260)" }}>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", fontWeight: 600, color: "oklch(0.18 0.012 260)" }}>
                       {row.value}
                     </span>
                   </div>
@@ -597,7 +608,7 @@ export default function Home() {
               {/* Placeholder notice */}
               <div style={{
                 padding: "0.6rem 1rem",
-                border: "1px dashed oklch(0.65 0.22 45 / 0.4)",
+                border: "1px dashed oklch(0.65 0.22 45 / 0.5)",
                 background: "oklch(0.65 0.22 45 / 0.05)",
                 display: "flex",
                 alignItems: "center",
@@ -606,11 +617,11 @@ export default function Home() {
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "oklch(0.65 0.22 45)" }}>
                   PLACEHOLDER
                 </div>
-                <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.72rem" }}>Replace with your real warehouse / packing photos</p>
+                <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.72rem" }}>Replace with your real warehouse / packing photos</p>
               </div>
 
               {shippingPhotos.map((photo, i) => (
-                <div key={i} style={{ position: "relative", overflow: "hidden", border: "1px solid oklch(1 0 0 / 0.08)" }}>
+                <div key={i} style={{ position: "relative", overflow: "hidden", border: "1px solid oklch(0.88 0.004 260)" }}>
                   <img
                     src={photo.img}
                     alt={photo.caption}
@@ -621,13 +632,13 @@ export default function Home() {
                   {/* Caption overlay */}
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
-                    background: "linear-gradient(to top, oklch(0.06 0.004 260 / 0.9) 0%, transparent 100%)",
+                    background: "linear-gradient(to top, oklch(0.10 0.008 255 / 0.85) 0%, transparent 100%)",
                     padding: "1.5rem 1.25rem 1rem",
                   }}>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.65 0.22 45)", marginBottom: "0.2rem" }}>
                       {photo.caption}
                     </div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "oklch(0.72 0.006 260)" }}>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "oklch(0.85 0.004 260)" }}>
                       {photo.desc}
                     </div>
                   </div>
@@ -641,8 +652,7 @@ export default function Home() {
       {/* ── WHY FULI ── */}
       <section style={{
         paddingTop: "6rem", paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.18 0.025 255)",
       }}>
         <div className="container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }}
@@ -653,12 +663,12 @@ export default function Home() {
               <h2 style={{
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
                 fontSize: "clamp(2rem, 4vw, 4rem)", letterSpacing: "-0.03em",
-                lineHeight: 1.05, color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem",
+                lineHeight: 1.05, color: "oklch(0.97 0.002 260)", marginBottom: "1.5rem",
               }}>
                 Why Choose{" "}
                 <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500, color: "oklch(0.65 0.22 45)" }}>FULI</span>
               </h2>
-              <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", marginBottom: "2rem" }}>
+              <p style={{ color: "oklch(0.75 0.008 260)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", marginBottom: "2rem" }}>
                 20+ years of export experience. Sourced from Linqing, China's bearing capital. ISO 9001 certified with full documentation on every shipment.
               </p>
               <Link href="/contact">
@@ -666,33 +676,35 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: advantage grid with icons */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
+            {/* Right: advantage grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
               {advantages.map((a) => {
                 const IconComp = a.icon;
                 return (
                   <div key={a.num} style={{
-                    background: "oklch(0.10 0.006 260)", padding: "2rem",
+                    background: "oklch(1 0 0 / 0.06)",
+                    border: "1px solid oklch(1 0 0 / 0.12)",
+                    borderTop: `3px solid ${a.color}`,
+                    padding: "1.75rem",
                     transition: "background 0.2s",
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(1 0 0 / 0.10)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(1 0 0 / 0.06)"; }}
                   >
-                    {/* Icon */}
                     <div style={{
                       width: "2.5rem", height: "2.5rem",
-                      background: `${a.color}18`,
-                      border: `1px solid ${a.color}40`,
+                      background: `${a.color}20`,
+                      border: `1px solid ${a.color}50`,
                       display: "flex", alignItems: "center", justifyContent: "center",
                       marginBottom: "1rem",
                     }}>
                       <IconComp size={16} style={{ color: a.color }} />
                     </div>
                     <h3 style={{
-                      fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", fontWeight: 600,
-                      letterSpacing: "0.02em", color: "oklch(0.90 0.003 260)", marginBottom: "0.6rem",
+                      fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600,
+                      color: "oklch(0.95 0.002 260)", marginBottom: "0.5rem",
                     }}>{a.title}</h3>
-                    <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "0.95rem", lineHeight: 1.65 }}>{a.desc}</p>
+                    <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "0.88rem", lineHeight: 1.65 }}>{a.desc}</p>
                   </div>
                 );
               })}
@@ -702,46 +714,64 @@ export default function Home() {
       </section>
 
       {/* ── INDUSTRIES ── */}
-      <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
+      <section style={{ paddingTop: "6rem", paddingBottom: "6rem", background: "oklch(0.97 0.002 260)" }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Industries Served</div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em",
-              lineHeight: 1.05, color: "oklch(0.95 0.002 260)",
-            }}>
-              Appli<span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>cations</span>
+            <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)" }}>
+              Appli<span className="fuli-serif">cations</span>
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}
             className="sm:grid-cols-3 lg:grid-cols-6">
-            {industries.map((ind) => (
-              <div key={ind.name} style={{
-                background: "oklch(0.10 0.006 260)", padding: "1.75rem 1.25rem", transition: "background 0.2s",
-              }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.14 0.008 260)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
-              >
-                <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
-                <h3 style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600,
-                  letterSpacing: "0.06em", textTransform: "uppercase", color: "oklch(0.85 0.003 260)", marginBottom: "0.6rem",
-                }}>{ind.name}</h3>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {ind.items.map((item) => (
-                    <li key={item} style={{
-                      color: "oklch(0.70 0.008 260)", fontSize: "0.88rem", lineHeight: 1.8,
-                      paddingLeft: "0.8rem", position: "relative",
-                    }}>
-                      <span style={{ position: "absolute", left: 0, color: "oklch(0.65 0.22 45)", fontSize: "0.65rem" }}>{"▸"}</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {industries.map((ind, idx) => {
+              const accentColors = [
+                "oklch(0.65 0.22 45)",
+                "oklch(0.45 0.18 220)",
+                "oklch(0.50 0.18 145)",
+                "oklch(0.50 0.20 300)",
+                "oklch(0.55 0.18 50)",
+                "oklch(0.48 0.18 180)",
+              ];
+              const accent = accentColors[idx % accentColors.length];
+              return (
+                <div key={ind.name} style={{
+                  background: "oklch(1 0 0)",
+                  border: "1px solid oklch(0.88 0.004 260)",
+                  borderTop: `3px solid ${accent}`,
+                  padding: "1.75rem 1.25rem",
+                  transition: "box-shadow 0.2s, transform 0.2s",
+                }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 4px 20px ${accent}18`;
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
+                  <h3 style={{
+                    fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700,
+                    letterSpacing: "0.04em", textTransform: "uppercase" as const,
+                    color: "oklch(0.18 0.012 260)", marginBottom: "0.75rem",
+                  }}>{ind.name}</h3>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {ind.items.map((item) => (
+                      <li key={item} style={{
+                        color: "oklch(0.50 0.008 260)", fontSize: "0.82rem", lineHeight: 1.8,
+                        paddingLeft: "0.8rem", position: "relative",
+                      }}>
+                        <span style={{ position: "absolute", left: 0, color: accent, fontSize: "0.65rem" }}>{"▸"}</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -749,33 +779,39 @@ export default function Home() {
       {/* ── EXPORT MARKETS ── */}
       <section style={{
         paddingTop: "6rem", paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.94 0.003 260)",
+        borderTop: "1px solid oklch(0.88 0.004 260)",
+        borderBottom: "1px solid oklch(0.88 0.004 260)",
       }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="fuli-label" style={{ marginBottom: "1rem" }}>Global Reach</div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3.8rem)", letterSpacing: "-0.03em",
-              lineHeight: 1.05, color: "oklch(0.95 0.002 260)",
-            }}>
+            <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "1rem" }}>
               Export{" "}
-              <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Markets</span>
+              <span className="fuli-serif">Markets</span>
             </h2>
-            <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: "52ch", marginTop: "1rem" }}>
+            <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: "52ch" }}>
               20+ years of export experience. Active in 20+ countries across Europe, Middle East, Africa and Latin America.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1.5rem" }}
             className="sm:grid-cols-2 lg:grid-cols-3">
             {exportMarkets.map((m) => (
               <div key={m.country} style={{
-                background: "oklch(0.10 0.006 260)", padding: "2rem 2rem", transition: "background 0.2s",
+                background: "oklch(1 0 0)",
+                border: "1px solid oklch(0.88 0.004 260)",
+                padding: "2rem",
+                transition: "box-shadow 0.2s, transform 0.2s",
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "oklch(0.13 0.008 260)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "oklch(0.10 0.006 260)"; }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 4px 20px oklch(0.65 0.22 45 / 0.10)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
                   <span style={{ fontSize: "1.8rem" }}>{m.flag}</span>
@@ -785,12 +821,12 @@ export default function Home() {
                       letterSpacing: "0.18em", textTransform: "uppercase" as const,
                       color: "oklch(0.65 0.22 45)", marginBottom: "0.15rem",
                     }}>{m.region}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: "oklch(0.90 0.003 260)" }}>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: "oklch(0.18 0.012 260)" }}>
                       {m.country}
                     </div>
                   </div>
                 </div>
-                <p style={{ color: "oklch(0.68 0.008 260)", fontSize: "0.88rem", lineHeight: 1.6 }}>{m.note}</p>
+                <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.88rem", lineHeight: 1.6 }}>{m.note}</p>
               </div>
             ))}
           </div>
@@ -798,30 +834,64 @@ export default function Home() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section style={{ paddingTop: "7rem", paddingBottom: "7rem", position: "relative", overflow: "hidden" }}>
+      <section style={{
+        paddingTop: "7rem", paddingBottom: "7rem",
+        background: "oklch(0.65 0.22 45)",
+        position: "relative", overflow: "hidden",
+      }}>
         <div style={{
           position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
-          width: "600px", height: "600px",
-          background: "radial-gradient(circle, oklch(0.65 0.22 45 / 0.06) 0%, transparent 70%)",
+          width: "800px", height: "400px",
+          background: "radial-gradient(ellipse, oklch(1 0 0 / 0.08) 0%, transparent 70%)",
           pointerEvents: "none",
         }} />
         <div className="container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-          <div className="fuli-label" style={{ justifyContent: "center", marginBottom: "1.5rem" }}>Get in Touch</div>
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem",
+            fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(1 0 0 / 0.75)",
+            marginBottom: "1.5rem",
+          }}>
+            <span style={{ display: "block", width: "2rem", height: "1px", background: "oklch(1 0 0 / 0.5)" }} />
+            Get in Touch
+            <span style={{ display: "block", width: "2rem", height: "1px", background: "oklch(1 0 0 / 0.5)" }} />
+          </div>
           <h2 style={{
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
             fontSize: "clamp(2rem, 5vw, 5rem)", letterSpacing: "-0.03em",
-            lineHeight: 1.05, color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem",
+            lineHeight: 1.05, color: "oklch(1 0 0)", marginBottom: "1.25rem",
           }}>
             Ready to{" "}
             <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 500 }}>Order?</span>
           </h2>
-          <p style={{ color: "oklch(0.72 0.008 260)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
+          <p style={{ color: "oklch(1 0 0 / 0.80)", fontSize: "1rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
             Send us your requirements and receive a competitive quote within 24 hours. Our team speaks English, Arabic, and Russian.
           </p>
           <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1rem" }}>
-            <Link href="/contact"><span className="fuli-cta">Request a Quote <ArrowRight size={14} /></span></Link>
+            <Link href="/contact">
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: "0.6rem",
+                background: "oklch(0.18 0.025 255)", color: "oklch(1 0 0)",
+                fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", fontWeight: 700,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                padding: "0.95rem 2.4rem",
+                transition: "background 0.2s",
+              }}>
+                Request a Quote <ArrowRight size={14} />
+              </span>
+            </Link>
             <a href="https://wa.me/8615263521305" target="_blank" rel="noopener noreferrer">
-              <span className="fuli-cta-ghost">WhatsApp Us</span>
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: "0.6rem",
+                background: "transparent", color: "oklch(1 0 0)",
+                fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", fontWeight: 700,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                padding: "0.95rem 2.4rem",
+                border: "1.5px solid oklch(1 0 0 / 0.55)",
+                transition: "background 0.2s, border-color 0.2s",
+              }}>
+                WhatsApp Us
+              </span>
             </a>
           </div>
         </div>

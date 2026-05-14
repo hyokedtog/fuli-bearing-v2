@@ -42,14 +42,14 @@ const services = [
 
 export default function About() {
   return (
-    <div style={{ background: "oklch(0.08 0.005 260)", paddingTop: "4.5rem" }}>
+    <div style={{ background: "oklch(0.97 0.002 260)", paddingTop: "4.5rem" }}>
 
       {/* Page Hero */}
       <section style={{
         paddingTop: "5rem",
         paddingBottom: "5rem",
-        background: "oklch(0.06 0.004 260)",
-        borderBottom: "1px solid oklch(1 0 0 / 0.07)",
+        background: "oklch(0.18 0.025 255)",
+        borderBottom: "1px solid oklch(0.88 0.004 260)",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -63,16 +63,16 @@ export default function About() {
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
             <Link href="/">
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.55 0.006 260)", cursor: "pointer" }}>Home</span>
             </Link>
             <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>About</span>
           </div>
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Company Profile</div>
-          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.18 0.012 260)", marginBottom: "1.25rem" }}>
             About FULI
           </h1>
-          <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "52ch" }}>
+          <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "52ch" }}>
             20+ years of bearing export experience. Serving distributors and OEMs in 20+ countries across Europe, Middle East, Africa and Latin America.
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function About() {
             {/* Left: text */}
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Our Story</div>
-              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.18 0.012 260)", marginBottom: "1.5rem" }}>
                 20+ Years in <span style={{ color: "oklch(0.65 0.22 45)" }}>Export</span>
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -94,7 +94,7 @@ export default function About() {
                   "We have active export relationships in 20+ countries, including Germany, Iran, Egypt, Kenya, Tanzania, Nigeria, Mexico and Colombia. Our team understands the specific bearing requirements of each market and provides targeted product recommendations.",
                   "Every shipment comes with full export documentation: commercial invoice, packing list, certificate of origin, and inspection report. We handle the paperwork so your customs clearance is hassle-free.",
                 ].map((text, i) => (
-                  <p key={i} style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8 }}>{text}</p>
+                  <p key={i} style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8 }}>{text}</p>
                 ))}
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function About() {
                   left: "1.5rem",
                   background: "oklch(0.08 0.005 260 / 0.9)",
                   padding: "0.75rem 1.25rem",
-                  border: "1px solid oklch(1 0 0 / 0.12)",
+                  border: "1px solid oklch(0.88 0.004 260)",
                 }}>
                   <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", letterSpacing: "0.12em", color: "oklch(0.65 0.22 45)" }}>
                     LINQING, SHANDONG
@@ -125,16 +125,16 @@ export default function About() {
               </div>
 
               {/* Key stats */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(1 0 0 / 0.06)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "oklch(0.88 0.004 260)" }}>
                 {[
                   { value: "20+", label: "Years Export Experience" },
                   { value: "20+", label: "Countries Served" },
                   { value: "30", label: "Core SKU Models" },
                   { value: "2hr", label: "Quote Response Time" },
                 ].map((s) => (
-                  <div key={s.label} style={{ background: "oklch(0.10 0.006 260)", padding: "1.5rem" }}>
+                  <div key={s.label} style={{ background: "oklch(1 0 0)", padding: "1.5rem" }}>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2rem", fontWeight: 700, color: "oklch(0.65 0.22 45)", lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "oklch(0.50 0.008 260)", marginTop: "0.4rem" }}>{s.label}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginTop: "0.4rem" }}>{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -147,25 +147,25 @@ export default function About() {
       <section style={{
         paddingTop: "6rem",
         paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.18 0.025 255)",
+        borderTop: "1px solid oklch(0.88 0.004 260)",
       }}>
         <div className="container">
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Global Reach</div>
-          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "3rem" }}>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.18 0.012 260)", marginBottom: "3rem" }}>
             Export Markets
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }} className="lg:grid-cols-3">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(0.88 0.004 260)" }} className="lg:grid-cols-3">
             {exportRegions.map((r) => (
-              <div key={r.countries} style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
+              <div key={r.countries} style={{ background: "oklch(1 0 0)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
                   <span style={{ fontSize: "1.8rem" }}>{r.flag}</span>
                   <div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)", marginBottom: "0.15rem" }}>{r.region}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: "oklch(0.90 0.003 260)" }}>{r.countries}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: "oklch(0.18 0.012 260)" }}>{r.countries}</div>
                   </div>
                 </div>
-                <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.85rem", lineHeight: 1.6 }}>{r.bearings}</p>
+                <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.85rem", lineHeight: 1.6 }}>{r.bearings}</p>
               </div>
             ))}
           </div>
@@ -178,10 +178,10 @@ export default function About() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }} className="lg:grid-cols-2">
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>What We Provide</div>
-              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.5rem" }}>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "oklch(0.18 0.012 260)", marginBottom: "1.5rem" }}>
                 Our Services
               </h2>
-              <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, marginBottom: "2rem" }}>
+              <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, marginBottom: "2rem" }}>
                 From product selection to shipment, we handle the full export process so you can focus on your business.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
@@ -208,12 +208,12 @@ export default function About() {
       <section style={{
         paddingTop: "6rem",
         paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.18 0.025 255)",
+        borderTop: "1px solid oklch(0.88 0.004 260)",
       }}>
         <div className="container">
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Company History</div>
-          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.95 0.002 260)", marginBottom: "3.5rem" }}>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.18 0.012 260)", marginBottom: "3.5rem" }}>
             Our Journey
           </h2>
 
@@ -226,7 +226,7 @@ export default function About() {
                   gridTemplateColumns: "1fr",
                   gap: "0.5rem",
                   padding: "1.5rem 0",
-                  borderBottom: i < milestones.length - 1 ? "1px solid oklch(1 0 0 / 0.06)" : "none",
+                  borderBottom: i < milestones.length - 1 ? "1px solid oklch(0.88 0.004 260)" : "none",
                 }}
                 className="md:grid-cols-[10rem_1fr]"
               >
@@ -240,7 +240,7 @@ export default function About() {
                 }}>
                   {m.year}
                 </div>
-                <div style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.9rem", lineHeight: 1.6, paddingTop: "0.3rem" }}>
+                <div style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.9rem", lineHeight: 1.6, paddingTop: "0.3rem" }}>
                   {m.event}
                 </div>
               </div>
@@ -253,16 +253,16 @@ export default function About() {
       <section style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
         <div className="container">
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Quality Assurance</div>
-          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.95 0.002 260)", marginBottom: "3rem" }}>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 4rem)", color: "oklch(0.18 0.012 260)", marginBottom: "3rem" }}>
             Certifications
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(1 0 0 / 0.06)" }} className="lg:grid-cols-4">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "oklch(0.88 0.004 260)" }} className="lg:grid-cols-4">
             {certs.map((c) => (
               <div
                 key={c.name}
                 style={{
-                  background: "oklch(0.10 0.006 260)",
+                  background: "oklch(1 0 0)",
                   padding: "2.5rem",
                   display: "flex",
                   flexDirection: "column",
@@ -280,8 +280,8 @@ export default function About() {
                 }}>
                   <div style={{ width: "0.75rem", height: "0.75rem", background: c.color }} />
                 </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.90 0.003 260)" }}>{c.name}</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "oklch(0.55 0.008 260)", lineHeight: 1.5 }}>{c.body}</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.18 0.012 260)" }}>{c.name}</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "oklch(0.45 0.008 260)", lineHeight: 1.5 }}>{c.body}</div>
               </div>
             ))}
           </div>
@@ -292,16 +292,16 @@ export default function About() {
       <section style={{
         paddingTop: "6rem",
         paddingBottom: "6rem",
-        background: "oklch(0.06 0.004 260)",
-        borderTop: "1px solid oklch(1 0 0 / 0.06)",
+        background: "oklch(0.18 0.025 255)",
+        borderTop: "1px solid oklch(0.88 0.004 260)",
         textAlign: "center",
       }}>
         <div className="container">
           <div className="fuli-label" style={{ justifyContent: "center", marginBottom: "1.5rem" }}>Work With Us</div>
-          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+          <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)", color: "oklch(0.18 0.012 260)", marginBottom: "1.25rem" }}>
             Partner With FULI
           </h2>
-          <p style={{ color: "oklch(0.62 0.008 260)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
+          <p style={{ color: "oklch(0.42 0.008 260)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "44ch", margin: "0 auto 2.5rem" }}>
             Join our network of distributors and OEMs worldwide. Competitive pricing with full export documentation on every shipment.
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>

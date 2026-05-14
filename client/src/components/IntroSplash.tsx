@@ -120,7 +120,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
               textTransform: "uppercase",
             }}
           >
-            MACHINERY
+            BEARING
           </motion.div>
 
           {/* Bottom rule */}

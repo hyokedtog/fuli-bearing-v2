@@ -631,7 +631,7 @@ export default function ProductDetail() {
               </div>
 
               {/* Description */}
-              <p style={{ color: "oklch(0.65 0.008 260)", fontSize: "0.88rem", lineHeight: 1.75, marginBottom: "2rem" }}>
+              <p style={{ color: "oklch(0.40 0.008 260)", fontSize: "0.88rem", lineHeight: 1.75, marginBottom: "2rem" }}>
                 {cat.description}
               </p>
 
@@ -930,7 +930,7 @@ export default function ProductDetail() {
                   Pricing
                 </span>
               </h2>
-              <p style={{ color: "oklch(0.65 0.008 260)", fontSize: "0.88rem", lineHeight: 1.75, marginBottom: "2rem" }}>
+              <p style={{ color: "oklch(0.40 0.008 260)", fontSize: "0.88rem", lineHeight: 1.75, marginBottom: "2rem" }}>
                 Tell us your model, quantity, and destination. We'll reply with a competitive FOB price within 24 hours.
               </p>
 

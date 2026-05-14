@@ -39,7 +39,7 @@ const colHead: React.CSSProperties = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "oklch(0.06 0.004 260)", borderTop: "1px solid oklch(1 0 0 / 0.07)" }}>
+    <footer style={{ background: "oklch(0.14 0.018 255)", borderTop: "1px solid oklch(0.22 0.015 255)" }}>
       <div className="container" style={{ paddingTop: "4rem", paddingBottom: "4rem" }}>
         <div
           style={{
@@ -56,11 +56,11 @@ export default function Footer() {
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "oklch(0.08 0.005 260)", letterSpacing: "0.05em" }}>FL</span>
               </div>
               <div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.12em", color: "oklch(0.95 0.002 260)", lineHeight: 1 }}>FULI</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.12em", color: "oklch(0.97 0.002 260)", lineHeight: 1 }}>FULI</div>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.22em", color: "oklch(0.40 0.008 260)", textTransform: "uppercase", lineHeight: 1, marginTop: "1px" }}>BEARING</div>
               </div>
             </div>
-            <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.82rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
+            <p style={{ color: "oklch(0.55 0.008 260)", fontSize: "0.82rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
               20+ years of export experience. ISO 9001 certified bearings sourced from Linqing, serving distributors in 20+ countries.
             </p>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
@@ -149,7 +149,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div style={{ borderTop: "1px solid oklch(1 0 0 / 0.06)" }}>
+      <div style={{ borderTop: "1px solid oklch(0.22 0.015 255)" }}>
         <div
           className="container"
           style={{

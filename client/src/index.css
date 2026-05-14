@@ -28,39 +28,41 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* FULI Industrial Palette */
-  --color-fuli-black:    oklch(0.08 0.005 260);
-  --color-fuli-dark:     oklch(0.12 0.008 260);
-  --color-fuli-steel:    oklch(0.18 0.010 260);
-  --color-fuli-mid:      oklch(0.28 0.010 260);
-  --color-fuli-muted:    oklch(0.45 0.010 260);
-  --color-fuli-subtle:   oklch(0.62 0.008 260);
-  --color-fuli-light:    oklch(0.88 0.004 260);
-  --color-fuli-white:    oklch(0.97 0.002 260);
-  --color-fuli-orange:   oklch(0.65 0.22 45);
-  --color-fuli-orange-h: oklch(0.72 0.20 45);
+  /* FULI Light Industrial Palette */
+  --color-fuli-navy:     oklch(0.18 0.025 255);   /* deep navy — navbar bg */
+  --color-fuli-navy-2:   oklch(0.22 0.022 255);   /* slightly lighter navy */
+  --color-fuli-dark:     oklch(0.20 0.012 260);   /* dark text */
+  --color-fuli-mid:      oklch(0.38 0.010 260);   /* secondary text */
+  --color-fuli-muted:    oklch(0.55 0.008 260);   /* muted text */
+  --color-fuli-subtle:   oklch(0.72 0.006 260);   /* subtle text */
+  --color-fuli-border:   oklch(0.88 0.004 260);   /* light border */
+  --color-fuli-bg:       oklch(0.97 0.002 260);   /* page background */
+  --color-fuli-bg2:      oklch(0.94 0.003 260);   /* section alt bg */
+  --color-fuli-white:    oklch(1.00 0.000 0);     /* pure white */
+  --color-fuli-orange:   oklch(0.65 0.22 45);     /* brand orange */
+  --color-fuli-orange-h: oklch(0.70 0.20 45);     /* orange hover */
 }
 
 :root {
   --radius: 0rem; /* ZERO radius — industrial sharp corners */
-  --primary: oklch(0.65 0.22 45);           /* orange */
-  --primary-foreground: oklch(0.08 0.005 260);
-  --secondary: oklch(0.18 0.010 260);
-  --secondary-foreground: oklch(0.88 0.004 260);
-  --background: oklch(0.08 0.005 260);
-  --foreground: oklch(0.93 0.003 260);
-  --card: oklch(0.12 0.008 260);
-  --card-foreground: oklch(0.93 0.003 260);
-  --popover: oklch(0.12 0.008 260);
-  --popover-foreground: oklch(0.93 0.003 260);
-  --muted: oklch(0.18 0.010 260);
-  --muted-foreground: oklch(0.68 0.010 260);
+  --primary: oklch(0.65 0.22 45);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.003 260);
+  --secondary-foreground: oklch(0.20 0.012 260);
+  --background: oklch(0.97 0.002 260);
+  --foreground: oklch(0.18 0.012 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.012 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.012 260);
+  --muted: oklch(0.94 0.003 260);
+  --muted-foreground: oklch(0.55 0.008 260);
   --accent: oklch(0.65 0.22 45);
-  --accent-foreground: oklch(0.08 0.005 260);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 0.10);
-  --input: oklch(1 0 0 / 0.12);
+  --border: oklch(0.88 0.004 260);
+  --input: oklch(0.88 0.004 260);
   --ring: oklch(0.65 0.22 45);
 }
 
@@ -73,8 +75,8 @@
     scroll-behavior: smooth;
   }
   body {
-    background: oklch(0.08 0.005 260);
-    color: oklch(0.93 0.003 260);
+    background: oklch(0.97 0.002 260);
+    color: oklch(0.18 0.012 260);
     font-family: 'DM Sans', sans-serif;
     font-size: 17px;
     line-height: 1.7;
@@ -85,6 +87,7 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
+    color: oklch(0.18 0.012 260);
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -118,7 +121,7 @@
     .container { padding-left: 3rem; padding-right: 3rem; max-width: 1400px; }
   }
 
-  /* ── FULI Industrial Design System ── */
+  /* ── FULI Light Industrial Design System ── */
 
   /* Section label — thin orange rule + uppercase tracking */
   .fuli-label {
@@ -136,20 +139,22 @@
     content: '';
     display: block;
     width: 2rem;
-    height: 1px;
+    height: 2px;
     background: oklch(0.65 0.22 45);
     flex-shrink: 0;
   }
 
-  /* Display heading — DM Sans bold, large scale */
+  /* Display heading */
   .fuli-display {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.0;
     text-transform: none;
+    color: oklch(0.18 0.012 260);
   }
-  /* Playfair italic accent — used for emphasis words in headings */
+
+  /* Playfair italic accent */
   .fuli-serif {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -157,13 +162,13 @@
     letter-spacing: 0;
   }
 
-  /* Primary CTA — orange, sharp corners */
+  /* Primary CTA — orange */
   .fuli-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
     background: oklch(0.65 0.22 45);
-    color: oklch(0.08 0.005 260);
+    color: oklch(1 0 0);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
@@ -174,51 +179,72 @@
     transition: background 0.2s ease, box-shadow 0.2s ease;
   }
   .fuli-cta:hover {
-    background: oklch(0.72 0.20 45);
-    box-shadow: 0 0 30px oklch(0.65 0.22 45 / 0.4);
+    background: oklch(0.70 0.20 45);
+    box-shadow: 0 4px 20px oklch(0.65 0.22 45 / 0.3);
   }
 
-  /* Ghost CTA — white border */
+  /* Ghost CTA — dark border on light bg */
   .fuli-cta-ghost {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
     background: transparent;
-    color: oklch(0.93 0.003 260);
+    color: oklch(0.18 0.012 260);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.95rem 2.4rem;
-    border: 1px solid oklch(1 0 0 / 0.35);
+    border: 1.5px solid oklch(0.18 0.012 260 / 0.35);
     transition: all 0.2s ease;
   }
   .fuli-cta-ghost:hover {
-    border-color: oklch(1 0 0 / 0.8);
-    background: oklch(1 0 0 / 0.05);
+    border-color: oklch(0.18 0.012 260 / 0.8);
+    background: oklch(0.18 0.012 260 / 0.05);
+  }
+
+  /* Ghost CTA on dark bg (hero section) */
+  .fuli-cta-ghost-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: oklch(0.97 0.002 260);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.95rem 2.4rem;
+    border: 1.5px solid oklch(1 0 0 / 0.45);
+    transition: all 0.2s ease;
+  }
+  .fuli-cta-ghost-light:hover {
+    border-color: oklch(1 0 0 / 0.9);
+    background: oklch(1 0 0 / 0.08);
   }
 
   /* Horizontal rule divider */
   .fuli-rule {
     border: none;
-    border-top: 1px solid oklch(1 0 0 / 0.08);
+    border-top: 1px solid oklch(0.88 0.004 260);
     margin: 0;
   }
 
-  /* Product card — dark steel */
+  /* Product card — white with subtle border */
   .fuli-product-card {
-    background: oklch(0.12 0.008 260);
-    border: 1px solid oklch(1 0 0 / 0.08);
+    background: oklch(1 0 0);
+    border: 1px solid oklch(0.88 0.004 260);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
     overflow: hidden;
   }
   .fuli-product-card:hover {
-    border-color: oklch(0.65 0.22 45 / 0.5);
-    box-shadow: 0 0 40px oklch(0.65 0.22 45 / 0.08);
+    border-color: oklch(0.65 0.22 45 / 0.6);
+    box-shadow: 0 4px 24px oklch(0.65 0.22 45 / 0.10);
   }
 
-  /* Stat number — Playfair Display for elegant numerals */
+  /* Stat number */
   .fuli-stat {
     font-family: 'Playfair Display', serif;
     font-size: 4.5rem;
@@ -228,7 +254,7 @@
     color: oklch(0.65 0.22 45);
   }
 
-  /* Nav link */
+  /* Nav link — for use on dark navbar */
   .fuli-nav {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.75rem;
@@ -247,7 +273,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1;
   }

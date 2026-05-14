@@ -28,9 +28,9 @@ const contacts = [
   {
     Icon: Mail,
     label: "Email",
-    value: "fulibearing@163.com",
+    value: "fuxuepu@gmail.com",
     sub: "Response within 24 hours on business days",
-    href: "mailto:fulibearing@163.com",
+    href: "mailto:fuxuepu@gmail.com",
     color: "oklch(0.60 0.18 200)",
     cta: "Send Email",
   },
@@ -57,9 +57,9 @@ type FormState = {
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  background: "oklch(0.13 0.007 260)",
-  border: "1px solid oklch(1 0 0 / 0.10)",
-  color: "oklch(0.88 0.003 260)",
+  background: "oklch(1 0 0)",
+  border: "1px solid oklch(0.88 0.004 260)",
+  color: "oklch(0.18 0.012 260)",
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.85rem",
   padding: "0.75rem 1rem",
@@ -100,19 +100,19 @@ export default function Contact() {
     e.preventDefault();
     const subject = `Bearing Inquiry from ${form.company || form.name}`;
     const body = `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProduct: ${form.product}\nQuantity: ${form.quantity}\n\nMessage:\n${form.message}`;
-    window.location.href = `mailto:fulibearing@163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:fuxuepu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   };
 
   return (
-    <div style={{ background: "oklch(0.08 0.005 260)", paddingTop: "4.5rem" }}>
+    <div style={{ background: "oklch(0.97 0.002 260)", paddingTop: "4.5rem" }}>
 
       {/* Page Hero */}
       <section style={{
         paddingTop: "5rem",
         paddingBottom: "5rem",
-        background: "oklch(0.06 0.004 260)",
-        borderBottom: "1px solid oklch(1 0 0 / 0.07)",
+        background: "oklch(0.18 0.025 255)",
+        borderBottom: "1px solid oklch(0.88 0.004 260)",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -126,16 +126,16 @@ export default function Contact() {
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "2rem" }}>
             <Link href="/">
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", cursor: "pointer" }}>Home</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.55 0.006 260)", cursor: "pointer" }}>Home</span>
             </Link>
             <ChevronRight size={10} style={{ color: "oklch(0.30 0.005 260)" }} />
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.65 0.22 45)" }}>Contact</span>
           </div>
           <div className="fuli-label" style={{ marginBottom: "1rem" }}>Get in Touch</div>
-          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.95 0.002 260)", marginBottom: "1.25rem" }}>
+          <h1 className="fuli-display" style={{ fontSize: "clamp(3rem, 7vw, 7rem)", color: "oklch(0.18 0.012 260)", marginBottom: "1.25rem" }}>
             Contact Us
           </h1>
-          <p style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "52ch" }}>
+          <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.9rem", lineHeight: 1.8, maxWidth: "52ch" }}>
             Send us your requirements and receive a competitive quote within 24 hours. Our team speaks English, Arabic, and Russian.
           </p>
         </div>
@@ -152,7 +152,7 @@ export default function Contact() {
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 style={{
-                  background: "oklch(0.10 0.006 260)",
+                  background: "oklch(1 0 0)",
                   padding: "2rem",
                   display: "flex",
                   flexDirection: "column",
@@ -165,10 +165,10 @@ export default function Contact() {
               >
                 <c.Icon size={20} style={{ color: c.color }} />
                 <div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.40 0.006 260)", marginBottom: "0.3rem" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.55 0.006 260)", marginBottom: "0.3rem" }}>
                     {c.label}
                   </div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.88 0.003 260)", marginBottom: "0.3rem" }}>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "oklch(0.18 0.012 260)", marginBottom: "0.3rem" }}>
                     {c.value}
                   </div>
                   <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.40 0.008 260)", lineHeight: 1.5 }}>
@@ -199,13 +199,13 @@ export default function Contact() {
             {/* Form */}
             <div>
               <div className="fuli-label" style={{ marginBottom: "1rem" }}>Inquiry Form</div>
-              <h2 className="fuli-display" style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)", color: "oklch(0.95 0.002 260)", marginBottom: "2rem" }}>
+              <h2 className="fuli-display" style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)", color: "oklch(0.18 0.012 260)", marginBottom: "2rem" }}>
                 Request a Quote
               </h2>
 
               {submitted ? (
                 <div style={{
-                  background: "oklch(0.10 0.006 260)",
+                  background: "oklch(1 0 0)",
                   border: "1px solid oklch(0.65 0.22 45 / 0.3)",
                   padding: "3rem",
                   textAlign: "center",
@@ -213,7 +213,7 @@ export default function Contact() {
                   <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2rem", color: "oklch(0.65 0.22 45)", marginBottom: "0.75rem" }}>
                     Inquiry Sent
                   </div>
-                  <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.85rem", lineHeight: 1.7 }}>
+                  <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.85rem", lineHeight: 1.7 }}>
                     Your email client has opened with the inquiry. We will respond within 24 hours.
                   </p>
                   <button onClick={() => setSubmitted(false)} style={{ marginTop: "1.5rem", background: "none", border: "none", cursor: "pointer" }}>
@@ -341,7 +341,7 @@ export default function Contact() {
                       textTransform: "uppercase",
                       padding: "0.85rem 2rem",
                       background: "oklch(0.65 0.22 45)",
-                      color: "oklch(0.10 0.006 260)",
+                      color: "oklch(0.10 0.008 260)",
                       border: "none",
                       cursor: "pointer",
                       transition: "background 0.2s",
@@ -358,7 +358,7 @@ export default function Contact() {
             {/* Side info */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
               {/* Business hours */}
-              <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
+              <div style={{ background: "oklch(1 0 0)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.25rem" }}>
                   <Clock size={14} style={{ color: "oklch(0.65 0.22 45)" }} />
                   <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)" }}>
@@ -370,12 +370,12 @@ export default function Contact() {
                   { day: "Saturday", hours: "9:00 AM – 5:00 PM" },
                   { day: "Sunday", hours: "Closed" },
                 ].map((row) => (
-                  <div key={row.day} style={{ display: "flex", justifyContent: "space-between", padding: "0.6rem 0", borderBottom: "1px solid oklch(1 0 0 / 0.05)" }}>
-                    <span style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.78rem" }}>{row.day}</span>
+                  <div key={row.day} style={{ display: "flex", justifyContent: "space-between", padding: "0.6rem 0", borderBottom: "1px solid oklch(0.90 0.003 260)" }}>
+                    <span style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.78rem" }}>{row.day}</span>
                     <span style={{ color: row.hours === "Closed" ? "oklch(0.38 0.006 260)" : "oklch(0.70 0.003 260)", fontSize: "0.78rem", fontWeight: 600 }}>{row.hours}</span>
                   </div>
                 ))}
-                <div style={{ marginTop: "1rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.68rem", color: "oklch(0.38 0.006 260)" }}>
+                <div style={{ marginTop: "1rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.68rem", color: "oklch(0.55 0.006 260)" }}>
                   All times GMT+8 (China Standard Time)
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: "oklch(0.10 0.006 260)",
+                  background: "oklch(1 0 0)",
                   padding: "2rem",
                   textDecoration: "none",
                   display: "block",
@@ -399,17 +399,17 @@ export default function Contact() {
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#25D366", marginBottom: "0.6rem" }}>
                   Fastest Response
                 </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.08em", color: "oklch(0.90 0.003 260)", marginBottom: "0.4rem" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.08em", color: "oklch(0.18 0.012 260)", marginBottom: "0.4rem" }}>
                   WhatsApp Us
                 </div>
-                <div style={{ color: "oklch(0.48 0.008 260)", fontSize: "0.78rem", lineHeight: 1.5 }}>
+                <div style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.78rem", lineHeight: 1.5 }}>
                   +86 152 6352 1305<br />
                   Typically responds within 1 hour
                 </div>
               </a>
 
               {/* Languages */}
-              <div style={{ background: "oklch(0.10 0.006 260)", padding: "2rem" }}>
+              <div style={{ background: "oklch(1 0 0)", padding: "2rem" }}>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "oklch(0.45 0.008 260)", marginBottom: "1rem" }}>
                   Languages Supported
                 </div>
@@ -421,7 +421,7 @@ export default function Contact() {
                 ].map((l) => (
                   <div key={l.lang} style={{ display: "flex", alignItems: "center", gap: "0.6rem", padding: "0.4rem 0" }}>
                     <span style={{ fontSize: "1rem" }}>{l.flag}</span>
-                    <span style={{ color: "oklch(0.55 0.008 260)", fontSize: "0.8rem" }}>{l.lang}</span>
+                    <span style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.8rem" }}>{l.lang}</span>
                   </div>
                 ))}
               </div>

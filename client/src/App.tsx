@@ -7,7 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import IntroSplash from "./components/IntroSplash";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WhatsAppFloat from "./components/WhatsAppFloat";
+import FloatingInquiry from "./components/FloatingInquiry";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
@@ -43,13 +43,13 @@ function App() {
           <Toaster />
           <IntroSplash onComplete={handleIntroComplete} />
           {introComplete && (
-            <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "oklch(0.08 0.005 260)" }}>
+            <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "oklch(0.97 0.002 260)" }}>
               <Navbar />
               <main style={{ flex: 1 }}>
                 <Router />
               </main>
               <Footer />
-              <WhatsAppFloat />
+              <FloatingInquiry />
             </div>
           )}
         </TooltipProvider>

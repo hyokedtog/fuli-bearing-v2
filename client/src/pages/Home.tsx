@@ -128,24 +128,6 @@ const advantages = [
   },
 ];
 
-const industries = [
-  { name: "Motorcycle", icon: "🏍️", items: ["Front & rear wheel hubs", "Engine gearbox", "Boda-boda repair"] },
-  { name: "Motor & Pump", icon: "⚡", items: ["Electric motor shafts", "Water pump drives", "Industrial fans"] },
-  { name: "Agricultural", icon: "🌾", items: ["Tractor wheel hubs", "PTO drive shafts", "Grain conveyors"] },
-  { name: "Industrial", icon: "🏭", items: ["Vibrating screens", "Cement mills", "Mining crushers"] },
-  { name: "Light Industry", icon: "⚙️", items: ["Gearboxes", "Compressors", "Machine tools"] },
-  { name: "Construction", icon: "🏗️", items: ["Excavator arms", "Tower cranes", "Concrete mixers"] },
-];
-
-const exportMarkets = [
-  { region: "East Africa", country: "Kenya & Tanzania", flag: "🇰🇪", note: "Motorcycle (Boda-Boda) & repair market" },
-  { region: "West Africa", country: "Nigeria & Ghana", flag: "🇳🇬", note: "Motorcycle & light industrial" },
-  { region: "North Africa", country: "Egypt & Morocco", flag: "🇪🇬", note: "Water pump & motor bearings" },
-  { region: "Middle East", country: "Turkey & UAE", flag: "🇹🇷", note: "Motor, pump & agricultural bearings" },
-  { region: "Europe", country: "Poland & Romania", flag: "🇵🇱", note: "Agricultural & industrial machinery" },
-  { region: "Latin America", country: "Mexico & Colombia", flag: "🇲🇽", note: "Industrial & agricultural machinery" },
-];
-
 /* ─── Animated counter hook ────────────────────────────────── */
 function useCounter(target: number, duration = 1800, start = false) {
   const [count, setCount] = useState(0);
@@ -755,7 +737,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── INDUSTRIES ── */}
+      {/* ── APPLICATIONS ── */}
       <section style={{ paddingTop: "6rem", paddingBottom: "6rem", background: "oklch(0.97 0.002 260)" }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem" }}>
@@ -765,111 +747,106 @@ export default function Home() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}
-            className="sm:grid-cols-3 lg:grid-cols-6">
-            {industries.map((ind, idx) => {
-              const accentColors = [
-                "oklch(0.65 0.22 45)",
-                "oklch(0.45 0.18 220)",
-                "oklch(0.50 0.18 145)",
-                "oklch(0.50 0.20 300)",
-                "oklch(0.55 0.18 50)",
-                "oklch(0.48 0.18 180)",
-              ];
-              const accent = accentColors[idx % accentColors.length];
-              return (
-                <div key={ind.name} style={{
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.25rem",
+          }} className="lg:grid-cols-6">
+            {[
+              {
+                name: "Motorcycle",
+                icon: "🏍️",
+                href: "/products/motorcycle",
+                img: "/manus-storage/bearing-motorcycle_dc63e804.png",
+              },
+              {
+                name: "Motor & Pump",
+                icon: "⚡",
+                href: "/products/motor",
+                img: "/manus-storage/bearing-motor-pump_fc2189a0.png",
+              },
+              {
+                name: "Agricultural",
+                icon: "🌾",
+                href: "/products/agricultural",
+                img: "/manus-storage/bearing-agricultural_b095333d.png",
+              },
+              {
+                name: "Industrial",
+                icon: "🏭",
+                href: "/products/industrial",
+                img: "/manus-storage/bearing-industrial_0a55d947.png",
+              },
+              {
+                name: "Light Industry",
+                icon: "⚙️",
+                href: "/products",
+                img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80",
+              },
+              {
+                name: "Construction",
+                icon: "🏗️",
+                href: "/products",
+                img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80",
+              },
+            ].map((app) => (
+              <a
+                key={app.name}
+                href={app.href}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
                   background: "oklch(1 0 0)",
                   border: "1px solid oklch(0.88 0.004 260)",
-                  borderTop: `3px solid ${accent}`,
-                  padding: "1.75rem 1.25rem",
-                  transition: "box-shadow 0.2s, transform 0.2s",
+                  overflow: "hidden",
+                  textDecoration: "none",
+                  transition: "transform 0.22s ease, box-shadow 0.22s ease",
+                  cursor: "pointer",
                 }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = `0 4px 20px ${accent}18`;
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "none";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
-                >
-                  <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{ind.icon}</div>
-                  <h3 style={{
-                    fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700,
-                    letterSpacing: "0.04em", textTransform: "uppercase" as const,
-                    color: "oklch(0.18 0.012 260)", marginBottom: "0.75rem",
-                  }}>{ind.name}</h3>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {ind.items.map((item) => (
-                      <li key={item} style={{
-                        color: "oklch(0.50 0.008 260)", fontSize: "0.82rem", lineHeight: 1.8,
-                        paddingLeft: "0.8rem", position: "relative",
-                      }}>
-                        <span style={{ position: "absolute", left: 0, color: accent, fontSize: "0.65rem" }}>{"▸"}</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── EXPORT MARKETS ── */}
-      <section style={{
-        paddingTop: "6rem", paddingBottom: "6rem",
-        background: "oklch(0.94 0.003 260)",
-        borderTop: "1px solid oklch(0.88 0.004 260)",
-        borderBottom: "1px solid oklch(0.88 0.004 260)",
-      }}>
-        <div className="container">
-          <div style={{ marginBottom: "3.5rem" }}>
-            <div className="fuli-label" style={{ marginBottom: "1rem" }}>Global Reach</div>
-            <h2 className="fuli-display" style={{ fontSize: "clamp(2rem, 4vw, 3.8rem)", marginBottom: "1rem" }}>
-              Export{" "}
-              <span className="fuli-serif">Markets</span>
-            </h2>
-            <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: "52ch" }}>
-              20+ years of export experience. Active in 20+ countries across Europe, Middle East, Africa and Latin America.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1.5rem" }}
-            className="sm:grid-cols-2 lg:grid-cols-3">
-            {exportMarkets.map((m) => (
-              <div key={m.country} style={{
-                background: "oklch(1 0 0)",
-                border: "1px solid oklch(0.88 0.004 260)",
-                padding: "2rem",
-                transition: "box-shadow 0.2s, transform 0.2s",
-              }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 20px oklch(0.65 0.22 45 / 0.10)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow = "0 6px 24px oklch(0.65 0.22 45 / 0.18)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
                   e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-                  <span style={{ fontSize: "1.8rem" }}>{m.flag}</span>
-                  <div>
-                    <div style={{
-                      fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700,
-                      letterSpacing: "0.18em", textTransform: "uppercase" as const,
-                      color: "oklch(0.65 0.22 45)", marginBottom: "0.15rem",
-                    }}>{m.region}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: "oklch(0.18 0.012 260)" }}>
-                      {m.country}
-                    </div>
-                  </div>
+                {/* Top: icon + name */}
+                <div style={{ padding: "1.25rem 1rem 1rem", flexShrink: 0 }}>
+                  <div style={{ fontSize: "1.6rem", marginBottom: "0.5rem" }}>{app.icon}</div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase" as const,
+                    color: "oklch(0.18 0.012 260)",
+                    paddingBottom: "0.4rem",
+                    borderBottom: "2px solid oklch(0.65 0.22 45)",
+                    display: "inline-block",
+                  }}>{app.name}</div>
                 </div>
-                <p style={{ color: "oklch(0.50 0.008 260)", fontSize: "0.88rem", lineHeight: 1.6 }}>{m.note}</p>
-              </div>
+                {/* Bottom: scene image */}
+                <div style={{
+                  height: "150px",
+                  overflow: "hidden",
+                  flexShrink: 0,
+                }}>
+                  <img
+                    src={app.img}
+                    alt={app.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.35s ease",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
+                  />
+                </div>
+              </a>
             ))}
           </div>
         </div>
@@ -942,3 +919,4 @@ export default function Home() {
     </div>
   );
 }
+

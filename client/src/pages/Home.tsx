@@ -240,6 +240,8 @@ function CertCard({ cert }: { cert: typeof certifications[0] }) {
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",
+      flexShrink: 0,
+      width: "220px",
       transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
     }}
       onMouseEnter={(e) => {
@@ -551,12 +553,32 @@ export default function Home() {
 
           </div>
 
-          {/* Certificate cards grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1.5rem" }}
-            className="sm:grid-cols-3">
-            {certifications.map((cert) => (
-              <CertCard key={cert.title} cert={cert} />
-            ))}
+          {/* Certificate carousel - auto-scrolling */}
+          <div style={{ position: "relative", overflow: "hidden", marginLeft: "-2rem", marginRight: "-2rem" }}
+            onMouseEnter={(e) => {
+              const track = e.currentTarget.querySelector('.cert-track') as HTMLElement;
+              if (track) track.style.animationPlayState = 'paused';
+            }}
+            onMouseLeave={(e) => {
+              const track = e.currentTarget.querySelector('.cert-track') as HTMLElement;
+              if (track) track.style.animationPlayState = 'running';
+            }}
+          >
+            {/* Fade edges */}
+            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "80px", background: "linear-gradient(to right, oklch(0.94 0.003 260), transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "80px", background: "linear-gradient(to left, oklch(0.94 0.003 260), transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div className="cert-track" style={{
+              display: "flex",
+              gap: "1.5rem",
+              padding: "0.5rem 2rem 1.5rem",
+              animation: "certScroll 18s linear infinite",
+              width: "max-content",
+            }}>
+              {/* Duplicate for seamless loop */}
+              {[...certifications, ...certifications, ...certifications].map((cert, i) => (
+                <CertCard key={`${cert.title}-${i}`} cert={cert} />
+              ))}
+            </div>
           </div>
 
           {/* Bottom trust bar */}

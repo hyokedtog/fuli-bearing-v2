@@ -66,6 +66,11 @@
   --ring: oklch(0.65 0.22 45);
 }
 
+@keyframes certScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-220px * 3 - 1.5rem * 3)); }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

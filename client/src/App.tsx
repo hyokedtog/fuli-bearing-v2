@@ -46,7 +46,6 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <IntroSplash onComplete={handleIntroComplete} />
-          {introComplete && (
             <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "oklch(0.97 0.002 260)" }}>
               <Navbar />
               <main style={{ flex: 1 }}>
@@ -55,7 +54,6 @@ function App() {
               <Footer />
               <FloatingInquiry />
             </div>
-          )}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

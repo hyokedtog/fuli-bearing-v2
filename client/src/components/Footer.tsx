@@ -6,10 +6,10 @@ import { Link } from "wouter";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 const products = [
-  "Deep Groove Ball Bearings",
-  "Tapered Roller Bearings",
-  "Spherical Roller Bearings",
-  "Pillow Block Bearings",
+  "Motorcycle Bearings",
+  "Motor & Pump Bearings",
+  "Agricultural Bearings",
+  "Industrial Bearings",
 ];
 
 const company = [
@@ -57,14 +57,14 @@ export default function Footer() {
               </div>
               <div>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", letterSpacing: "0.12em", color: "oklch(0.95 0.002 260)", lineHeight: 1 }}>FULI</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.22em", color: "oklch(0.40 0.008 260)", textTransform: "uppercase", lineHeight: 1, marginTop: "1px" }}>MACHINERY</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.22em", color: "oklch(0.40 0.008 260)", textTransform: "uppercase", lineHeight: 1, marginTop: "1px" }}>BEARING</div>
               </div>
             </div>
             <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.82rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
-              Professional bearing manufacturer with 15+ years of experience. ISO 9001 certified, serving 50+ countries worldwide.
+              20+ years of export experience. ISO 9001 certified bearings sourced from Linqing, serving distributors in 20+ countries.
             </p>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-              {["ISO 9001", "FACTORY DIRECT"].map((b) => (
+              {["ISO 9001", "20+ COUNTRIES"].map((b) => (
                 <span
                   key={b}
                   style={{

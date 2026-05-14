@@ -232,7 +232,7 @@ export default function Home() {
 
           {/* Product tags */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
-            {["Deep Groove Ball", "Tapered Roller", "Spherical Roller", "Pillow Block"].map((t, i) => (
+            {["Motorcycle", "Motor & Pump", "Agricultural", "Industrial"].map((t, i) => (
               <span
                 key={t}
                 style={{

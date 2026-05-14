@@ -12,7 +12,7 @@ import { ArrowRight, ChevronDown, Award, Globe, Package, Clock, ShieldCheck, Tru
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const stats = [
-  { value: 20, suffix: "+", label: "Years in Export", icon: Clock, color: "oklch(0.65 0.22 45)" },
+  { value: 17, suffix: "+", label: "Years in Export", icon: Clock, color: "oklch(0.65 0.22 45)" },
   { value: 20, suffix: "+", label: "Countries Served", icon: Globe, color: "oklch(0.45 0.18 220)" },
   { value: 30, suffix: "", label: "Core SKU Models", icon: Package, color: "oklch(0.50 0.18 145)" },
   { value: 2, suffix: "hr", label: "Quote Response", icon: Headphones, color: "oklch(0.50 0.20 300)" },
@@ -138,12 +138,12 @@ const industries = [
 ];
 
 const exportMarkets = [
-  { region: "Europe", country: "Germany", flag: "🇩🇪", note: "Industrial & automotive bearings" },
-  { region: "Middle East", country: "Iran & Egypt", flag: "🇮🇷", note: "Motor, pump & agricultural bearings" },
-  { region: "East Africa", country: "Kenya & Tanzania", flag: "🇰🇪", note: "Motorcycle & boda-boda repair market" },
-  { region: "Latin America", country: "Mexico & Colombia", flag: "🇲🇽", note: "Industrial & agricultural machinery" },
-  { region: "North Africa", country: "Egypt", flag: "🇪🇬", note: "Water pump & motor bearings" },
+  { region: "East Africa", country: "Kenya & Tanzania", flag: "🇰🇪", note: "Motorcycle (Boda-Boda) & repair market" },
   { region: "West Africa", country: "Nigeria & Ghana", flag: "🇳🇬", note: "Motorcycle & light industrial" },
+  { region: "North Africa", country: "Egypt & Morocco", flag: "🇪🇬", note: "Water pump & motor bearings" },
+  { region: "Middle East", country: "Turkey & UAE", flag: "🇹🇷", note: "Motor, pump & agricultural bearings" },
+  { region: "Europe", country: "Poland & Romania", flag: "🇵🇱", note: "Agricultural & industrial machinery" },
+  { region: "Latin America", country: "Mexico & Colombia", flag: "🇲🇽", note: "Industrial & agricultural machinery" },
 ];
 
 /* ─── Animated counter hook ────────────────────────────────── */
@@ -352,7 +352,7 @@ export default function Home() {
           position: "absolute", inset: 0, zIndex: 2,
           display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingBottom: "6rem",
         }} className="container">
-          <div className="fuli-label" style={{ marginBottom: "1.5rem" }}>Shandong, China · Est. 2009</div>
+          <div className="fuli-label" style={{ marginBottom: "1.5rem" }}>Shandong, China · Est. 2005</div>
           <h1 style={{
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
             fontSize: "clamp(3rem, 8vw, 7.5rem)", letterSpacing: "-0.03em",
@@ -377,9 +377,31 @@ export default function Home() {
           <p style={{ color: "oklch(0.82 0.006 260)", fontSize: "1rem", fontWeight: 400, maxWidth: "42ch", lineHeight: 1.7, marginBottom: "2.5rem" }}>
             ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 20+ countries.
           </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
             <Link href="/products"><span className="fuli-cta">Explore Products<ArrowRight size={14} /></span></Link>
             <Link href="/contact"><span className="fuli-cta-ghost-light">Get a Quote</span></Link>
+            <a
+              href="https://wa.me/8615263521305?text=Hello%2C%20I%20need%20a%20bearing%20quote."
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#25D366",
+                textDecoration: "none",
+                padding: "0.6rem 1rem",
+                border: "1px solid #25D366",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
           </div>
         </div>
 
@@ -404,6 +426,33 @@ export default function Home() {
             {stats.map((s) => (
               <StatItem key={s.label} {...s} start={statsVisible} />
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── MOQ STRIP ── */}
+      <div style={{ background: "oklch(0.65 0.22 45)", padding: "0.9rem 0" }}>
+        <div className="container">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "2.5rem" }}>
+            {[
+              { label: "Trial Order", value: "50 pcs min" },
+              { label: "Mixed SKU", value: "200 pcs total" },
+              { label: "Regular Order", value: "500 pcs/model" },
+              { label: "Quote Response", value: "Within 24 hrs" },
+            ].map((item) => (
+              <div key={item.label} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "oklch(0.15 0.008 260 / 0.7)" }}>{item.label}:</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 700, color: "oklch(0.10 0.008 260)" }}>{item.value}</span>
+              </div>
+            ))}
+            <a
+              href="https://wa.me/8615263521305?text=Hello%2C%20I%20need%20a%20trial%20order%20quote."
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.10 0.008 260)", textDecoration: "none", padding: "0.4rem 1rem", border: "1px solid oklch(0.10 0.008 260 / 0.4)" }}
+            >
+              Start a Trial Order →
+            </a>
           </div>
         </div>
       </div>
@@ -497,23 +546,9 @@ export default function Home() {
                 Certi<span className="fuli-serif">fications</span>
               </h2>
               <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.92rem", lineHeight: 1.7, maxWidth: "48ch" }}>
-                Every shipment is backed by internationally recognized certifications. Replace these placeholders with your actual certificate scans.
-              </p>
+                Every shipment is backed by internationally recognized certifications. Upload your ISO 9001 certificate and other credentials to strengthen buyer confidence.</p>
             </div>
-            {/* Placeholder notice */}
-            <div style={{
-              padding: "0.75rem 1.25rem",
-              border: "1px dashed oklch(0.65 0.22 45 / 0.5)",
-              background: "oklch(0.65 0.22 45 / 0.06)",
-              maxWidth: "260px",
-            }}>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "oklch(0.65 0.22 45)", marginBottom: "0.3rem" }}>
-                PLACEHOLDER IMAGES
-              </div>
-              <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.75rem", lineHeight: 1.6 }}>
-                Send your real certificate scans to replace these. Supported: JPG, PNG.
-              </p>
-            </div>
+
           </div>
 
           {/* Certificate cards grid */}
@@ -605,20 +640,7 @@ export default function Home() {
 
             {/* Right: photos */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              {/* Placeholder notice */}
-              <div style={{
-                padding: "0.6rem 1rem",
-                border: "1px dashed oklch(0.65 0.22 45 / 0.5)",
-                background: "oklch(0.65 0.22 45 / 0.05)",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.5rem",
-              }}>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "oklch(0.65 0.22 45)" }}>
-                  PLACEHOLDER
-                </div>
-                <p style={{ color: "oklch(0.45 0.008 260)", fontSize: "0.72rem" }}>Replace with your real warehouse / packing photos</p>
-              </div>
+
 
               {shippingPhotos.map((photo, i) => (
                 <div key={i} style={{ position: "relative", overflow: "hidden", border: "1px solid oklch(0.88 0.004 260)" }}>

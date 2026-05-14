@@ -6,7 +6,7 @@
 import { useState, useRef } from "react";
 import { MessageSquarePlus, X, Send, CheckCircle, ChevronDown } from "lucide-react";
 
-const RECIPIENT = "fuxuepu@gmail.com";
+const RECIPIENT = "sales@fulibearings.com";
 
 type FormData = {
   name: string;
@@ -283,7 +283,7 @@ export default function FloatingInquiry() {
                     {submitting ? "Sending…" : <><Send size={13} /> Send Inquiry</>}
                   </button>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", color: "oklch(0.42 0.006 260)", textAlign: "center", lineHeight: 1.5 }}>
-                    Reply within 24 hrs · fuxuepu@gmail.com
+                    Reply within 24 hrs · sales@fulibearings.com
                   </p>
                 </form>
               </>

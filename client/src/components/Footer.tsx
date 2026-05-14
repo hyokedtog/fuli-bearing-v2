@@ -23,7 +23,7 @@ const company = [
 const contacts = [
   { Icon: MessageCircle, text: "+86 152 6352 1305", sub: "WhatsApp", href: "https://wa.me/8615263521305", color: "#25D366" },
   { Icon: Phone, text: "+86 152 6352 1305", sub: "Phone", href: "tel:+8615263521305", color: "oklch(0.65 0.22 45)" },
-  { Icon: Mail, text: "fulibearing@163.com", sub: "Email", href: "mailto:fulibearing@163.com", color: "oklch(0.65 0.22 45)" },
+  { Icon: Mail, text: "sales@fulibearings.com", sub: "Email", href: "mailto:sales@fulibearings.com", color: "oklch(0.65 0.22 45)" },
   { Icon: MapPin, text: "Liaocheng, Shandong, China", sub: "Address", href: "#", color: "oklch(0.55 0.15 145)" },
 ];
 

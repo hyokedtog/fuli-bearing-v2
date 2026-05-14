@@ -13,6 +13,7 @@ import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import News from "@/pages/News";
 import { useState, useCallback } from "react";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/products/:category" component={ProductDetail} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/news" component={News} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

@@ -1,303 +1,141 @@
 /**
- * FloatingInquiry — 右下角悬浮询价弹窗
- * Design: Deep navy panel, orange accent, 4-field minimal form
- * Inspired by WXING's real-time chat popup for maximum conversion
+ * FULI Bearing — Floating WhatsApp Button
+ * Design: WhatsApp green (#25D366) floating circle with pulsing breath animation
+ * Click: Direct link to WhatsApp chat with pre-filled message
  */
-import { useState, useRef } from "react";
-import { MessageSquarePlus, X, Send, CheckCircle, ChevronDown } from "lucide-react";
-
-const RECIPIENT = "sales@fulibearings.com";
-
-type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-};
+import { useState, useEffect } from "react";
 
 export default function FloatingInquiry() {
-  const [open, setOpen] = useState(false);
-  const [form, setForm] = useState<FormData>({ name: "", email: "", phone: "", message: "" });
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  // Delay appearance by 1.5s after page load
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 1500);
+    return () => clearTimeout(t);
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
-    setSubmitting(true);
-    try {
-      await fetch(`https://formsubmit.co/ajax/${RECIPIENT}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Bearing Inquiry from ${form.name}`,
-          name: form.name,
-          email: form.email,
-          phone: form.phone || "—",
-          message: form.message,
-          _captcha: "false",
-        }),
-      });
-      setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", message: "" });
-    } catch {
-      // fallback: still show success to not block user
-      setSubmitted(true);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const inputStyle: React.CSSProperties = {
-    width: "100%",
-    background: "oklch(0.22 0.018 255)",
-    border: "1px solid oklch(0.30 0.015 255)",
-    color: "oklch(0.92 0.003 260)",
-    fontFamily: "'DM Sans', sans-serif",
-    fontSize: "0.82rem",
-    padding: "0.65rem 0.85rem",
-    outline: "none",
-    transition: "border-color 0.2s",
-    boxSizing: "border-box" as const,
-  };
+  const waUrl =
+    "https://wa.me/8615263521305?text=Hello%2C%20I%20am%20interested%20in%20your%20bearings.%20Please%20send%20me%20a%20price%20list.";
 
   return (
     <>
-      {/* Floating trigger button */}
-      <button
-        onClick={() => { setOpen(!open); setSubmitted(false); }}
-        aria-label="Quick Inquiry"
-        style={{
-          position: "fixed",
-          bottom: "1.5rem",
-          right: "1.5rem",
-          zIndex: 200,
-          width: "3.2rem",
-          height: "3.2rem",
-          background: "oklch(0.65 0.22 45)",
-          border: "none",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 4px 24px oklch(0.65 0.22 45 / 0.40)",
-          transition: "transform 0.2s, box-shadow 0.2s",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.08)";
-          e.currentTarget.style.boxShadow = "0 6px 32px oklch(0.65 0.22 45 / 0.55)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 24px oklch(0.65 0.22 45 / 0.40)";
-        }}
-      >
-        {open
-          ? <ChevronDown size={20} color="oklch(0.10 0.008 260)" strokeWidth={2.5} />
-          : <MessageSquarePlus size={20} color="oklch(0.10 0.008 260)" strokeWidth={2.5} />
+      <style>{`
+        @keyframes wa-pulse {
+          0%   { transform: scale(1);    box-shadow: 0 0 0 0   rgba(37,211,102,0.60); }
+          60%  { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(37,211,102,0); }
+          100% { transform: scale(1);    box-shadow: 0 0 0 0   rgba(37,211,102,0); }
         }
-      </button>
+        @keyframes wa-ring {
+          0%   { transform: scale(1);   opacity: 0.65; }
+          100% { transform: scale(2.4); opacity: 0; }
+        }
+        @keyframes wa-fadein {
+          from { opacity: 0; transform: translateY(14px) scale(0.82); }
+          to   { opacity: 1; transform: translateY(0)    scale(1); }
+        }
+        @keyframes wa-tooltip-in {
+          from { opacity: 0; transform: translateX(10px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
 
-      {/* Popup panel */}
-      {open && (
+      {visible && (
         <div
           style={{
             position: "fixed",
-            bottom: "5.5rem",
-            right: "1.5rem",
-            zIndex: 200,
-            width: "min(340px, calc(100vw - 2rem))",
-            background: "oklch(0.14 0.018 255)",
-            border: "1px solid oklch(0.25 0.015 255)",
-            boxShadow: "0 12px 48px oklch(0 0 0 / 0.35)",
-            animation: "floatIn 0.22s ease",
-          }}
-        >
-          {/* Header */}
-          <div style={{
+            bottom: "1.75rem",
+            right: "1.75rem",
+            zIndex: 9999,
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            padding: "1rem 1.25rem",
-            borderBottom: "1px solid oklch(0.22 0.015 255)",
-            background: "oklch(0.18 0.022 255)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-              {/* FL badge */}
+            gap: "0.75rem",
+            animation: "wa-fadein 0.5s cubic-bezier(0.34,1.56,0.64,1) both",
+          }}
+        >
+          {/* Tooltip — shown on hover */}
+          {hovered && (
+            <div
+              style={{
+                background: "oklch(0.12 0.016 255)",
+                color: "oklch(0.95 0.002 260)",
+                fontFamily: "'DM Sans', sans-serif",
+                padding: "0.6rem 1rem",
+                whiteSpace: "nowrap",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.30)",
+                borderLeft: "3px solid #25D366",
+                animation: "wa-tooltip-in 0.2s ease both",
+              }}
+            >
               <div style={{
-                width: "1.8rem",
-                height: "1.8rem",
-                background: "oklch(0.65 0.22 45)",
+                fontSize: "0.58rem",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#25D366",
+                marginBottom: "0.2rem",
+              }}>
+                ● Online · Reply within 1hr
+              </div>
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.04em" }}>
+                Chat on WhatsApp
+              </div>
+            </div>
+          )}
+
+          {/* Button + pulse rings wrapper */}
+          <div style={{ position: "relative", width: "3.6rem", height: "3.6rem" }}>
+            {/* Outer ring */}
+            <span style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "50%",
+              background: "rgba(37,211,102,0.30)",
+              animation: "wa-ring 2s ease-out infinite",
+              pointerEvents: "none",
+            }} />
+            {/* Inner ring (offset phase) */}
+            <span style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "50%",
+              background: "rgba(37,211,102,0.18)",
+              animation: "wa-ring 2s ease-out 0.7s infinite",
+              pointerEvents: "none",
+            }} />
+
+            {/* Main button */}
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                background: hovered ? "#1db954" : "#25D366",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                flexShrink: 0,
-              }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, color: "oklch(0.10 0.008 260)" }}>FL</span>
-              </div>
-              <div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 700, color: "oklch(0.95 0.002 260)", lineHeight: 1.1 }}>FULI Bearing</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", color: "#4ade80", letterSpacing: "0.04em" }}>● Online · Reply within 1hr</div>
-              </div>
-            </div>
-            <button
-              onClick={() => setOpen(false)}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "oklch(0.55 0.008 260)", padding: "0.2rem" }}
-              aria-label="Close"
+                textDecoration: "none",
+                boxShadow: hovered
+                  ? "0 6px 32px rgba(37,211,102,0.60)"
+                  : "0 4px 20px rgba(37,211,102,0.45)",
+                animation: hovered ? "none" : "wa-pulse 2.2s ease-in-out infinite",
+                transition: "background 0.2s, box-shadow 0.2s",
+              }}
             >
-              <X size={16} />
-            </button>
-          </div>
-
-          {/* Body */}
-          <div style={{ padding: "1.25rem" }}>
-            {submitted ? (
-              <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
-                <CheckCircle size={36} style={{ color: "oklch(0.65 0.22 45)", margin: "0 auto 0.75rem" }} />
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 700, color: "oklch(0.95 0.002 260)", marginBottom: "0.4rem" }}>
-                  Inquiry Sent!
-                </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "oklch(0.58 0.008 260)", lineHeight: 1.6 }}>
-                  We'll reply to <strong style={{ color: "oklch(0.75 0.008 260)" }}>{form.email || "your email"}</strong> within 24 hours.
-                </div>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  style={{
-                    marginTop: "1.25rem",
-                    padding: "0.55rem 1.25rem",
-                    background: "oklch(0.65 0.22 45)",
-                    color: "oklch(0.10 0.008 260)",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.72rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  New Inquiry
-                </button>
-              </div>
-            ) : (
-              <>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "oklch(0.60 0.008 260)", lineHeight: 1.6, marginBottom: "1rem" }}>
-                  Tell us the bearing model, quantity and destination — we'll send a FOB price within 24 hours.
-                </p>
-                <form ref={formRef} onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-                  {/* Name */}
-                  <div>
-                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.50 0.008 260)", display: "block", marginBottom: "0.3rem" }}>
-                      Your Name *
-                    </label>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="e.g. Ahmed Hassan"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(0.30 0.015 255)"; }}
-                    />
-                  </div>
-                  {/* Email */}
-                  <div>
-                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.50 0.008 260)", display: "block", marginBottom: "0.3rem" }}>
-                      Email *
-                    </label>
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(0.30 0.015 255)"; }}
-                    />
-                  </div>
-                  {/* Phone/WhatsApp */}
-                  <div>
-                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.50 0.008 260)", display: "block", marginBottom: "0.3rem" }}>
-                      Phone / WhatsApp
-                    </label>
-                    <input
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="+1 234 567 8900"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(0.30 0.015 255)"; }}
-                    />
-                  </div>
-                  {/* Message */}
-                  <div>
-                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "oklch(0.50 0.008 260)", display: "block", marginBottom: "0.3rem" }}>
-                      Inquiry *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      rows={3}
-                      placeholder="Model, quantity, destination…"
-                      style={{ ...inputStyle, resize: "vertical", minHeight: "72px" }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "oklch(0.65 0.22 45)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "oklch(0.30 0.015 255)"; }}
-                    />
-                  </div>
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "0.4rem",
-                      padding: "0.7rem",
-                      background: submitting ? "oklch(0.50 0.15 45)" : "oklch(0.65 0.22 45)",
-                      color: "oklch(0.10 0.008 260)",
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.72rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      border: "none",
-                      cursor: submitting ? "not-allowed" : "pointer",
-                      transition: "opacity 0.2s",
-                      marginTop: "0.25rem",
-                    }}
-                    onMouseEnter={(e) => { if (!submitting) e.currentTarget.style.opacity = "0.88"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
-                  >
-                    {submitting ? "Sending…" : <><Send size={13} /> Send Inquiry</>}
-                  </button>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", color: "oklch(0.42 0.006 260)", textAlign: "center", lineHeight: 1.5 }}>
-                    Reply within 24 hrs · sales@fulibearings.com
-                  </p>
-                </form>
-              </>
-            )}
+              {/* WhatsApp logo SVG */}
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
           </div>
         </div>
       )}
-
-      <style>{`
-        @keyframes floatIn {
-          from { opacity: 0; transform: translateY(12px) scale(0.97); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </>
   );
 }

@@ -743,12 +743,19 @@ export default function ProductDetail() {
               </thead>
               <tbody>
                 {cat.skus.map((sku, i) => (
-                  <tr key={sku.model} style={{
-                    borderBottom: "1px solid oklch(1 0 0 / 0.05)",
-                    background: i % 2 === 0 ? "transparent" : "oklch(1 0 0 / 0.015)",
-                  }}>
+                  <tr key={sku.model}
+                    onClick={() => window.location.href = `/products/${cat.id}/${encodeURIComponent(sku.model)}`}
+                    style={{
+                      borderBottom: "1px solid oklch(1 0 0 / 0.05)",
+                      background: i % 2 === 0 ? "transparent" : "oklch(1 0 0 / 0.015)",
+                      cursor: "pointer",
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "oklch(1 0 0 / 0.06)"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = i % 2 === 0 ? "transparent" : "oklch(1 0 0 / 0.015)"; }}
+                  >
                     <td style={{ padding: "0.75rem 1rem 0.75rem 0" }}>
-                      <span style={{ fontFamily: "monospace", fontWeight: 700, color: cat.accent, fontSize: "0.88rem" }}>
+                      <span style={{ fontFamily: "monospace", fontWeight: 700, color: cat.accent, fontSize: "0.88rem", textDecoration: "underline", textDecorationColor: `${cat.accent}55` }}>
                         {sku.model}
                       </span>
                     </td>

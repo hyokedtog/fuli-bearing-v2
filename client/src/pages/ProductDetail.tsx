@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 import { Link, useParams } from "wouter";
-import { ArrowRight, ChevronRight, MessageCircle, Star, ShieldCheck, Truck, Package, CheckCircle2, Send } from "lucide-react";
+import { ArrowRight, ChevronRight, MessageCircle, ShieldCheck, Truck, Package, CheckCircle2, Send } from "lucide-react";
 
 /* ─── Types ─────────────────────────────────────────────────── */
 type SKU = {
@@ -272,17 +272,6 @@ const labelStyle: React.CSSProperties = {
   display: "block",
   marginBottom: "0.4rem",
 };
-
-/* ─── Priority Stars ─────────────────────────────────────────── */
-function PriorityStars({ count }: { count: number }) {
-  return (
-    <div style={{ display: "flex", gap: "2px" }}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <Star key={i} size={10} style={{ fill: i <= count ? "#f97316" : "transparent", color: i <= count ? "#f97316" : "oklch(1 0 0 / 0.2)" }} />
-      ))}
-    </div>
-  );
-}
 
 /* ─── Inquiry Form ───────────────────────────────────────────── */
 function InquiryForm({ categoryLabel, accent }: { categoryLabel: string; accent: string }) {
@@ -725,7 +714,7 @@ export default function ProductDetail() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid oklch(1 0 0 / 0.1)" }}>
-                  {["Model", isAgri ? "Shaft ⌀ / d (mm)" : "d (mm)", isAgri ? "—" : "D (mm)", isAgri ? "—" : "B (mm)", "Cr", "C0r", "Weight", "Application", "Priority"].map((h) => (
+                  {["Model", isAgri ? "Shaft ⌀ / d (mm)" : "d (mm)", isAgri ? "—" : "D (mm)", isAgri ? "—" : "B (mm)", "Cr", "C0r", "Weight", "Application"].map((h) => (
                     h === "—" ? null :
                     <th key={h} style={{
                       textAlign: "left",
@@ -784,9 +773,6 @@ export default function ProductDetail() {
                     <td style={{ padding: "0.75rem 1rem 0.75rem 0", color: "oklch(0.68 0.008 260)", fontSize: "0.82rem", maxWidth: "200px" }}>
                       {sku.application}
                     </td>
-                    <td style={{ padding: "0.75rem 0" }}>
-                      <PriorityStars count={sku.priority} />
-                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -794,7 +780,7 @@ export default function ProductDetail() {
           </div>
 
           <p style={{ color: "oklch(0.38 0.006 260)", fontSize: "0.72rem", marginTop: "1.25rem", lineHeight: 1.6 }}>
-            * Cr = Basic Dynamic Load Rating · C0r = Basic Static Load Rating · Priority ★ = demand frequency
+            * Cr = Basic Dynamic Load Rating · C0r = Basic Static Load Rating
           </p>
         </div>
       </section>

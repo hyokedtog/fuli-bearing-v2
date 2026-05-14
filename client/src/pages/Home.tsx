@@ -455,7 +455,7 @@ export default function Home() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             {products.map((p, i) => (
               <Link key={p.code} href={p.href}>
-                <div style={{
+                <div className="product-card" style={{
                   cursor: "pointer",
                   display: "grid",
                   gridTemplateColumns: "280px 1fr",
@@ -475,7 +475,7 @@ export default function Home() {
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <div style={{ position: "relative", overflow: "hidden", width: "280px", minHeight: "170px" }}>
+                  <div className="product-card-img" style={{ position: "relative", overflow: "hidden", width: "280px", minHeight: "170px" }}>
                     <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", position: "absolute", inset: 0 }}
                       onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}

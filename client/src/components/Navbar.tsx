@@ -44,7 +44,7 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "4rem" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "4rem", overflow: "hidden" }}>
 
           {/* Logo */}
           <Link href="/">

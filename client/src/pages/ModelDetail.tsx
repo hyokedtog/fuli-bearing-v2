@@ -828,7 +828,7 @@ export default function ModelDetail() {
       {/* ── Main content: Specs + Inquiry ── */}
       <section style={{ paddingTop: "3rem", paddingBottom: "4rem" }}>
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: "2.5rem", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "start" }} className="lg:grid-cols-[1fr_380px]">
 
             {/* Left: Specs + Description + Features + Applications */}
             <div>

@@ -342,4 +342,23 @@
     --media-object-position: center;
     --controls: none;
   }
+
+  /* ── Mobile responsive fixes ── */
+
+  /* Prevent horizontal overflow on all pages */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Product card: stack vertically on mobile */
+  @media (max-width: 639px) {
+    .product-card {
+      grid-template-columns: 1fr !important;
+    }
+    .product-card-img {
+      width: 100% !important;
+      min-height: 200px !important;
+    }
+  }
 }

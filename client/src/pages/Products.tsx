@@ -7,7 +7,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, ChevronUp, MessageCircle, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp, MessageCircle, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -106,30 +106,13 @@ const categories = [
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-function PriorityStars({ count }: { count: number }) {
-  return (
-    <div style={{ display: "flex", gap: "2px" }}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <Star
-          key={i}
-          size={10}
-          style={{
-            fill: i <= count ? "oklch(0.65 0.22 45)" : "transparent",
-            color: i <= count ? "oklch(0.65 0.22 45)" : "oklch(0.80 0.004 260)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function SKUTable({ skus, accent }: { skus: typeof categories[0]["skus"]; accent: string }) {
   return (
     <div style={{ overflowX: "auto" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
         <thead>
           <tr style={{ background: "oklch(0.94 0.003 260)", borderBottom: `2px solid ${accent}` }}>
-            {["Model", "Spec", "Application", "Priority"].map((h) => (
+            {["Model", "Spec", "Application"].map((h) => (
               <th key={h} style={{
                 textAlign: "left",
                 padding: "0.65rem 1.25rem 0.65rem 0.75rem",
@@ -165,9 +148,6 @@ function SKUTable({ skus, accent }: { skus: typeof categories[0]["skus"]; accent
               </td>
               <td style={{ padding: "0.7rem 1.25rem 0.7rem 0", color: "oklch(0.40 0.008 260)", fontSize: "0.82rem" }}>
                 {sku.application}
-              </td>
-              <td style={{ padding: "0.7rem 0" }}>
-                <PriorityStars count={sku.priority} />
               </td>
             </motion.tr>
           ))}

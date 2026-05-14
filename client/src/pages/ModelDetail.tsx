@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 import { Link, useParams } from "wouter";
-import { ArrowLeft, ArrowRight, Send, CheckCircle2, ShieldCheck, Package, Truck, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Send, CheckCircle2, ShieldCheck, Package, Truck } from "lucide-react";
 
 /* ─── Full model database ──────────────────────────────────── */
 type ModelData = {
@@ -697,23 +697,6 @@ const allModels: Record<string, ModelData> = {
   },
 };
 
-/* ─── Priority Stars ─────────────────────────────────────────── */
-function PriorityStars({ count }: { count: number }) {
-  return (
-    <div style={{ display: "flex", gap: "2px" }}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <Star
-          key={i}
-          size={12}
-          fill={i <= count ? "#f97316" : "none"}
-          stroke={i <= count ? "#f97316" : "#d1d5db"}
-          strokeWidth={1.5}
-        />
-      ))}
-    </div>
-  );
-}
-
 /* ─── Main Component ─────────────────────────────────────────── */
 export default function ModelDetail() {
   const params = useParams<{ category: string; model: string }>();
@@ -823,11 +806,8 @@ export default function ModelDetail() {
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.60 0.008 260)", marginBottom: "0.75rem" }}>
                 {data.type} · {data.d} bore · {data.D !== "—" ? `${data.D} OD` : "Pillow Block Unit"}
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
-                <PriorityStars count={data.priority} />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.55 0.008 260)" }}>
-                  {data.application}
-                </span>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "oklch(0.45 0.008 260)", marginTop: "0.25rem" }}>
+                {data.application}
               </div>
             </div>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -1032,7 +1012,7 @@ export default function ModelDetail() {
                   >
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 700, color: "oklch(0.15 0.010 260)", marginBottom: "0.25rem" }}>{m}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "oklch(0.50 0.008 260)" }}>{rel.application}</div>
-                    <div style={{ marginTop: "0.4rem" }}><PriorityStars count={rel.priority} /></div>
+
                   </div>
                 </Link>
               );

@@ -3,7 +3,7 @@
  * Design: Always-dark navbar (deep navy/charcoal) — provides strong brand anchor
  * against the new light content areas below.
  */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Phone } from "lucide-react";
 
@@ -18,7 +18,32 @@ const navLinks = [
 export default function Navbar() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuAnimating, setMenuAnimating] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [scrolled, setScrolled] = useState(false);
+
+  const openMenu = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setMenuVisible(true);
+    // Trigger animation on next frame
+    requestAnimationFrame(() => setMenuAnimating(true));
+  };
+
+  const closeMenu = () => {
+    setMenuAnimating(false);
+    closeTimerRef.current = setTimeout(() => setMenuVisible(false), 280);
+  };
+
+  const toggleMenu = () => {
+    if (isOpen) {
+      setIsOpen(false);
+      closeMenu();
+    } else {
+      setIsOpen(true);
+      openMenu();
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -26,7 +51,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setIsOpen(false); }, [location]);
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpen(false);
+      closeMenu();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   return (
     <header
@@ -162,7 +193,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             className="lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleMenu}
             style={{
               background: "none",
               border: "none",
@@ -178,15 +209,42 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div style={{
-          background: "oklch(0.11 0.012 255)",
-          borderTop: "1px solid oklch(0.22 0.015 255)",
-        }}>
+      <style>{`
+        @keyframes menu-slide-in {
+          from { opacity: 0; transform: translateY(-12px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes menu-slide-out {
+          from { opacity: 1; transform: translateY(0); }
+          to   { opacity: 0; transform: translateY(-12px); }
+        }
+        .mobile-menu-enter {
+          animation: menu-slide-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .mobile-menu-exit {
+          animation: menu-slide-out 0.25s cubic-bezier(0.55, 0, 1, 0.45) both;
+        }
+        .mobile-menu-item {
+          transition: color 0.15s ease, padding-left 0.15s ease;
+        }
+        .mobile-menu-item:active {
+          padding-left: 0.5rem;
+          color: oklch(0.65 0.22 45) !important;
+        }
+      `}</style>
+
+      {menuVisible && (
+        <div
+          className={menuAnimating ? "mobile-menu-enter" : "mobile-menu-exit"}
+          style={{
+            background: "oklch(0.11 0.012 255)",
+            borderTop: "1px solid oklch(0.22 0.015 255)",
+            transformOrigin: "top center",
+          }}>
           <div className="container" style={{ paddingTop: "1rem", paddingBottom: "1.5rem" }}>
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
-                <div style={{
+                <div className="mobile-menu-item" style={{
                   padding: "0.9rem 0",
                   borderBottom: "1px solid oklch(0.20 0.012 255)",
                   fontFamily: "'DM Sans', sans-serif",

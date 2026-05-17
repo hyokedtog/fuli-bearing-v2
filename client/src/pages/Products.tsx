@@ -106,7 +106,7 @@ const categories = [
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-function SKUTable({ skus, accent }: { skus: typeof categories[0]["skus"]; accent: string }) {
+function SKUTable({ skus, accent, catId }: { skus: typeof categories[0]["skus"]; accent: string; catId: string }) {
   return (
     <div style={{ overflowX: "auto" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
@@ -133,13 +133,17 @@ function SKUTable({ skus, accent }: { skus: typeof categories[0]["skus"]; accent
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.035 }}
+              onClick={(e) => { e.stopPropagation(); window.location.href = `/products/${catId}/${encodeURIComponent(sku.model)}`; }}
               style={{
                 borderBottom: "1px solid oklch(0.90 0.003 260)",
                 background: i % 2 === 0 ? "oklch(1 0 0)" : "oklch(0.97 0.002 260)",
+                cursor: "pointer",
+                transition: "background 0.15s",
               }}
+              whileHover={{ backgroundColor: `${accent}12` }}
             >
               <td style={{ padding: "0.7rem 1.25rem 0.7rem 0.75rem" }}>
-                <span style={{ fontFamily: "monospace", fontWeight: 700, color: "oklch(0.18 0.012 260)", fontSize: "0.85rem" }}>
+                <span style={{ fontFamily: "monospace", fontWeight: 700, color: accent, fontSize: "0.85rem", textDecoration: "underline", textDecorationColor: `${accent}55` }}>
                   {sku.model}
                 </span>
               </td>
@@ -237,7 +241,7 @@ function CategoryCard({ cat, isActive, onClick }: {
               {/* Accent divider */}
               <div style={{ height: "2px", marginBottom: "1.5rem", background: `linear-gradient(to right, ${cat.accent}, transparent)` }} />
 
-              <SKUTable skus={cat.skus} accent={cat.accent} />
+              <SKUTable skus={cat.skus} accent={cat.accent} catId={cat.id} />
 
               {/* CTA */}
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", flexWrap: "wrap" as const }}>

@@ -348,15 +348,37 @@ export default function Home() {
             </span>
           </h1>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
-            {["Motorcycle", "Motor & Pump", "Agricultural", "Industrial"].map((t, i) => (
-              <span key={t} style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600,
-                letterSpacing: "0.08em", textTransform: "uppercase",
-                color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.80 0.006 260)",
-                padding: "0.4rem 1rem",
-                border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.6)" : "oklch(1 0 0 / 0.18)"}`,
-              }}>{t}</span>
-            ))}
+            {(["Motorcycle", "Motor & Pump", "Agricultural", "Industrial"] as const).map((t, i) => {
+              const hrefs = ["/products/motorcycle", "/products/motor", "/products/agricultural", "/products/industrial"];
+              return (
+                <Link key={t} href={hrefs[i]}>
+                  <span style={{
+                    display: "inline-block",
+                    fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600,
+                    letterSpacing: "0.08em", textTransform: "uppercase",
+                    color: i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.80 0.006 260)",
+                    padding: "0.4rem 1rem",
+                    border: `1px solid ${i === 0 ? "oklch(0.65 0.22 45 / 0.6)" : "oklch(1 0 0 / 0.18)"}`,
+                    cursor: "pointer",
+                    transition: "background 0.18s, color 0.18s, border-color 0.18s",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = "oklch(0.65 0.22 45 / 0.15)";
+                    el.style.color = "oklch(0.65 0.22 45)";
+                    el.style.borderColor = "oklch(0.65 0.22 45 / 0.6)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = "transparent";
+                    el.style.color = i === 0 ? "oklch(0.65 0.22 45)" : "oklch(0.80 0.006 260)";
+                    el.style.borderColor = i === 0 ? "oklch(0.65 0.22 45 / 0.6)" : "oklch(1 0 0 / 0.18)";
+                  }}
+                  >{t}</span>
+                </Link>
+              );
+            })}
           </div>
           <p style={{ color: "oklch(0.82 0.006 260)", fontSize: "1rem", fontWeight: 400, maxWidth: "42ch", lineHeight: 1.7, marginBottom: "2.5rem" }}>
             ISO 9001 certified bearings. Full export documentation on every shipment. Trusted by distributors and OEMs in 20+ countries.
